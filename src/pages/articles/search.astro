@@ -3,43 +3,42 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import SearchForm from "../../components/SearchForm.astro";
 import { getCollection } from "astro:content";
+import { getAllBlogs } from "../../services/api";
 
 const query = Astro.url.searchParams.get("query");
 
-const allBlogArticles = await getCollection("blog");
+// const allBlogArticles = await getCollection("blog");
+const allBlogArticles = await getAllBlogs();
+console.log(allBlogArticles);
 
 // Filter articles based on query
 const searchResults = allBlogArticles.filter((article) => {
-  const titleMatch: boolean = article.data.title
-    .toLowerCase()
-    .includes(query!.toLowerCase());
+	const titleMatch = article.title
+		.toLowerCase()
+		.includes(query?.toLowerCase());
 
-  const bodyMatch: boolean = article.body
-    .toLowerCase()
-    .includes(query!.toLowerCase());
+	const tagsMatch = article.tags.includes(query?.toLowerCase());
 
-  const slugMatch: boolean = article.slug
-    .toLowerCase()
-    .includes(query!.toLowerCase());
+	const slugMatch = article.slug.toLowerCase().includes(query?.toLowerCase());
 
-  return titleMatch || bodyMatch || slugMatch;
+	return titleMatch || slugMatch || tagsMatch;
 });
 ---
 
 <MainLayout title="Search Results">
-  <a
-    href="/articles"
-    class="inline-block bg-gray-100 p-2 mb-5 hover:bg-indigo-500 hover:text-white"
-    >All Articles</a
-  >
+	<a
+		href="/articles"
+		class="inline-block bg-gray-100 p-2 mb-5 hover:bg-indigo-500 hover:text-white"
+		>All Articles</a
+	>
 
-  <SearchForm />
+	<SearchForm />
 
-  <br />
+	<br />
 
-  <h1 class="text-2xl pb-3 mt-6">Results For <strong>{query}</strong></h1>
+	<h1 class="text-2xl pb-3 mt-6">Results For <strong>{query}</strong></h1>
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {searchResults.map((article) => <ArticleCard article={article} />)}
-  </div>
+	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+		{searchResults.map((article) => <ArticleCard article={article} />)}
+	</div>
 </MainLayout>

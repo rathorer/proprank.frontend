@@ -4,7 +4,7 @@ import SearchForm from "../components/SearchForm.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import MostRecentArticle from "../components/MostRecentArticle.astro";
 import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
-import { getAllBlogs } from  "../services/api";
+import { getAllBlogs } from "../services/api";
 
 // const allBlogArticles = (await getCollection("blog")).sort(
 // 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -13,7 +13,6 @@ import { getAllBlogs } from  "../services/api";
 const allBlogArticles = await getAllBlogs();
 const mostRecentArticle = allBlogArticles[0];
 const otherArticles = allBlogArticles.slice(1);
-
 ---
 
 <MainLayout>
@@ -23,13 +22,17 @@ const otherArticles = allBlogArticles.slice(1);
 			<h1 class="text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl">
 				Articles, Stories & Tutorials for Tech People
 			</h1>
-			<SearchForm />
+			<!-- <SearchForm /> -->
 		</div>
-		<MostRecentArticle article={mostRecentArticle} />
+		<!-- <MostRecentArticle article={mostRecentArticle} /> -->
+		<br />
+		<br />
+		<hr />
+		<hr />
 	</div>
 
 	<!-- Main Grid -->
-	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+	<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 		{
 			otherArticles
 				.slice(0, HOMEPAGE_ARTICLE_LIMIT)
