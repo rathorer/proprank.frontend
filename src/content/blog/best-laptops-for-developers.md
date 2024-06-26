@@ -4,7 +4,7 @@ pubDate: 2024-01-20
 # lastModifyDate: 2024-05-02
 author: 'John Doe'
 # images: ['blog1id/image1.png','']
-image: 'image1.png'
+titleImage: '/images/image1.png'
 # titleImage: 'blog1id/image2.png'
 tags: ['tech', 'hardware']
 # category: "string"

@@ -26,3 +26,23 @@ export const getBlog = async (slug) => {
         throw error;
     }
 }
+export const postBlog = async (data) => {
+    try {
+        const response = await fetch(`api/blog/postNewBlog/`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            throw new Error("failed to save data");
+        }
+        const result = await response.json();
+        console.log(result);
+        return result;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
