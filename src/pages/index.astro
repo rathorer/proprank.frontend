@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import SearchForm from "../components/SearchForm.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import MostRecentArticle from "../components/MostRecentArticle.astro";
+import HorizontalRuleHeading from "../components/HorizontalRuleHeading.astro";
 import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
 import { getAllBlogs } from "../services/api";
 
@@ -25,16 +26,12 @@ const otherArticles = allBlogArticles.slice(1);
 			<!-- <SearchForm /> -->
 		</div>
 		<!-- <MostRecentArticle article={mostRecentArticle} /> -->
-		<br />
-		<br />
-		<hr />
-		<hr />
 	</div>
-
+	<HorizontalRuleHeading />
 	<!-- Main Grid -->
 	<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 		{
-			otherArticles
+			allBlogArticles
 				.slice(0, HOMEPAGE_ARTICLE_LIMIT)
 				.map((article) => <ArticleCard article={article} />)
 		}
