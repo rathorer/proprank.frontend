@@ -4,6 +4,7 @@ import Tags from "../../components/Tags.astro";
 import { getEntry } from "astro:content";
 import { formatDate } from "../../utils";
 import { getBlog } from "../../services/api";
+import CommentSection from "../../components/CommentSection"
 
 const { slug } = Astro.params;
 
@@ -41,6 +42,8 @@ const { Content } = await entry.render();
     />
     <Content />
   </article>
+  <hr>
+  <CommentSection client:load articleId={blog._id} slug ={blog.slug}/>
 </MainLayout>
 
 <style is:global>

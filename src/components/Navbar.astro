@@ -1,10 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import SearchForm from "./SearchForm.astro";
-// import logo from "../images/blog-placeholder-1.jpg";
-// console.log(logo);
-
-// "/src/images/pr-logo-inverted.png"
+import DropDown from "./dropdown"
 ---
 
 <nav class="bg-gray-900 text-white">
@@ -24,64 +21,6 @@ import SearchForm from "./SearchForm.astro";
 			>
 		</a>
 		<SearchForm />
-		<div class="group w-auto">
-			<button
-				class="block"
-				aria-controls="navbar-default"
-				aria-expanded="false">
-				<span class="sr-only">Open main menu</span>
-				<svg
-					class="w-5 h-5"
-					aria-hidden="true"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 17 14">
-					<path
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M1 1h15M1 7h15M1 13h15">
-					</path>
-				</svg>
-			</button>
-			<div class="hidden absolute bg-slate-100 shadow-xl shadow-gray-600 z-10 hover:block right-5 group-hover:block text-black font-medium" id="navbar-default">
-				<ul
-					class="m-5 flex items-center flex-col"
-				>
-					<li class="py-2 px-2 hover:underline">
-						<a
-							href="/"
-							class=""
-							aria-current="page">Home</a
-						>
-					</li>
-					<li class="py-2 px-2  hover:underline">
-						<a
-							href="/articles"
-							class=""
-							>All Articles</a
-						>
-					</li>
-					<li class="py-2 px-2  hover:underline">
-						<a
-							href="/about"
-							class=""
-							>About</a
-						>
-					</li>
-					<li class="py-2 px-2  hover:underline">
-						<a
-							href="/login"
-							class=""
-							>Login</a
-						>
-					</li>
-				</ul>
-			</div>
-		</div>
-			
-		
-		
+		<DropDown client:load/>
 	</div>
 </nav>
