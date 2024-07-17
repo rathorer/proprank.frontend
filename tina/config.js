@@ -1,6 +1,5 @@
 import { LocalAuthProvider, defineConfig } from "tinacms";
 import { CustomAuthProvider } from "./auth";
-// import { postBlog } from "../src/services/api";
 
 
 // Your hosting provider likely exposes this as an environment variable
@@ -80,12 +79,19 @@ export default defineConfig({
 						label: "Body",
 						isBody: true,
 					},
+					{
+						type: "string",
+						name: "db_id",
+						label: "db_id",
+						ui: {
+							component: "hidden"
+						}
+					}
 				],
 				ui: {
 					beforeSubmit: async ({ form, cms, values }) => {
-						const { title, slug, titleImage, tags, author } = values;
-						const data = { title, titleImage, slug, author, tags }
-						console.log(data);
+						const { title, slug, titleImage, tags, author, db_id } = values;
+						const data = { _id: db_id, title, titleImage, slug, author, tags }
 						const response = await fetch(`http://localhost:8000/api/blog/postNewBlog`, {
 							method: 'POST',
 							headers: {
@@ -97,9 +103,9 @@ export default defineConfig({
 							throw new Error("failed to save data");
 						}
 						const result = await response.json();
-						console.log(result);
-					}
-				}
+						values.db_id = result.blog._id;
+					},
+				},
 			},
 		]
 

@@ -1,7 +1,8 @@
 // const default_site_url = import.meta.env.DEFAULT_SITE_URL;
-const api_url = import.meta.env.API_URL;
+// const api_url = import.meta.env.API_URL;
 export const getAllBlogs = async () => {
     try {
+        let api_url = import.meta.env.PUBLIC_API_URL;
         const response = await fetch(`${api_url}api/blog/getAllBlogs`);
         if (!response.ok) {
             throw new Error("failed to fetch data");
@@ -15,6 +16,7 @@ export const getAllBlogs = async () => {
 }
 export const getBlog = async (slug) => {
     try {
+        let api_url = import.meta.env.PUBLIC_API_URL;
         const response = await fetch(`${api_url}api/blog/getBlog/${slug}`);
         if (!response.ok) {
             throw new Error("failed to fetch data");

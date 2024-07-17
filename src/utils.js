@@ -17,4 +17,30 @@ function capitalize(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export { formatDate, capitalize };
+/**
+ * 
+ * @param {*} time accepts time in utc format 
+ * @returns time in human relatable format (string)
+ * example: 10 seconds ago ,2 minutes ago and 22 hours ago !
+ */
+
+function convertTimeToHumanRelatable(time) {
+	let diff = Math.floor(Date.now() / 1000) - Math.floor(new Date(time).getTime() / 1000)
+	if (diff < 60) {
+		return `${diff} seconds ago`
+	} else {
+		if (diff < 3600) {
+			let timeMinutes = Math.floor(diff / 60);
+			return `${timeMinutes} minutes ago`;
+		} else {
+			if (diff < (60 * 60 * 24)) {
+				let timeHours = Math.floor(diff / (60 * 60));
+				return `${timeHours} hours ago`;
+			} else {
+				return formatDate(time);
+			}
+		}
+	}
+}
+
+export { formatDate, capitalize, convertTimeToHumanRelatable };

@@ -20,10 +20,16 @@ const { article } = Astro.props;
 			<h2 class="text-lg font-medium mb-2 py-4">
 				<a href={"/articles/" + article.slug}> {article.title} </a>
 			</h2>
-			<p class="text-gray-600 text-xs mb-2">
-				{formatDate(article.createdAt)}
-			</p>
-			<Tags tags={article.tags} />
+			<div class="flex justify-between">
+				<h3 class="text-gray-600">
+					{article.author}
+				  </h3>
+				<p class="text-gray-600">
+					{formatDate(article.createdAt)}
+				</p>
+
+			</div>
+			<!-- <Tags tags={article.tags} /> -->
 		</div>
 	</div>
 </div>

@@ -5,6 +5,7 @@ import { getEntry } from "astro:content";
 import { formatDate } from "../../utils";
 import { getBlog } from "../../services/api";
 import CommentSection from "../../components/CommentSection"
+import Like from "../../components/Like";
 
 const { slug } = Astro.params;
 
@@ -43,6 +44,9 @@ const { Content } = await entry.render();
     <Content />
   </article>
   <hr>
+ <div class="flex">
+    <!-- <Like client:load width={40} height={40} likesCount={2}/> -->
+ </div>
   <CommentSection client:load articleId={blog._id} slug ={blog.slug}/>
 </MainLayout>
 
