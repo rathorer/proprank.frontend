@@ -1,46 +1,64 @@
-import { AbstractAuthProvider } from 'tinacms'
+import { AbstractAuthProvider, } from 'tinacms'
+import { loginUser } from '../src/services/api';
 
-export class CustomAuthProvider extends AbstractAuthProvider {
-  constructor() {
-    super()
-    // Do any setup here
-  }
-  async authenticate() {
-    // Do any authentication here
-    return new Promise((resolve, reject) => {
-      resolve({
-        access_token: "token",
-        id_token: "token",
-        refresh_token: "token"
-      })
-    })
-  }
-  async getToken() {
-    // Return the token here. The token will be passed as an Authorization header in the format `Bearer <token>`
-    return new Promise((resolve, reject) => {
-      resolve({
-        id_token: "token"
-      })
-    })
-  }
-  async getUser() {
-    // Returns a truthy value, the user is logged in and if it returns a falsy value the user is not logged in.
+class CustomAuthProvider extends AbstractAuthProvider {
 
-    return new Promise((resolve, reject) => {
-      resolve(true);
-    });
-  }
-  async logout() {
-    // Do any logout logic here
-    return new Promise((resolve, reject) => {
-      resolve();
-    })
-  }
-  async authorize() {
-    // Do any authorization logic here
-  }
-  getSessionProvider() {
-    // GetSessionProvider can be deleted if not needed
-    // OPTIONALLY Return a React context provider to that will wrap the admin
-  }
+	constructor(API_URL) {
+		super()
+		this.loggedIn = false;
+		this.env_variable = API_URL;
+	}
+
+	async authenticate(props) {
+		const { username, password } = props;
+		const formData = { email: username, password };
+		let response = await fetch(`http://localhost:8000/api/user/login`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(formData)
+		});
+		let status = response.status;
+		const result = await response.json();
+		if (status === 200) {
+			window.sessionStorage.setItem('user-details', JSON.stringify(result));
+			this.loggedIn = true;
+		} else {
+			window.alert(`${result.resultMessage}`);
+		}
+	}
+
+	async getToken() {
+		return {
+			id_token: "token"
+		}
+	}
+
+	getLoginStrategy() {
+		return "UsernamePassword"
+	}
+
+	async getUser() {
+		let user = JSON.parse(window.sessionStorage.getItem('user-details'));
+		this.loggedIn = user ? true : false;
+		return this.loggedIn;
+	}
+	async logout() {
+		console.log("logout");
+		this.loggedIn = false;
+	}
+
+	authorize(props) {
+		console.log("authorize");
+		return true;
+	}
+
+	async isAuthorized(req, res) {
+		console.log("isAuthorized called")
+		// console.log(req, res);
+		return true;
+	}
 }
+
+export default CustomAuthProvider;
