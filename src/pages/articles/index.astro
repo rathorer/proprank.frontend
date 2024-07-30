@@ -3,8 +3,8 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import SearchForm from "../../components/SearchForm.astro";
 import Pagination from "../../components/Pagination.astro";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+// import { getCollection } from "astro:content";
+// import type { CollectionEntry } from "astro:content";
 import { ARTICLES_PER_PAGE } from "../../constants";
 import { getAllBlogs } from "../../services/api";
 
@@ -22,7 +22,7 @@ const articlesForPage = allBlogArticles.slice(
 );
 ---
 
-<MainLayout>
+<MainLayout title={`All Articles | ${currentPage}`}>
   <h1 class="text-2xl pb-3">All Articles</h1>
 
   <SearchForm />

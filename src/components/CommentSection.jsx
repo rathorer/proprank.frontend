@@ -21,7 +21,7 @@ export default function CommentSection(props) {
             if (article.comments.length) {
                 setComments(article.comments);
             }
-            if (article.likedBy_ids.length) {
+            if (article?.likedBy_ids?.length) {
                 setArticleLikes(article.likedBy_ids);
             }
         }

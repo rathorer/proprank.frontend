@@ -2,14 +2,13 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import SearchForm from "../../components/SearchForm.astro";
-import { getCollection } from "astro:content";
+// import { getCollection } from "astro:content";
 import { getAllBlogs } from "../../services/api";
 
 const query = Astro.url.searchParams.get("query");
 
 // const allBlogArticles = await getCollection("blog");
 const allBlogArticles = await getAllBlogs();
-console.log(allBlogArticles);
 
 // Filter articles based on query
 const searchResults = allBlogArticles.filter((article) => {
