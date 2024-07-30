@@ -1,0 +1,35 @@
+---
+import { formatDate } from "../utils";
+import Tags from "./Tags.astro";
+
+const { article } = Astro.props;
+---
+
+<div class="max-w-md mx-auto mt-10">
+	<div class="bg-white rounded-lg overflow-hidden shadow-lg">
+		<a href={"/articles/" + article.slug}>
+			<img
+				src={article.titleImage}
+				alt="Article Image"
+				class="w-full h-52 object-cover hover:opacity-75 transition duration-300 ease-in-out"
+				width={200}
+				height={200}
+			/>
+		</a>
+		<div class="p-4">
+			<h2 class="text-lg font-medium mb-2 py-4">
+				<a href={"/articles/" + article.slug}> {article.title} </a>
+			</h2>
+			<div class="flex justify-between">
+				<h3 class="text-gray-600">
+					{article.author}
+				  </h3>
+				<p class="text-gray-600">
+					{formatDate(article.createdAt)}
+				</p>
+
+			</div>
+			<!-- <Tags tags={article.tags} /> -->
+		</div>
+	</div>
+</div>
