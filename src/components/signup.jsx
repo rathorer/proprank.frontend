@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { loginUser, createUser } from '../services/api';
+import { useTina } from "tinacms/dist/react"
 
 export default function () {
+
+    // const data = useTina({
+
+    // });
+
+
+    useEffect(() => {
+        let userDetails = JSON.parse(window.sessionStorage.getItem('user-details'));
+        if (userDetails) {
+            window.location.href = '/';
+        }
+    }, [])
 
     const handleSubmit = async (event) => {
         event.preventDefault();

@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { loginUser } from '../services/api';
+import { signIn } from 'auth-astro/client'
 
 export default function Login() {
+
+    // useEffect(() => {
+    //     let userDetails = JSON.parse(window.sessionStorage.getItem('user-details'));
+    //     if (userDetails) {
+    //         window.location.href = '/';
+    //     }
+    // }, [])
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -10,13 +19,29 @@ export default function Login() {
         let email = formData.get("email");
         let password = formData.get("password");
         formData = { email, password };
-        const response = await loginUser(formData);
-        if (response.status === 200) {
-            window.sessionStorage.setItem('user-details', JSON.stringify(response.result));
-            window.location.href = "/";
-        } else {
-            window.alert(`${response.result.resultMessage}`);
+        console.log(formData);
+        // const response = await loginUser(formData);
+        try {
+            // signIn();
+            const result = await signIn('customjwt', { email, password });
+            console.log(result);
+            // if (result.error) {
+            //     window.alert(result.error);
+            // } else {
+            //     window.location.href = "/";
+            // }
+        } catch (error) {
+            console.log(error);
+            console.log("Sign in error", error);
+            window.alert("An error occurred during sign in", error);
         }
+        // if (response.status === 200) {
+        //     // await signIn('custom-jwt', { redirect: true, email, password, callbackUrl: '/' });
+        //     window.sessionStorage.setItem('user-details', JSON.stringify(response.result));
+        //     // window.location.href = "/";
+        // } else {
+        //     window.alert(`${response.result.resultMessage}`);
+        // }
     }
 
     return (
@@ -30,14 +55,14 @@ export default function Login() {
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-medium text-neutral-600"> Email address </label>
                                     <div className="mt-1">
-                                        <input id="email" name="email" type="email" autoComplete="email" required="" placeholder="Your Email" className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" />
+                                        <input id="email" name="email" type="email" autoComplete="email" required placeholder="Your Email" className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" />
                                     </div>
                                 </div>
 
                                 <div className="space-y-1">
                                     <label htmlFor="password" className="block text-sm font-medium text-neutral-600"> Password </label>
                                     <div className="mt-1">
-                                        <input id="password" name="password" type="password" autoComplete="current-password" required="" placeholder="Your Password" className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" />
+                                        <input id="password" name="password" type="password" autoComplete="current-password" required placeholder="Your Password" className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" />
                                     </div>
                                 </div>
 
@@ -72,7 +97,7 @@ export default function Login() {
                             </div>
                             <div>
                                 <button type="submit" className="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                                    <div className="flex items-center justify-center">
+                                    <div className="flex items-center justify-center" onClick={() => signIn("github")}>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" className="w-6 h-6" viewBox="0 0 48 48">
                                             <defs>
                                                 <path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"></path>
