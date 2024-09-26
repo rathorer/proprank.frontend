@@ -1,11 +1,16 @@
 ---
 title: 'Guardian of the Digital Realm: Web Security'
-# pubDate: 2024-01-19
-author: 'John Doe'
-titleImage: '/images/image2.png'
-tags: ['code', 'security', 'tech']
+tags:
+  - code
+  - security
+  - tech
+author: John Doe
+category: institutional
 slug: guardian-of-the-digital-realm-web-security
-db_id : "665860de61f8a4f410098ce3"
+titleImage: /images/image2.png
+db_id: 665860de61f8a4f410098ce3
+readTime: 4
+type: article
 ---
 
 In today's interconnected world, where data breaches and cyber threats are on the rise, web security has become paramount. As the guardians of the digital realm, it's our responsibility to protect sensitive information, maintain user trust, and ensure the integrity of online systems. Let's dive into the world of web security and explore the key principles that every developer should embrace.
@@ -52,4 +57,4 @@ Educate your users about best security practices, such as creating strong passwo
 
 Prepare for the worst-case scenario with a well-defined incident response plan. This plan should outline the steps to take when a security breach occurs, minimizing damage and downtime.
 
-As developers and stewards of the digital realm, our commitment to web security is not optional; it's a necessity. By following these principles and staying informed about emerging threats, we can safeguard the digital world and protect the trust of users and organizations alike. Let's remain vigilant in our role as guardians of web security.
+As developers and stewards of the digital realm, our commitment to web security is not optional; it's a necessity. By following these principles and staying informed about emerging threats, we can safeguard the digital world and protect the trust of users and organizations alike. Let's remain vigilant in our role as guardians of web security

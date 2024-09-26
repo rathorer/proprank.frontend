@@ -4,7 +4,7 @@ import { convertTimeToHumanRelatable } from '../utils';
 import Like from './Like';
 
 export default function CommentSection(props) {
-    const { slug, articleId } = props;
+    const { slug, articleId, currentUrl } = props;
     const [comments, setComments] = useState([]);
     const [userDetails, setUserDetails] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
@@ -107,7 +107,7 @@ export default function CommentSection(props) {
                         </div>
                     </div>
                 </form> :
-                <a href="/login">
+                <a href={`/login?callbackUrl=${currentUrl}`}>
                     <div className='bg-zinc-200 text-center text-xl text-slate-800 p-3 mb-5'>
                         <span className='hover:underline hover:text-slate-600'>
                             Login
@@ -123,43 +123,47 @@ export default function CommentSection(props) {
                 {comments.length ?
                     comments.toReversed().map((comment, index) => (
                         <div key={index}>
-                            <div className="flex flex-col mb-3 py-2 px-1">
-                                <div className="flex justify-between">
-                                    <div className="flex justify-start">
-                                        <div className="px-2 capitalize font-medium tracking-wider text-lg">
-                                            @{comment.userId.name}
-                                        </div>
-                                        <div className="ml-6">
-                                            {/* {new Date(comment.createdAt).toLocaleTimeString()} | {new Date(comment.createdAt).toDateString()} */}
-                                            {convertTimeToHumanRelatable(comment.createdAt)}
-                                        </div>
-                                    </div>
-                                    <div className="flex">
-                                        {loggedIn && comment.userId._id === userDetails._id ?
-                                            <div className="flex">
-                                                <div className='mx-2' onClick={() => handleDelete(comment._id)} id='deleteButton' title='Delete'>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill='gray'>
-                                                        <path d="M 10.806641 2 C 10.289641 2 9.7956875 2.2043125 9.4296875 2.5703125 L 9 3 L 4 3 A 1.0001 1.0001 0 1 0 4 5 L 20 5 A 1.0001 1.0001 0 1 0 20 3 L 15 3 L 14.570312 2.5703125 C 14.205312 2.2043125 13.710359 2 13.193359 2 L 10.806641 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z" ></path>
-                                                    </svg>
-                                                </div>
-                                                <div className="mx-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                                        <path d="M 18 2 L 15.585938 4.4140625 L 19.585938 8.4140625 L 22 6 L 18 2 z M 14.076172 5.9238281 L 3 17 L 3 21 L 7 21 L 18.076172 9.9238281 L 14.076172 5.9238281 z"></path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            :
-                                            <>
-                                            </>
-                                        }
-                                        {loggedIn && <Like key={index + 'like'} width={20} height={20} likesCount={comment?.likedBy_ids?.length || 0} likedCall={handleCommentLike} unLikedCall={handleCommentUnLike} referenceId={comment._id} alreadyLiked={comment?.likedBy_ids?.includes(userDetails._id || false)} />}
-                                    </div>
+                            <div className="flex border-2 items-center my-2 rounded-lg">
+                                <div className="ml-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="profile" width={40} height={40}><path d="M11.78,11.28A4.462,4.462,0,0,1,16,6.61a4.462,4.462,0,0,1,4.22,4.67A4.45912,4.45912,0,0,1,16,15.94,4.45912,4.45912,0,0,1,11.78,11.28ZM30.04,16a13.91894,13.91894,0,0,1-2.39,7.82,1.43134,1.43134,0,0,1-.14.2,14.01332,14.01332,0,0,1-23.02,0,1.43134,1.43134,0,0,1-.14-.2A14.03633,14.03633,0,1,1,30.04,16ZM3.46,16a12.51091,12.51091,0,0,0,1.57,6.09C7.2,19.24,11.36,17.46,16,17.46s8.8,1.78,10.97,4.63A12.543,12.543,0,1,0,3.46,16Z"></path></svg>
                                 </div>
-                                <div className="pl-7 text-lg">
-                                    {comment.body}
+                                <div className="flex flex-col ml-5 mt-3 flex-1">
+                                    <div className="flex justify-between">
+                                        <div className="flex space-x-10">
+                                            <div className="capitalize font-medium tracking-wider text-lg">
+                                                @{comment.userId.name}
+                                            </div>
+                                            <div className="">
+                                                {/* {new Date(comment.createdAt).toLocaleTimeString()} | {new Date(comment.createdAt).toDateString()} */}
+                                                {convertTimeToHumanRelatable(comment.createdAt)}
+                                            </div>
+                                        </div>
+                                        <div className="flex mr-5">
+                                            {loggedIn && comment.userId._id === userDetails._id ?
+                                                <div className="flex">
+                                                    <div className='mx-2' onClick={() => handleDelete(comment._id)} id='deleteButton' title='Delete'>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill='gray'>
+                                                            <path d="M 10.806641 2 C 10.289641 2 9.7956875 2.2043125 9.4296875 2.5703125 L 9 3 L 4 3 A 1.0001 1.0001 0 1 0 4 5 L 20 5 A 1.0001 1.0001 0 1 0 20 3 L 15 3 L 14.570312 2.5703125 C 14.205312 2.2043125 13.710359 2 13.193359 2 L 10.806641 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z" ></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div className="mx-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                                            <path d="M 18 2 L 15.585938 4.4140625 L 19.585938 8.4140625 L 22 6 L 18 2 z M 14.076172 5.9238281 L 3 17 L 3 21 L 7 21 L 18.076172 9.9238281 L 14.076172 5.9238281 z"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                :
+                                                <>
+                                                </>
+                                            }
+                                            {loggedIn && <Like key={index + 'like'} width={20} height={20} likesCount={comment?.likedBy_ids?.length || 0} likedCall={handleCommentLike} unLikedCall={handleCommentUnLike} referenceId={comment._id} alreadyLiked={comment?.likedBy_ids?.includes(userDetails._id || false)} />}
+                                        </div>
+                                    </div>
+                                    <div className="text-lg">
+                                        {comment.body}
+                                    </div>
                                 </div>
                             </div>
-                            <hr />
                         </div>
                     ))
                     :

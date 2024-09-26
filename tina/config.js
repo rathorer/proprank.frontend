@@ -1,5 +1,6 @@
 import { LocalAuthProvider, defineConfig, defineSchema, createClient } from "tinacms";
 import CustomAuthProvider from "./auth";
+import { CalculateReadTime } from "../src/utils";
 
 
 const canAccessAdminCollection = (user) => {
@@ -70,6 +71,33 @@ export default defineConfig({
 						label: 'Category',
 						name: 'category',
 						type: 'string',
+						list: false,
+						options: [
+							{
+								value: "residential",
+								label: "Residential",
+							},
+							{
+								value: "commerical",
+								label: "Commerical"
+							},
+							{
+								value: "agriculture",
+								label: "Agriculture",
+							},
+							{
+								value: "institutional",
+								label: "Institutional"
+							},
+							{
+								value: "industrial",
+								label: "Industrial"
+							},
+							{
+								value: "comparative",
+								label: "Comparative Analysis"
+							}
+						]
 					},
 					{
 						type: 'string',
@@ -97,11 +125,29 @@ export default defineConfig({
 							component: "hidden"
 						}
 					},
+					{
+						type: "number",
+						name: "readTime",
+						label: "readTime",
+						ui: {
+							component: "hidden"
+						}
+					},
+					{
+						type: "string",
+						name: "type",
+						label: "type",
+						ui: {
+							component: "hidden"
+						}
+					},
 				],
 				ui: {
 					beforeSubmit: async ({ form, cms, values }) => {
-						const { title, slug, titleImage, tags, author, db_id } = values;
-						const data = { _id: db_id, title, titleImage, slug, author, tags }
+						values.readTime = CalculateReadTime(values.body.children);
+						values.type = "article";
+						const { title, slug, titleImage, tags, author, db_id, readTime, type, category } = values;
+						const data = { _id: db_id, title, titleImage, category, slug, author, tags, readTime, type }
 						const response = await fetch(`http://localhost:8000/api/blog/postNewBlog`, {
 							method: 'POST',
 							headers: {
@@ -114,9 +160,122 @@ export default defineConfig({
 						}
 						const result = await response.json();
 						values.db_id = result.blog._id;
+						return { ...values };
 					},
 				},
-				isAuthCollection: false
+			},
+			{
+				name: "infographics",
+				label: "Infographics",
+				path: "src/content/infographics",
+				fields: [
+					{
+						type: "string",
+						name: "title",
+						label: "Title",
+						isTitle: true,
+						required: true,
+					},
+					{
+						label: 'Tags',
+						name: 'tags',
+						type: 'string',
+						list: true,
+						required: true
+					},
+					{
+						type: 'image',
+						name: 'titleImage',
+						label: 'Infographic',
+						required: true,
+					},
+					{
+						label: 'Author',
+						name: 'author',
+						type: 'string',
+					},
+					{
+						label: 'Category',
+						name: 'category',
+						type: 'string',
+						list: false,
+						options: [
+							{
+								value: "residential",
+								label: "Residential",
+							},
+							{
+								value: "commerical",
+								label: "Commerical"
+							},
+							{
+								value: "agriculture",
+								label: "Agriculture",
+							},
+							{
+								value: "institutional",
+								label: "Institutional"
+							},
+							{
+								value: "industrial",
+								label: "Industrial"
+							},
+							{
+								value: "comparative",
+								label: "Comparative Analysis"
+							}
+						]
+					},
+					{
+						type: 'string',
+						name: 'slug',
+						label: 'Slug',
+						required: true,
+					},
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body",
+						isBody: true,
+					},
+					{
+						type: "string",
+						name: "db_id",
+						label: "db_id",
+						ui: {
+							component: "hidden"
+						}
+					},
+					{
+						type: "string",
+						name: "type",
+						label: "type",
+						ui: {
+							component: "hidden"
+						}
+					},
+				],
+				ui: {
+					beforeSubmit: async ({ form, cms, values }) => {
+						values.readTime = 0;
+						values.type = "infographics";
+						const { title, slug, titleImage, tags, author, db_id, readTime, type, category } = values;
+						const data = { _id: db_id, title, titleImage, slug, category, author, tags, readTime, type }
+						const response = await fetch(`http://localhost:8000/api/blog/postNewBlog`, {
+							method: 'POST',
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify(data)
+						});
+						if (!response.ok) {
+							throw new Error("failed to save data");
+						}
+						const result = await response.json();
+						values.db_id = result.blog._id;
+						return { ...values };
+					},
+				},
 			},
 			{
 				name: "Questions",
@@ -195,14 +354,6 @@ export default defineConfig({
 						}
 					}
 				],
-				ui: {
-					// Custom label for the "Add Files" button
-					global: {
-						create: {
-							label: 'Add New Post',
-						},
-					},
-				},
 			},
 		]
 	}

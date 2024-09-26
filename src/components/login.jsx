@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { loginUser } from '../services/api';
 
-export default function Login() {
+export default function Login(props) {
+    const { callbackUrl } = props;
 
     useEffect(() => {
         let userDetails = JSON.parse(window.sessionStorage.getItem('user-details'));
@@ -20,7 +21,7 @@ export default function Login() {
         const response = await loginUser(formData);
         if (response.status === 200) {
             window.sessionStorage.setItem('user-details', JSON.stringify(response.result));
-            window.location.href = "/";
+            window.location.href = callbackUrl ? callbackUrl : '/';
         } else {
             window.alert(`${response.result.resultMessage}`);
         }

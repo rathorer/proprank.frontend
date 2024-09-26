@@ -43,4 +43,22 @@ function convertTimeToHumanRelatable(time) {
 	}
 }
 
-export { formatDate, capitalize, convertTimeToHumanRelatable };
+
+/**
+ * 
+ * @param {object} body in format of array
+ * @returns readtime in integer in minutes
+ *  
+ */
+function CalculateReadTime(body) {
+	let wordsCount = 0;
+	body.map((node) => {
+		node.children.map((child) => {
+			let words = child.text.split(' ');
+			wordsCount += words.length;
+		})
+	});
+	return Math.ceil(wordsCount / 150);
+}
+
+export { formatDate, capitalize, convertTimeToHumanRelatable, CalculateReadTime };

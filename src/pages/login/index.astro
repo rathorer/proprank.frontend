@@ -1,7 +1,10 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import Login from "../../components/login";
+
+const callbackUrl = Astro.url.searchParams.get('callbackUrl');
+
 ---
 <MainLayout title="login">
-   <Login client:load />
+   <Login client:load callbackUrl={callbackUrl} />
 </MainLayout>
