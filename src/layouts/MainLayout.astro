@@ -18,16 +18,24 @@ const { title = "Articles, Stories & Tutorials For Tech People" } = Astro.props;
 			integrity="sha512-BJ/5sR2hFxQTKin/55JQCcMTObShDBAmVjL/3NR/MVcrhyOazJjAgvROem03+HYyGw16SVdSfoWCFGr9syxAKA=="
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"></script>
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 		<title>{SITE_TITLE} - {title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="bg-gray-50">
+	<body class="bg-default-bg text-secondary2">
 		<Navbar />
 
 		<section class="container mx-auto max-w-screen-xl mt-10 px-8">
 			<slot />
 		</section>
-
+		<!-- <section>
+			<div class="m-10">
+			<iframe width="200" height="320" src="https://www.youtube.com/embed/PcEyAC_0XnU?si=-X96BZ7LT9QvDg8O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<iframe width="322" height="572" src="https://www.youtube.com/embed/rXImvgTV9l8" title="Unique idea of growing Golden Pothos/ money plant in glass. #shorts #moneyplant #pothos #decoration" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+		</div>
+		</section> -->
 		<Footer />
 	</body>
 </html>

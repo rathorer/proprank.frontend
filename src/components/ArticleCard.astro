@@ -6,7 +6,7 @@ const { article } = Astro.props;
 ---
 
 <div class="max-w-md mx-auto mt-10">
-	<div class="bg-white rounded-lg overflow-hidden shadow-lg">
+	<div class="bg-default-bg rounded-lg overflow-hidden shadow-lg text-seconday1">
 		<a href={"/articles/" + article.slug}>
 			<img
 				src={article.titleImage}
@@ -16,15 +16,20 @@ const { article } = Astro.props;
 				height={200}
 			/>
 		</a>
-		<div class="p-4">
-			<h2 class="text-lg font-medium mb-2 py-4">
+		<div class="px-4 py-4">
+			<h2 class="text-base font-semibold mb-2 pt-0 pb-4 tracking-wider">
 				<a href={"/articles/" + article.slug}> {article.title} </a>
 			</h2>
-			<div class="flex justify-between">
-				<h3 class="text-gray-600">
+			<!-- <div class="pb-4 text-grey">
+				<p>
+					In the ever-evolving world of mobile technology.
+				</p>
+			</div> -->
+			<div class="flex justify-between font-medium text-sm">
+				<h3 class="text-gray">
 					{article.author}
 				  </h3>
-				<p class="text-gray-600">
+				<p class="text-gray text-sm font-medium">
 					{formatDate(article.createdAt)}
 				</p>
 

@@ -43,7 +43,7 @@ const Dropdown = (props) => {
         <div ref={dropdownRef} >
             <div
                 onClick={toggleDropdown}
-                className="text-white hover:text-gray-400 focus:outline-none flex flex-col items-end justify-start"
+                className="text-secondary2 hover:text-gray-400 focus:outline-none flex flex-col items-end justify-start"
             >
                 <span className="sr-only">Open main menu</span>
                 <svg

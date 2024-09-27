@@ -12,12 +12,12 @@ const tags: string[] = allBlogArticles.flatMap(
 const uniqueTags: string[] = [...new Set(tags)];
 ---
 
-<footer class="bg-indigo-900 text-white">
+<footer class="bg-darker text-secondary2">
 	<div class="container mx-auto mt-10 max-w-screen-xl px-8">
 		<div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
 			<div class="mt-10">
 				<h3 class="text-xl font-semibold mb-4">About</h3>
-				<p class="text-white text-sm">
+				<p class="text-secondary2 text-sm">
 					TechPeople is a blog for tech enthusiasts. We publish
 					articles, stories and tutorials about the latest technology
 					trends and advancements.
@@ -25,7 +25,7 @@ const uniqueTags: string[] = [...new Set(tags)];
 			</div>
 			<div class="mt-10">
 				<h3 class="text-xl font-semibold mb-4">Categories</h3>
-				<ul class="text-white text-sm">
+				<ul class="text-secondary1 text-sm">
 					{
 						uniqueTags.map((tag) => (
 							<li class="mb-2">
