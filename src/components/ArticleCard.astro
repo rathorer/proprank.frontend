@@ -6,7 +6,7 @@ const { article } = Astro.props;
 ---
 
 <div class="max-w-md mx-auto mt-10">
-	<div class="bg-default-bg rounded-lg overflow-hidden shadow-lg text-seconday1">
+	<div class="bg-white rounded-lg overflow-hidden shadow-md shadow-gray-light text-seconday1">
 		<a href={"/articles/" + article.slug}>
 			<img
 				src={article.titleImage}
@@ -29,7 +29,7 @@ const { article } = Astro.props;
 				<h3 class="text-gray">
 					{article.author}
 				  </h3>
-				<p class="text-gray text-sm font-medium">
+				<p class="text-yellow text-sm font-medium">
 					{formatDate(article.createdAt)}
 				</p>
 
