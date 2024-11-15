@@ -6,6 +6,7 @@ import MostRecentArticle from "../components/MostRecentArticle.astro";
 import HorizontalRuleHeading from "../components/HorizontalRuleHeading.astro";
 import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
 import { getAllBlogs } from "../services/api";
+import Rotating from "../components/Rotating.astro";
 
 // const allBlogArticles = (await getCollection("blog")).sort(
 // 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -17,25 +18,37 @@ const otherArticles = allBlogArticles.slice(1);
 ---
 
 <MainLayout>
-	
+	<Rotating />
+
 	<!-- Top Grid -->
-	<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+	<!-- <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
 		<div>
 			<h1 class="text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl">
 				Articles, Stories & Tutorials for Tech People
 			</h1>
-			<!-- <SearchForm /> -->
-		</div>
-		<!-- <MostRecentArticle article={mostRecentArticle} /> -->
-	</div>
-	<HorizontalRuleHeading />
+			<SearchForm /> -->
+	<!-- </div> -->
+	<!-- <MostRecentArticle article={mostRecentArticle} /> -->
+	<!-- </div> -->
+	<!-- <div class="flex"> -->
+	<HorizontalRuleHeading title={"Infographics"} link={"/articles"} />
+	<!-- <div class="grow-0">view all</div> -->
+	<!-- </div> -->
 	<!-- Main Grid -->
-	<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+	<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-11">
 		{
 			allBlogArticles
 				.slice(0, HOMEPAGE_ARTICLE_LIMIT)
-				.map((article) => <ArticleCard article={article} />)
+				.map((article: []) => <ArticleCard article={article} />)
+		}
+	</div>
+	<HorizontalRuleHeading title={"Youtube Videos"} link={"/videos"} />
+
+	<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-11">
+		{
+			allBlogArticles
+				.slice(0, HOMEPAGE_ARTICLE_LIMIT)
+				.map((article: []) => <ArticleCard article={article} />)
 		}
 	</div>
 </MainLayout>
-

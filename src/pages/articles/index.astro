@@ -23,12 +23,12 @@ const articlesForPage = allBlogArticles.slice(
 ---
 
 <MainLayout title={`All Articles | ${currentPage}`}>
-  <h1 class="text-2xl pb-3">All Articles</h1>
+  <h1 class="text-2xl my-10 text-center">All Articles</h1>
 
-  <SearchForm />
-  <br />
+  <!-- <SearchForm /> -->
+  <!-- <br /> -->
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-5">
     {articlesForPage.map((article: any) => <ArticleCard article={article} />)}
   </div>
 

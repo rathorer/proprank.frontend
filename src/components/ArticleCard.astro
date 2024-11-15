@@ -5,19 +5,20 @@ import { formatDate } from "../utils";
 const { article } = Astro.props;
 ---
 
-<div class="max-w-md mx-auto mt-10">
-	<div class="bg-white rounded-lg overflow-hidden shadow-md shadow-gray-light text-seconday1">
+<div class="mb-12">
+	<div
+		class="bg-white rounded-lg overflow-hidden shadow-md shadow-gray-light text-seconday1 w-full"
+	>
 		<a href={"/articles/" + article.slug}>
 			<img
 				src={article.titleImage}
 				alt="Article Image"
-				class="w-full h-52 object-cover hover:opacity-75 transition duration-300 ease-in-out"
-				width={200}
-				height={200}
+				class="w-full h-56 object-cover hover:opacity-75 transition duration-300 ease-in-out"
+				
 			/>
 		</a>
-		<div class="px-4 py-4">
-			<h2 class="text-base font-semibold mb-2 pt-0 pb-4 tracking-wider">
+		<div class="px-4 py-4 flex flex-col items-stretch">
+			<h2 class="text-base font-semibold pt-0 mb-10 tracking-wider h-9">
 				<a href={"/articles/" + article.slug}> {article.title} </a>
 			</h2>
 			<!-- <div class="pb-4 text-grey">
@@ -28,11 +29,10 @@ const { article } = Astro.props;
 			<div class="flex justify-between font-medium text-sm">
 				<h3 class="text-gray">
 					{article.author}
-				  </h3>
+				</h3>
 				<p class="text-yellow text-sm font-medium">
 					{formatDate(article.createdAt)}
 				</p>
-
 			</div>
 			<!-- <Tags tags={article.tags} /> -->
 		</div>
