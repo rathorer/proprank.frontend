@@ -43,7 +43,7 @@ const Dropdown = (props) => {
         <div ref={dropdownRef} >
             <div
                 onClick={toggleDropdown}
-                className="text-secondary2 hover:text-gray-400 focus:outline-none flex flex-col items-end justify-start"
+                className="text-secondary2 hover:text-gray-400 focus:outline-none flex flex-col items-end justify-start z-30"
             >
                 <span className="sr-only">Open main menu</span>
                 <svg
@@ -61,7 +61,7 @@ const Dropdown = (props) => {
                     </path>
                 </svg>
                 {dropdownOpen && (
-                    <div className="absolute mt-2 w-48 bg-gray-700 rounded-md shadow-lg text-center">
+                    <div className="absolute mt-2 w-48 bg-gray rounded-md shadow-lg text-center z-auto">
                         {loggedIn ?
                             <div className='block px-4 py-2 text-white '>
                                 {userDetails?.name}
@@ -69,31 +69,31 @@ const Dropdown = (props) => {
                             </div>
                             : <></>}
 
-                        <a href="/" className='block px-4 py-2 text-white hover:bg-gray-600'>
+                        {/* <a href="/" className='block px-4 py-2 text-white hover:bg-slate-400'>
                             <button className="">
                                 Home
                             </button>
                         </a>
-                        <a href="/articles" className='block px-4 py-2 text-white hover:bg-gray-600'>
+                        <a href="/articles" className='block px-4 py-2 text-white hover:bg-slate-400'>
                             <button className="">
                                 All Articles
                             </button>
-                        </a>
-                        <a href="/articles" className='block px-4 py-2 text-white hover:bg-gray-600'>
+                        </a> */}
+                        <a href="/articles" className='block px-4 py-2 text-white hover:bg-slate-400'>
                             <button className="">
                                 Infographics
                             </button>
                         </a>
-                        <a href="/about" className='block px-4 py-2 text-white hover:bg-gray-600'>
+                        <a href="/about" className='block px-4 py-2 text-white hover:bg-slate-400'>
                             <button className="">
                                 About
                             </button>
                         </a>
-                        {loggedIn ? <a href="/" className='block px-4 py-2 text-white hover:bg-gray-600' onClick={handleLogout} >
+                        {loggedIn ? <a href="/" className='block px-4 py-2 text-white hover:bg-slate-400' onClick={handleLogout} >
                             <button className="">
                                 Logout
                             </button>
-                        </a> : <a href="/login" className='block px-4 py-2 text-white hover:bg-gray-600'>
+                        </a> : <a href="/login" className='block px-4 py-2 text-white hover:bg-slate-400'>
                             <button className="">
                                 Login | Sign up
                             </button>

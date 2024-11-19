@@ -35,14 +35,15 @@ const otherArticles = allBlogArticles.slice(1);
 	<!-- <div class="grow-0">view all</div> -->
 	<!-- </div> -->
 	<!-- Main Grid -->
-	<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-11">
+	<div class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-4 mt-10 gap-y-0">
 		{
 			allBlogArticles
 				.slice(0, HOMEPAGE_ARTICLE_LIMIT)
 				.map((article: []) => <ArticleCard article={article} />)
 		}
+		
 	</div>
-	<HorizontalRuleHeading title={"Youtube Videos"} link={"/videos"} />
+	<!-- <HorizontalRuleHeading title={"Youtube Videos"} link={"/videos"} />
 
 	<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-11">
 		{
@@ -50,5 +51,5 @@ const otherArticles = allBlogArticles.slice(1);
 				.slice(0, HOMEPAGE_ARTICLE_LIMIT)
 				.map((article: []) => <ArticleCard article={article} />)
 		}
-	</div>
+	</div> -->
 </MainLayout>

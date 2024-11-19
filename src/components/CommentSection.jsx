@@ -131,7 +131,8 @@ export default function CommentSection(props) {
                                     <div className="flex justify-between">
                                         <div className="flex space-x-10">
                                             <div className="capitalize font-medium tracking-wider text-lg">
-                                                @{comment.userId.name}
+                                                {console.log(comment)}
+                                                @{comment?.userId?.name}
                                             </div>
                                             <div className="">
                                                 {/* {new Date(comment.createdAt).toLocaleTimeString()} | {new Date(comment.createdAt).toDateString()} */}
@@ -139,7 +140,7 @@ export default function CommentSection(props) {
                                             </div>
                                         </div>
                                         <div className="flex mr-5">
-                                            {loggedIn && comment.userId._id === userDetails._id ?
+                                            {loggedIn && comment?.userId?._id === userDetails?._id ?
                                                 <div className="flex">
                                                     <div className='mx-2' onClick={() => handleDelete(comment._id)} id='deleteButton' title='Delete'>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill='gray'>

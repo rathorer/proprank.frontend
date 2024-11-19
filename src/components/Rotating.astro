@@ -1,11 +1,35 @@
-<div class="flex justify-around my-20">
-    <div
-        class="text-container flex justify-items-center items-center space-x-10"
-    >
-        <div
-            class="textHeading text-base sm:text-lg md:text-xl lg:text-4xl text-blue-600"
-        >
-            Simplifying.
+<div class="flex justify-around my-20 items-center">
+    <div class="flex flex-col items-start">
+        <div class="pb-2">
+            <div
+                class="textHeading text-base sm:text-lg md:text-xl lg:text-4xl text-blue-600"
+            >
+                Simplifying.
+            </div>
+            <div
+                class="textLine text-sm sm:text-xs md:text-lg lg:text-2xl text-blue-600"
+            >
+                The complex world of Indian real-estate
+            </div>
+        </div>
+        <div class="pb-2">
+            <div
+                class="textHeading text-base sm:text-lg md:text-xl lg:text-4xl text-green-600"
+            >
+                Sharing
+            </div>
+            <div
+                class="textLine text-sm sm:text-xs md:text-lg lg:text-2xl text-blue-600"
+            >
+                The complex world of Indian real-estate
+            </div>
+        </div>
+        <div class="">
+            <div
+                class="textHeading text-base sm:text-lg md:text-xl lg:text-4xl text-red-600"
+            >
+                Unfolding
+            </div>
             <div
                 class="textLine text-base sm:text-xs md:text-lg lg:text-2xl text-blue-600"
             >
@@ -13,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="gradient-border-container">
+    <div class="gradient-border-container w-32 md:w-64">
         <div class="gradient-border"></div>
         <div class="content-container">
             <img src="Realestatepng.png" alt="City Illustration" />
@@ -23,8 +47,32 @@
 <style>
     .gradient-border-container {
         position: relative;
-        width: 250px;
-        height: 250px;
+        margin-top: 20px;
+        animation: zoom-in-out 3s ease-in-out infinite;
+    }
+
+    @keyframes zoom-in-out {
+        0% {
+            transform: scale(150%);
+        }
+        10% {
+            transform: scale(150%);
+        }
+        20% {
+            transform: scale(100%);
+        }
+
+        50% {
+            transform: scale(100%);
+        }
+
+        70% {
+            transform: scale(100%);
+        }
+
+        100% {
+            transform: scale(150%);
+        }
     }
 
     .gradient-border {
@@ -47,6 +95,7 @@
         mask-composite: exclude;
         /* z-index: -1; */
         animation: spin 8s ease-in-out infinite;
+        /* animation: zoom 8s ease-in-out infinite; */
     }
 
     .content-container {
@@ -106,7 +155,7 @@
     }
 </style>
 <script>
-    const phrases = ["Simplifying.", "Sharing.", "Unfolding."];
+    const phrases = ["Simplifying", "Sharing", "Unfolding"];
     const phraseLine = [
         "The complex world of Indian real-estate",
         "Data driven Insights and knowledge",
@@ -114,12 +163,6 @@
     ];
     const phrasesColor = ["text-blue-600", "text-green-600", "text-red-600"];
     let index = 0;
-
-    const wheel = document.getElementsByClassName(
-        "gradient-border",
-    )[0] as HTMLDivElement;
-
-    console.log(wheel);
 
     const textLineElement = document.querySelector(
         ".textLine",
