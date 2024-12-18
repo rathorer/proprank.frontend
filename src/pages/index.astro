@@ -6,7 +6,7 @@ import MostRecentArticle from "../components/MostRecentArticle.astro";
 import HorizontalRuleHeading from "../components/HorizontalRuleHeading.astro";
 import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
 import { getAllBlogs } from "../services/api";
-import Rotating from "../components/Rotating.astro";
+import Roller from "../components/Roller.astro";
 
 // const allBlogArticles = (await getCollection("blog")).sort(
 // 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -18,38 +18,99 @@ const otherArticles = allBlogArticles.slice(1);
 ---
 
 <MainLayout>
-	<Rotating />
-
-	<!-- Top Grid -->
-	<!-- <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-		<div>
-			<h1 class="text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl">
-				Articles, Stories & Tutorials for Tech People
-			</h1>
-			<SearchForm /> -->
-	<!-- </div> -->
-	<!-- <MostRecentArticle article={mostRecentArticle} /> -->
-	<!-- </div> -->
-	<!-- <div class="flex"> -->
-	<HorizontalRuleHeading title={"Infographics"} link={"/articles"} />
-	<!-- <div class="grow-0">view all</div> -->
-	<!-- </div> -->
-	<!-- Main Grid -->
-	<div class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-4 mt-10 gap-y-0">
-		{
-			allBlogArticles
-				.slice(0, HOMEPAGE_ARTICLE_LIMIT)
-				.map((article: []) => <ArticleCard article={article} />)
-		}
-		
+	<div
+		class="relative bg-center bg-cover min-h-[680px] bg-no-repeat size-full mb-[1100px] sm:mb-56"
+		style="background-image:url('/bg-image.webp'); background-size: 290vmin;"
+	>
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-[#252D47]/[94%] via-[#252D47]/[98%] to-[#252D47]/100"
+		>
+		</div>
+		<div
+			class="absolute flex flex-col justify-center px-8 top-[15%] sm:top-[20%] w-full 2xl:px-56"
+		>
+			<div
+				class="flex flex-col sm:flex-row text-[26px] sm:text-3xl md:text-4xl lg:text-5xl text-white justify-center items-center text-nowrap gap-x-4 sm:pl-12"
+			>
+				<div class="font-bold tracking-wider">Decoding the</div>
+				<div class="">
+					<Roller />
+				</div>
+			</div>
+			<div class="text-center w-full flex justify-center mt-6">
+				<a href="/#infographics" id="cta">
+					<img src="/ctaarrow.png" alt="arrow" class="w-12 h-12 sm:w-14 sm:h-14 lg:w-full lg:h-full"/>
+				</a>
+			</div>
+		</div>
+		<div
+			class="px-8 w-full absolute grid grid-cols-1 sm:grid-cols-3 gap-4 sm:px-8 2xl:px-56 top-[65%] sm:top-[70%] md:top-[78%] lg:top-[65%] z-0"
+		>
+			<div class="bg-white shadow-lg rounded-lg p-6 w-full h-full">
+				<h2 class="text-xl font-bold text-gray-800 text-center">
+					SIMPLIFYING
+				</h2>
+				<p class="text-[#72839c] text-center mt-2">
+					The complex world of Indian real-estate
+				</p>
+				<img src="/simplifying-ill.png" class="w-auto h-auto mt-8" />
+			</div>
+			<div class="bg-white shadow-lg rounded-lg p-6 w-full h-full">
+				<h2 class="text-xl font-bold text-gray-800 text-center">
+					REDEFINING
+				</h2>
+				<p class="text-[#72839c] text-center mt-2">
+					The fundamentals & data-driven actionable insights
+				</p>
+				<img src="/redefining-ill.png" class="w-auto h-auto mt-1" />
+			</div>
+			<div class="bg-white shadow-lg rounded-lg p-6 w-full h-full">
+				<h2 class="text-xl font-bold text-gray-800 text-center">
+					UNFOLDING
+				</h2>
+				<p class="text-[#72839c] text-center mt-2">
+					The growth opportunities and underlying risks
+				</p>
+				<img src="/unfolding-ill.png" class="w-auto h-auto mt-1" />
+			</div>
+		</div>
 	</div>
-	<!-- <HorizontalRuleHeading title={"Youtube Videos"} link={"/videos"} />
 
-	<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-11">
-		{
-			allBlogArticles
-				.slice(0, HOMEPAGE_ARTICLE_LIMIT)
-				.map((article: []) => <ArticleCard article={article} />)
-		}
-	</div> -->
+	<div class="px-4 mb-14 bg-[#252D47] text-white sm:px-8 2xl:px-56 py-8">
+		<div class="px-24 sm:hidden">
+			<hr class="border border-x-[#9aa6b8]" />
+		</div>
+		<div
+			class="sm:border-x-[10px] sm:border-x-[#9aa6b8] py-8 text-3xl sm:text-5xl uppercase 2xl:text-[50px] text-center px-1"
+		>
+			real estate analysis made simple
+		</div>
+		<div class="px-24 sm:hidden">
+			<hr class="border border-x-[#9aa6b8]" />
+		</div>
+	</div>
+
+	<div class="px-4 sm:px-8 2xl:px-56 mb-20" id="infographics">
+		<HorizontalRuleHeading title={"Infographics"} link={"/articles"} />
+		<div
+			class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-10 gap-y-14"
+		>
+			{
+				allBlogArticles
+					.slice(0, HOMEPAGE_ARTICLE_LIMIT)
+					.map((article: []) => <ArticleCard article={article} />)
+			}
+		</div>
+	</div>
 </MainLayout>
+
+<script>
+	document.addEventListener("astro:page-load", () => {
+		document.getElementById("cta")?.addEventListener("click", (event) => {
+			event.preventDefault();
+			document
+				.getElementById("infographics")
+				?.scrollIntoView({ behavior: "smooth" });
+		});
+	});
+</script>

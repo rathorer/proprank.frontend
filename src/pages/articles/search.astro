@@ -2,16 +2,18 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import SearchForm from "../../components/SearchForm.astro";
-// import { getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import { getAllBlogs } from "../../services/api";
 
 const query = Astro.url.searchParams.get("query");
 
-// const allBlogArticles = await getCollection("blog");
+const allBlogArti = await getCollection("blog");
+// console.log(allBlogArti);
 const allBlogArticles = await getAllBlogs();
+// console.log(allBlogArticles);
 
 // Filter articles based on query
-const searchResults = allBlogArticles.filter((article) => {
+const searchResults = allBlogArticles.filter((article: any) => {
 	const titleMatch = article.title
 		.toLowerCase()
 		.includes(query?.toLowerCase());
@@ -22,22 +24,45 @@ const searchResults = allBlogArticles.filter((article) => {
 
 	return titleMatch || slugMatch || tagsMatch;
 });
+
+const newresult = allBlogArti.filter((arti) => {
+	if (arti.body.includes(query!)){
+		return arti.slug;
+	};
+});
+
 ---
 
 <MainLayout title="Search Results">
-	<a
-		href="/articles"
-		class="inline-block bg-gray-100 p-2 mb-5 hover:bg-indigo-500 hover:text-white"
-		>All Articles</a
-	>
-
-	<SearchForm />
-
+	<div class="bg-[#252D47] px-8 text-white py-10 2xl:px-56">
+		<div class="flex justify-start items-center gap-5">
+			<a href="/#infographics" class="text-white inline-block">
+				<svg
+					class="w-7 h-7"
+					viewBox="0 0 56 56"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M28.0003 11.6665L11.667 27.9998M11.667 27.9998L28.0003 44.3332M11.667 27.9998L44.3337 27.9998"
+						stroke="white"
+						stroke-width="4"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
+				</svg>
+			</a>
+			<div class="text-3xl">Results For <strong>{query}</strong></div>
+		</div>
+	</div>
 	<br />
 
-	<h1 class="text-2xl pb-3 mt-6">Results For <strong>{query}</strong></h1>
-
-	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-		{searchResults.map((article) => <ArticleCard article={article} />)}
+	<div class="px-8 2xl:px-56 my-10">
+		<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				searchResults.map((article: any) => (
+					<ArticleCard article={article} />
+				))
+			}
+		</div>
 	</div>
 </MainLayout>

@@ -1,0 +1,64 @@
+<div class="roller-container">
+    <div class="roller text-[26px] text-center sm:text-3xl md:text-4xl lg:text-5xl font-bold sm:text-left tracking-wider">
+        <span class="text-white">Indian Real Estate</span>
+        <span class="text-[#FF9500]">Ground Reality</span>
+        <span class="text-[#D685FF]">Market Trends</span>
+        <span class="text-[#2AA3FF]">Real Fundamentals</span>
+        <span class="text-[#FC4040]">Potential Risks</span>
+        <span class="text-[#4FA943]">Growth opportunities</span>
+    </div>
+</div>
+
+<style>
+    .roller-container {
+        display: flex;
+        
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .roller {
+        display: inline-block;
+        position: relative;
+        height: 65px;
+        overflow: hidden;
+        font-weight: bold;
+    }
+
+    .roller span {
+        display: block;
+        line-height: 67px;
+        height: 65px;
+        animation: roll 10s infinite;
+    }
+
+    @keyframes roll {
+        0%,
+        16.67% {
+            transform: translateY(0);
+        }
+        20%,
+        33.34% {
+            transform: translateY(-66px);
+        } 
+        36.67%,
+        50% {
+            transform: translateY(-132px);
+        } 
+        53.34%,
+        66.67% {
+            transform: translateY(-194px);
+        } 
+        70%,
+        83.34% {
+            transform: translateY(-260px);
+        }
+        86.67%,
+        92% {
+            transform: translateY(-326px);
+        }
+        100%{
+            transform: translateY(0);
+        }
+    }
+</style>

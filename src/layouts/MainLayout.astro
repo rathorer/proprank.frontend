@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../constants";
 import { ViewTransitions } from "astro:transitions";
 
-const { title = "Articles, Stories & Tutorials For Tech People" } = Astro.props;
+const { title = "Infographics on Real Estate" } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,30 +13,41 @@ const { title = "Articles, Stories & Tutorials For Tech People" } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={SITE_DESCRIPTION} />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.js"
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.js"
 			integrity="sha512-BJ/5sR2hFxQTKin/55JQCcMTObShDBAmVjL/3NR/MVcrhyOazJjAgvROem03+HYyGw16SVdSfoWCFGr9syxAKA=="
 			crossorigin="anonymous"
-			referrerpolicy="no-referrer">
-		</script>
-			<link rel="preconnect" href="https://fonts.googleapis.com">
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-			<!-- <link href="../src/styles/global.css" rel="stylesheet"> -->
+			referrerpolicy="no-referrer"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- <link
+			href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/> -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- <link href="../src/styles/global.css" rel="stylesheet"> -->
+		<link
+			rel="shortcut icon"
+			href="/favicon-96x96.png"
+			type="image/x-icon"
+		/>
 		<title>{SITE_TITLE} - {title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="bg-default-bg text-secondary2 font-proprank">
-		<Navbar />
-
-		<section class="container mx-auto max-w-screen-2xl mt-1 px-8">
-			<slot />
-		</section>
-		<!-- <section>
-			<div class="m-10">
-			<iframe width="200" height="320" src="https://www.youtube.com/embed/PcEyAC_0XnU?si=-X96BZ7LT9QvDg8O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-			<iframe width="322" height="572" src="https://www.youtube.com/embed/rXImvgTV9l8" title="Unique idea of growing Golden Pothos/ money plant in glass. #shorts #moneyplant #pothos #decoration" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	<body class="font-proprank">
+		<div class="flex flex-col min-h-[100vh]">
+			<header>
+				<Navbar />
+			</header>
+			<section class="flex-1">
+				<slot />
+			</section>
+			<footer class="">
+				<Footer /> 
+			</footer>
 		</div>
-		</section> -->
-		<Footer />
 	</body>
 </html>

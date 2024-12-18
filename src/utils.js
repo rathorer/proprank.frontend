@@ -2,11 +2,10 @@
 function formatDate(date) {
 	const options = {
 		year: 'numeric',
-		month: 'long',
+		month: 'short',
 		day: 'numeric',
 	};
-
-	return new Date(date).toLocaleDateString(undefined, options);
+	return new Date(date).toLocaleDateString('en-in', options);
 }
 
 // Capitalize the first letter

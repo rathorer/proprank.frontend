@@ -1,28 +1,26 @@
 ---
 // import { Image } from "astro:assets";
 import SearchForm from "./SearchForm.astro";
-import DropDown from "./dropdown"
+import DropDown from "./dropdown";
 ---
 
 <nav class="bg-default-bg text-secondary2 border-b border-b-gray-light">
 	<div
-		class="max-w-screen-2xl flex items-center justify-between mx-auto py-4 px-8"
+		class="flex items-center justify-between py-4 px-4 2xl:px-56"
 	>
-		<a href="/" class="">
-			<!-- <Image
-				src="/src/images/pr-logo-inverted.png"
-				class="h-14"
-				alt="TechPeople Logo"
-				width={55}
-				height={55}
-			/> -->
-			<span class="text-md self-center sm:text-2xl font-semibold whitespace-nowrap"
-				><span class="text-gray">Tech</span>People</span
-			>
+		<a href="/" class="flex items-center gap-[10px]">
+			<img src="/logo.png" alt="logo" class="w-auto h-12" />
+			<div class="text-base sm:text-2xl font-bold">
+				Property
+				<span class="text-[#72839c]"> Decoder </span>
+			</div>
+			<!-- <span class="text-md self-center sm:text-2xl font-semibold whitespace-nowrap" -->
+			<!-- ><span class="text-gray">Tech</span>People</span -->
+			<!-- > -->
 		</a>
-		<div class="flex grow items-center justify-end gap-4">
-			<SearchForm />
-			<DropDown client:load/>
+		<div class="flex grow items-center justify-end gap-4 z-10">
+			<SearchForm  />
+			<DropDown client:load />
 		</div>
 	</div>
 </nav>
