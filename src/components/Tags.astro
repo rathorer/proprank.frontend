@@ -1,0 +1,21 @@
+---
+import { capitalize } from "../utils";
+
+const { tags } = Astro.props;
+
+// interface Props {
+//   tags: string[];
+// }
+// console.log(tags);
+// #d6e0ec
+---
+
+<div class="flex gap-3 flex-wrap">
+  {
+    tags.map((tag: string, index: number) => (
+      <span class="px-3 py-1 bg-[#d4d9de] text-[#252D47] rounded-full text-xs sm:text-sm hover:opacity-90 font-medium">
+        <a href={"/articles/tag/" + tag}>#{capitalize(tag)}</a>
+      </span>
+    ))
+  }
+</div>

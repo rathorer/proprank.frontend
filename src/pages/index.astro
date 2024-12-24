@@ -1,50 +1,116 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import MainLayout from "../layouts/MainLayout.astro";
+import SearchForm from "../components/SearchForm.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import MostRecentArticle from "../components/MostRecentArticle.astro";
+import HorizontalRuleHeading from "../components/HorizontalRuleHeading.astro";
+import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
+import { getAllBlogs } from "../services/api";
+import Roller from "../components/Roller.astro";
+
+// const allBlogArticles = (await getCollection("blog")).sort(
+// 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+// );
+
+const allBlogArticles = await getAllBlogs();
+const mostRecentArticle = allBlogArticles[0];
+const otherArticles = allBlogArticles.slice(1);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<MainLayout>
+	<div
+		class="relative bg-center bg-cover min-h-[680px] bg-no-repeat size-full mb-[1100px] sm:mb-56 2xl:mb-80"
+		style="background-image:url('/bg-image.webp'); background-size: 290vmin;"
+	>
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-[#252D47]/[94%] via-[#252D47]/[98%] to-[#252D47]/100"
+		>
+		</div>
+		<div
+			class="absolute flex flex-col justify-center px-8 top-[15%] sm:top-[20%] w-full 2xl:px-56"
+		>
+			<div
+				class="flex flex-col sm:flex-row text-[26px] sm:text-3xl md:text-4xl lg:text-5xl text-white justify-center items-center text-nowrap gap-x-4 sm:pl-[90px]"
+			>
+				<div class="font-bold tracking-wider">Decoding the</div>
+				<div class="">
+					<Roller />
+				</div>
+			</div>
+			<div class="text-center w-full flex justify-center mt-6">
+				<a href="/#infographics" id="cta">
+					<img src="/ctaarrow.png" alt="arrow" class="w-12 h-12 sm:w-14 sm:h-14 lg:w-full lg:h-full"/>
+				</a>
+			</div>
+		</div>
+		<div
+			class="px-8 w-full absolute grid grid-cols-1 sm:grid-cols-3 gap-4 sm:px-8 2xl:px-56 top-[65%] sm:top-[70%] md:top-[78%] lg:top-[65%] z-0"
+		>
+			<div class="bg-white shadow-lg rounded-lg p-6 w-full h-full">
+				<h2 class="text-xl font-bold text-gray-800 text-center">
+					SIMPLIFYING
+				</h2>
+				<p class="text-[#72839c] text-center mt-2">
+					The complex world of Indian real-estate
+				</p>
+				<img src="/simplifying-ill.png" class="w-auto h-auto mt-8" />
+			</div>
+			<div class="bg-white shadow-lg rounded-lg p-6 w-full h-full">
+				<h2 class="text-xl font-bold text-gray-800 text-center">
+					REDEFINING
+				</h2>
+				<p class="text-[#72839c] text-center mt-2">
+					The fundamentals & data-driven actionable insights
+				</p>
+				<img src="/redefining-ill.png" class="w-auto h-auto mt-1" />
+			</div>
+			<div class="bg-white shadow-lg rounded-lg p-6 w-full h-full">
+				<h2 class="text-xl font-bold text-gray-800 text-center">
+					UNFOLDING
+				</h2>
+				<p class="text-[#72839c] text-center mt-2">
+					The growth opportunities and underlying risks
+				</p>
+				<img src="/unfolding-ill.png" class="w-auto h-auto mt-1" />
+			</div>
+		</div>
+	</div>
+
+	<div class="px-4 mb-14 bg-[#252D47] text-white sm:px-8 2xl:px-56 py-8">
+		<div class="px-24 sm:hidden">
+			<hr class="border border-x-[#9aa6b8]" />
+		</div>
+		<div
+			class="sm:border-x-[10px] sm:border-x-[#9aa6b8] py-8 text-3xl sm:text-5xl uppercase 2xl:text-[50px] text-center px-1"
+		>
+			real estate analysis made simple
+		</div>
+		<div class="px-24 sm:hidden">
+			<hr class="border border-x-[#9aa6b8]" />
+		</div>
+	</div>
+
+	<div class="px-4 sm:px-8 2xl:px-56 mb-20" id="infographics">
+		<HorizontalRuleHeading title={"Infographics"} link={"/articles"} />
+		<div
+			class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-10 gap-y-14"
+		>
+			{
+				allBlogArticles
+					.slice(0, HOMEPAGE_ARTICLE_LIMIT)
+					.map((article: []) => <ArticleCard article={article} />)
+			}
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	document.addEventListener("astro:page-load", () => {
+		document.getElementById("cta")?.addEventListener("click", (event) => {
+			event.preventDefault();
+			document
+				.getElementById("infographics")
+				?.scrollIntoView({ behavior: "smooth" });
+		});
+	});
+</script>
