@@ -7,6 +7,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import { getAllBlogs, getBlog } from "../../services/api";
 import { formatDate } from "../../utils";
 import Popup from "../../components/Popup";
+import Image from "astro/components/Image.astro";
 
 const { slug } = Astro.params;
 
@@ -143,7 +144,7 @@ const url = encodeURIComponent(Astro.url.href);
 			<img
 				src={blog.titleImage}
 				alt="Article Image"
-				class="w-full h-auto rounded-xl my-6"
+				class="rounded-xl my-6 w-[1000px] h-full text-center mx-auto"
 			/>
 			<Content />
 		</article>
@@ -181,7 +182,7 @@ const url = encodeURIComponent(Astro.url.href);
 			<div class="mb-8 text-gray text-[24px] font-semibold">
 				Similar content
 			</div>
-			<div class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
+			<div class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 				{
 					allBlogArticles.slice(0, 3).map((article: any) => {
 						return (

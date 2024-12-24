@@ -204,8 +204,8 @@ export default function CommentSection(props) {
             <form className="my-10" method='POST' onSubmit={handleSubmit}>
                 <div className="relative">
                     <div className="mb-2 w-full">
-                        <textarea className="w-full rounded-2xl border border-black/25 leading-normal py-4 pl-6 pr-24 font-medium placeholder-gray-600 focus:outline-none text-slate-700 placeholder-black/70 drop-shadow-[0px_30px_25px_rgba(0,0,0,0.04)]" name="body" placeholder='Write your thoughts' required
-                            title='Write your comment' rows={1}>
+                        <textarea className="w-full rounded-2xl border border-black/25 leading-normal py-4 pl-6 pr-24 font-medium placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-gray focus:border-none text-slate-700 placeholder-black/70 drop-shadow-[0px_30px_25px_rgba(0,0,0,0.04)]" name="body" placeholder='Write your thoughts' required
+                            title='Write your comment' rows={2}>
                         </textarea>
                     </div>
                     <button type='submit' className="absolute bg-[#07B54F] rounded-xl text-white font-semibold py-1 px-6 border border-gray-400 tracking-wide right-3 top-3" >
