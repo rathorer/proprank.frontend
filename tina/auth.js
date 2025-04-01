@@ -12,7 +12,7 @@ class CustomAuthProvider extends AbstractAuthProvider {
 	async authenticate(props) {
 		const { username, password } = props;
 		const formData = { email: username, password };
-		let response = await fetch(`http://localhost:8000/api/user/login`, {
+		let response = await fetch(`https://proprankapi.azurewebsites.net/api/user/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

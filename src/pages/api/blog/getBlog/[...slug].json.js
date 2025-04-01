@@ -18,7 +18,7 @@ export const GET = async ({ params }) => {
     //         }
     //     );
     // }
-    const response = await fetch(`http://localhost:8000/api/blog/getBlog/${slug}`);
+    const response = await fetch(`https://proprankapi.azurewebsites.net/api/blog/getBlog/${slug}`);
     const blog = await response.json();
     // const allBlogArticles = await getCollection('blog');
 

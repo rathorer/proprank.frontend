@@ -148,7 +148,7 @@ export default defineConfig({
 						values.type = "article";
 						const { title, slug, titleImage, tags, author, db_id, readTime, type, category } = values;
 						const data = { _id: db_id, title, titleImage, category, slug, author, tags, readTime, type }
-						const response = await fetch(`http://localhost:8000/api/blog/postNewBlog`, {
+						const response = await fetch(`https://proprankapi.azurewebsites.net/api/blog/postNewBlog`, {
 							method: 'POST',
 							headers: {
 								"Content-Type": "application/json",
@@ -261,7 +261,7 @@ export default defineConfig({
 						values.type = "infographics";
 						const { title, slug, titleImage, tags, author, db_id, readTime, type, category } = values;
 						const data = { _id: db_id, title, titleImage, slug, category, author, tags, readTime, type }
-						const response = await fetch(`http://localhost:8000/api/blog/postNewBlog`, {
+						const response = await fetch(`https://proprankapi.azurewebsites.net/api/blog/postNewBlog`, {
 							method: 'POST',
 							headers: {
 								"Content-Type": "application/json",
@@ -421,7 +421,7 @@ export const schema = defineSchema({
 				beforeSubmit: async ({ form, cms, values }) => {
 					const { title, slug, titleImage, tags, author, db_id } = values;
 					const data = { _id: db_id, title, titleImage, slug, author, tags }
-					const response = await fetch(`http://localhost:8000/api/blog/postNewBlog`, {
+					const response = await fetch(`https://proprankapi.azurewebsites.net/api/blog/postNewBlog`, {
 						method: 'POST',
 						headers: {
 							"Content-Type": "application/json",
