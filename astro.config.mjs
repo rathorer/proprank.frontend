@@ -5,9 +5,12 @@ import tailwind from "@astrojs/tailwind";
 
 import react from "@astrojs/react";
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
   integrations: [mdx(), sitemap(), tailwind(), react()],
-  output: "server"
+  output: "server",
+  adapter: vercel()
 });
