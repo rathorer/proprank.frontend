@@ -12,12 +12,11 @@ const branch =
 	process.env.GITHUB_BRANCH ||
 	process.env.VERCEL_GIT_COMMIT_REF ||
 	process.env.HEAD ||
-	"main";
+	"master";
 
 
 export default defineConfig({
 	branch,
-
 	authProvider: new CustomAuthProvider(url),
 	admin: {
 		authHooks: {
@@ -33,6 +32,13 @@ export default defineConfig({
 	build: {
 		outputFolder: "admin",
 		publicFolder: "public",
+	},
+	server: {
+		cors: {
+			origin: "*", // Allow all origins (or specify your domain)
+			methods: ["GET", "POST", "OPTIONS"],
+			allowedHeaders: ["Content-Type", "Authorization"],
+		},
 	},
 	media: {
 		tina: {

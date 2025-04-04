@@ -1,4 +1,5 @@
 ---
+import type { GetStaticPaths } from "astro";
 import { getEntry } from "astro:content";
 import ArticleCard from "../../components/ArticleCard.astro";
 import CommentSection from "../../components/CommentSection";
@@ -9,30 +10,44 @@ import { formatDate } from "../../utils";
 import Popup from "../../components/Popup";
 import Image from "astro/components/Image.astro";
 
-const { slug } = Astro.params;
+// if (slug === undefined) {
+// 	throw new Error("Slug is required");
+// }
+const url = encodeURIComponent(Astro.url.href);
+type Blog =  {
+			type: string,
+			slug: string,
+			title: string,
+			author: string,
+			tags: string[],
+			titleImage: string,
+			_id: string,
+			createdAt: string
+};
+type BlogSlug = {params: {slug: string}, props: Blog};
 
-if (slug === undefined) {
-	throw new Error("Slug is required");
+export async function getStaticPaths(): Promise<BlogSlug[]> {
+	const allBlogArticles = await getAllBlogs();
+	return allBlogArticles.map(
+		(blog: Blog): BlogSlug => {
+			blog.type = blog.type == "article" ? "blog" : blog.type;
+
+			return { params: { slug: blog.slug }, props: blog };
+		},
+	);
 }
 
-const blog = await getBlog(slug);
-
-const entry = await getEntry("blog", slug);
-
+const { slug } = Astro.params;
+const blog = Astro.props;
+const entry = await getEntry("infographics", slug);
 if (entry === undefined) {
 	return Astro.redirect("/404");
 }
-
-const allBlogArticles = await getAllBlogs();
-
 const { Content } = await entry.render();
-const url = encodeURIComponent(Astro.url.href);
 ---
 
 <MainLayout title={`${slug}`}>
-	<div
-		class="bg-[#252D47] text-white py-[50px] px-4 sm:px-8 2xl:px-56"
-	>
+	<div class="bg-[#252D47] text-white py-[50px] px-4 sm:px-8 2xl:px-56">
 		<div class="flex justify-start gap-2 sm:gap-5">
 			<div class="w-full h-full flex-1">
 				<a href="/#infographics" class="text-white inline-block">
@@ -53,7 +68,9 @@ const url = encodeURIComponent(Astro.url.href);
 			</div>
 
 			<div class="w-full h-full">
-				<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] sm:leading-normal font-bold mb-6">
+				<h1
+					class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] sm:leading-normal font-bold mb-6"
+				>
 					{blog.title}
 				</h1>
 				<div
@@ -133,7 +150,6 @@ const url = encodeURIComponent(Astro.url.href);
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -148,7 +164,9 @@ const url = encodeURIComponent(Astro.url.href);
 			/>
 			<Content />
 		</article>
-		<div class="flex flex-col justify-center text-center sm:flex-row mb-14 bg-[#252D47] py-6 text-white px-4 sm:px-8 2xl:px-56">
+		<div
+			class="flex flex-col justify-center text-center sm:flex-row mb-14 bg-[#252D47] py-6 text-white px-4 sm:px-8 2xl:px-56"
+		>
 			<div class="sm:hidden w-28 mx-auto">
 				<hr class="border border-x-[#9aa6b8]" />
 			</div>
@@ -182,7 +200,7 @@ const url = encodeURIComponent(Astro.url.href);
 			<div class="mb-8 text-gray text-[24px] font-semibold">
 				Similar content
 			</div>
-			<div class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+			<!-- <div class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 				{
 					allBlogArticles.slice(0, 3).map((article: any) => {
 						return (
@@ -192,7 +210,7 @@ const url = encodeURIComponent(Astro.url.href);
 						);
 					})
 				}
-			</div>
+			</div> -->
 		</div>
 	</div>
 </MainLayout>

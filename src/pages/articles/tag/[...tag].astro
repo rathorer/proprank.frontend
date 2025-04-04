@@ -4,19 +4,39 @@ import ArticleCard from "../../../components/ArticleCard.astro";
 import { capitalize } from "../../../utils";
 import { getAllBlogs } from "../../../services/api";
 
+type Blog =  {
+			type: string,
+			slug: string,
+			title: string,
+			author: string,
+			tags: string[],
+			titleImage: string,
+			_id: string,
+			createdAt: string
+};
+type BlogTag = {params: {tag: string}, props: Blog[]};
+
+// const allBlogArticles = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+export async function getStaticPaths(): Promise<BlogTag[]> {
+	const allBlogArticles = await getAllBlogs();
+	const tags = allBlogArticles.reduce((reduced: any[], article: { tags: any; }) => [...reduced, ...article.tags], []);
+	const uniqueTags = [...new Set(tags)];
+	
+	return uniqueTags.map((tag: string): BlogTag => {
+			const articlesOfTag : Blog[] = allBlogArticles.filter((article: Blog )=> article.tags.includes(tag));
+			return { params: { tag: tag }, props: articlesOfTag };
+		},
+	);
+}
 const { tag } = Astro.params;
+const article = Astro.props;
+
+const tagArticles  = Object.values(article)
+console.log(tagArticles);
 
 if (tag === undefined) {
 	throw new Error("Tag is required");
 }
-
-// const allBlogArticles = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const allBlogArticles = await getAllBlogs();
-
-const tagArticles = allBlogArticles.filter((article: any) =>
-	article.tags.includes(tag),
-);
 ---
 
 <MainLayout title={`${tag}`}>
