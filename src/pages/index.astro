@@ -1,87 +1,97 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import SearchForm from "../components/SearchForm.astro";
-import ArticleCard from "../components/ArticleCard.astro";
-import MostRecentArticle from "../components/MostRecentArticle.astro";
+import { getCollection } from "astro:content";
+import CaseStudyCard from "components/CaseStudyCard.astro";
 import HorizontalRuleHeading from "../components/HorizontalRuleHeading.astro";
-import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
-import { getAllBlogs } from "../services/api";
+import InfographicCard from "../components/InfographicCard.astro";
 import Roller from "../components/Roller.astro";
+import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
+import MainLayout from "../layouts/MainLayout.astro";
 
-// const allBlogArticles = (await getCollection("blog")).sort(
-// 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-// );
-
-const allBlogArticles = await getAllBlogs();
-const mostRecentArticle = allBlogArticles[0];
-const otherArticles = allBlogArticles.slice(1);
+export const prerender = true;
+const infographics = await getCollection("infographics");
+const caseStudy = await getCollection("caseStudy");
 ---
 
 <MainLayout>
 	<div
-		class="relative bg-center bg-cover min-h-[680px] bg-no-repeat size-full mb-[1100px] sm:mb-56 2xl:mb-80"
+		class="relative bg-center bg-cover bg-no-repeat min-h-[680px] mb-[1100px] sm:mb-44 lg:mb-56 2xl:mb-80"
 		style="background-image:url('/bg-image.webp'); background-size: 290vmin;"
 	>
 		<div
 			class="absolute inset-0 bg-gradient-to-b from-[#252D47]/[94%] via-[#252D47]/[98%] to-[#252D47]/100"
+			id="backgroundCover"
 		>
 		</div>
 		<div
 			class="absolute flex flex-col justify-center px-8 top-[15%] sm:top-[20%] w-full 2xl:px-56"
+			id="landingPageText&Roller"
 		>
 			<div
 				class="flex flex-col sm:flex-row text-[26px] sm:text-3xl md:text-4xl lg:text-5xl text-white justify-center items-center text-nowrap gap-x-4 sm:pl-[90px]"
 			>
-				<div class="font-bold tracking-wider">Decoding the</div>
+				<div class="font-bold tracking-wider">Decoding</div>
 				<div class="">
 					<Roller />
 				</div>
 			</div>
-			<div class="text-center w-full flex justify-center mt-6">
-				<a href="/#infographics" id="cta">
-					<img src="/ctaarrow.png" alt="arrow" class="w-12 h-12 sm:w-14 sm:h-14 lg:w-full lg:h-full"/>
-				</a>
+			<div
+				class="text-center w-full flex justify-center mt-6 animate-bounce"
+			>
+				<div id="cta" class="cursor-pointer">
+					<img
+						src="/ctaarrow.png"
+						alt="arrow"
+						class="w-12 h-12 sm:w-14 sm:h-14 lg:w-full lg:h-full"
+					/>
+				</div>
 			</div>
 		</div>
 		<div
-			class="px-8 w-full absolute grid grid-cols-1 sm:grid-cols-3 gap-4 sm:px-8 2xl:px-56 top-[65%] sm:top-[70%] md:top-[78%] lg:top-[65%] z-0"
+			class="absolute px-4 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:px-8 2xl:px-56 top-[65%] sm:top-[75%] md:top-[70%] lg:top-[65%] z-0"
+			id="UspCards"
 		>
-			<div class="bg-white shadow-lg rounded-lg p-6 w-full h-full">
-				<h2 class="text-xl font-bold text-gray-800 text-center">
+			<div
+				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full mx-auto sm:w-full"
+			>
+				<h2 class="text-lg font-bold text-gray-800 text-center">
 					SIMPLIFYING
 				</h2>
-				<p class="text-[#72839c] text-center mt-2">
+				<p class="text-[#72839c] text-center mt-1 text-base">
 					The complex world of Indian real-estate
 				</p>
-				<img src="/simplifying-ill.png" class="w-auto h-auto mt-8" />
+				<img src="/simplifying-ill.png" class="w-auto h-auto" />
 			</div>
-			<div class="bg-white shadow-lg rounded-lg p-6 w-full h-full">
-				<h2 class="text-xl font-bold text-gray-800 text-center">
+			<div
+				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full mx-auto sm:w-full"
+			>
+				<h2 class="text-lg font-bold text-gray-800 text-center">
 					REDEFINING
 				</h2>
-				<p class="text-[#72839c] text-center mt-2">
+				<p class="text-[#72839c] text-center mt-1 text-base">
 					The fundamentals & data-driven actionable insights
 				</p>
-				<img src="/redefining-ill.png" class="w-auto h-auto mt-1" />
+				<img src="/redefining-ill.png" class="w-auto h-auto" />
 			</div>
-			<div class="bg-white shadow-lg rounded-lg p-6 w-full h-full">
-				<h2 class="text-xl font-bold text-gray-800 text-center">
+			<div
+				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full mx-auto sm:w-full"
+			>
+				<h2 class="text-lg font-bold text-gray-800 text-center">
 					UNFOLDING
 				</h2>
-				<p class="text-[#72839c] text-center mt-2">
+				<p class="text-[#72839c] text-center mt-1 text-base">
 					The growth opportunities and underlying risks
 				</p>
-				<img src="/unfolding-ill.png" class="w-auto h-auto mt-1" />
+				<img src="/unfolding-ill.png" class="w-auto h-auto" />
 			</div>
 		</div>
 	</div>
 
-	<div class="px-4 mb-14 bg-[#252D47] text-white sm:px-8 2xl:px-56 py-8">
+	<div class="py-4 px-4 mb-14 bg-[#252D47] text-white sm:px-8 2xl:px-56">
 		<div class="px-24 sm:hidden">
 			<hr class="border border-x-[#9aa6b8]" />
 		</div>
 		<div
-			class="sm:border-x-[10px] sm:border-x-[#9aa6b8] py-8 text-3xl sm:text-5xl uppercase 2xl:text-[50px] text-center px-1"
+			class="sm:border-x-[5px] sm:border-x-[#9aa6b8] py-8 text-3xl sm:text-5xl capitalize 2xl:text-[50px] text-center px-1"
 		>
 			real estate analysis made simple
 		</div>
@@ -90,27 +100,40 @@ const otherArticles = allBlogArticles.slice(1);
 		</div>
 	</div>
 
+	<!-- Infographics Section -->
 	<div class="px-4 sm:px-8 2xl:px-56 mb-20" id="infographics">
-		<HorizontalRuleHeading title={"Infographics"} link={"/articles"} />
+		<HorizontalRuleHeading title={"Infographics"}/>
 		<div
 			class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-10 gap-y-14"
 		>
 			{
-				allBlogArticles
+				infographics
 					.slice(0, HOMEPAGE_ARTICLE_LIMIT)
-					.map((article: []) => <ArticleCard article={article} />)
+					.map((article) => <InfographicCard infographic={article} />)
+			}
+		</div>
+	</div>
+
+	<!-- Case Study Section-->
+	<div class="px-4 sm:px-8 2xl:px-56 mb-20" id="caseStudy">
+		<HorizontalRuleHeading title={"Case Studies"}/>
+		<div
+			class="grid grid-cols-1 gap-x-2 gap-y-6 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mt-10"
+		>
+			{
+				caseStudy
+					.slice(0, HOMEPAGE_ARTICLE_LIMIT)
+					.map((article) => <CaseStudyCard caseStudy={article} />)
 			}
 		</div>
 	</div>
 </MainLayout>
 
-<script>
-	document.addEventListener("astro:page-load", () => {
-		document.getElementById("cta")?.addEventListener("click", (event) => {
-			event.preventDefault();
-			document
-				.getElementById("infographics")
-				?.scrollIntoView({ behavior: "smooth" });
-		});
+<script is:inline>
+	document.getElementById("cta")?.addEventListener("click", (event) => {
+		event.preventDefault();
+		document
+			.getElementById("infographics")
+			?.scrollIntoView({ behavior: "smooth" });
 	});
 </script>

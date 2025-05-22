@@ -1,0 +1,133 @@
+---
+interface CarouselProps {
+    images: string[];
+}
+
+const { images } = Astro.props as CarouselProps;
+---
+
+<div
+    class="relative w-full h-[600px] sm:h-[650px] md:h-[750px] lg:h-[850px] xl:h-[1000px] overflow-hidden"
+>
+    <div class="relative w-full h-full items" id="carousel">
+        {
+            images.map((src, index) => (
+                <div
+                    class="item absolute top-1/2 left-1/2 w-11/12 h-auto sm:w-3/5 lg:w-1/2 xl:w-2/5 overflow-hidden transition-all duration-[1000ms] ease-in-out opacity-0 z-[1] -translate-x-1/2 -translate-y-1/2"
+                    class:list={[
+                        index === 0 ? "active" : "",
+                        index === 1 ? "next" : "",
+                    ]}
+                    data-index={index}
+                >
+                    <img src={src} class="w-full h-full" />
+                </div>
+            ))
+        }
+    </div>
+
+    <div
+        class="w-full sm:w-9/12 lg:w-7/12 xl:w-[46%] absolute -bottom-3 sm:bottom-auto sm:top-1/2 left-1/2 flex justify-between items-center -translate-x-1/2 -translate-y-1/2 z-[100] px-2 sm:px-0"
+    >
+        <div
+            id="prevButton"
+            class="button text-white text-2xl cursor-pointer relative transition-all duration-1000 ease-in-out disable before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:z-[-99]"
+        >
+            <img src="/leftArrow.png" alt="" class="w-10 h-10" />
+        </div>
+        <div class="flex sm:hidden">
+            <div class="text-center w-full">
+                <span class="" id="currentSlideNumber">1</span>
+                <span class="" id="totalSlides">/ {images.length}</span>
+            </div>
+        </div>
+        <div
+            id="nextButton"
+            class="text-white text-2xl cursor-pointer relative transition-all duration-1000 ease-in-out before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:z-[-99]"
+        >
+            <img src="/rightArrow.png" alt="" class="w-10 h-10" />
+        </div>
+    </div>
+</div>
+<div class="hidden sm:flex">
+    <div class="text-center w-full">
+        <span class="" id="currentSlideNumber">1</span>
+        <span class="" id="totalSlides">/ {images.length}</span>
+    </div>
+</div>
+
+<style>
+    .active {
+        opacity: 1 !important;
+        z-index: 99 !important;
+        box-shadow: -10px -10px 70px -40px rgba(0, 0, 0, 0.3);
+    }
+
+    .prev {
+        z-index: 1 !important;
+        opacity: 0.25 !important;
+        width: 20%;
+        transform: translate(-230%, -50%) !important;
+    }
+
+    .next {
+        z-index: 1 !important;
+        opacity: 0.25 !important;
+        width: 20%;
+        transform: translate(130%, -50%) !important;
+    }
+
+    .disable {
+        visibility: hidden !important;
+    }
+</style>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelectorAll(".item");
+        const nextButton = document.getElementById("nextButton");
+        const prevButton = document.getElementById("prevButton");
+        const currentSlideNumber =
+            document.getElementById("currentSlideNumber");
+
+        let current = 0;
+        let prev = slides.length - 1;
+        let next = 1;
+
+        const updateClasses = () => {
+            slides.forEach((slide) => {
+                slide.classList.remove("active", "prev", "next");
+            });
+
+            slides[current].classList.add("active");
+            currentSlideNumber.innerText = current + 1;
+
+            if (next < slides.length) {
+                slides[next].classList.add("next");
+                nextButton.classList.remove("disable");
+            } else {
+                nextButton.classList.add("disable");
+            }
+
+            if (prev != -1) {
+                slides[prev].classList.add("prev");
+                prevButton.classList.remove("disable");
+            } else {
+                prevButton.classList.add("disable");
+            }
+        };
+
+        const gotoNum = (number) => {
+            current = number;
+            prev = current - 1;
+            next = current + 1;
+            updateClasses();
+        };
+
+        const gotoPrev = () => current > 0 && gotoNum(current - 1);
+        const gotoNext = () =>
+            current < slides.length - 1 && gotoNum(current + 1);
+        prevButton.addEventListener("click", gotoPrev);
+        nextButton.addEventListener("click", gotoNext);
+    });
+</script>

@@ -1,12 +1,16 @@
 ---
-title: India's Top 10 Tallest Buildings
+title: India's top 10 Tallest buildings
 tags:
-  - tall
+  - Building
+  - India
 titleImage: /images/top-cities.webp
-author: Property Decoder
-category: residential
-slug: india-top-10-tallest-buildings
-db_id: 67ec363312adb9fc16d03aa7
-type: infographics
+slug: india's-top-10-tallest-buildings
+quote: >-
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta nostrum
+  nesciunt voluptates voluptatem deserunt, dicta culpa deleniti odio veniam
+  dolor?
+db_id: 681a09d9daa43e3428413513
+createdAt: 2025-05-19T12:31:02.826Z
 ---
 
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta nostrum nesciunt voluptates voluptatem deserunt, dicta culpa deleniti odio veniam dolor? lorem 20 lorem 30 lorem.c

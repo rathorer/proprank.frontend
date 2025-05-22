@@ -1,15 +1,18 @@
-<form id="search-form" class="" action="/articles/search">
+<form id="search-form" class="" action="/search">
 	<label for="search-input" class="sr-only">Search</label>
 	<div class="relative flex items-center w-40 sm:w-48 md:w-56">
 		<input
 			type="text"
 			id="query"
 			name="query"
-			class="bg-gray-50 border border-gray-light focus:outline-none focus:ring-2 focus:ring-gray focus:border-transparent text-gray-900 text-sm rounded-lg block w-full p-1.5 sm:p-2"
+			class="bg-gray-50 border border-gray-light focus:outline-none focus:ring-2 focus:ring-gray focus:border-transparent text-gray-900 text-sm rounded-lg block w-full p-1.5 sm:py-2 sm:pr-9"
 			placeholder="Search articles..."
 			required
 		/>
-		<button type="submit" class="p-1 text-gray rounded-md absolute right-1">
+		<button
+			type="submit"
+			class="p-[7px] text-black rounded-md absolute right-1 bg-white"
+		>
 			<svg
 				class="w-4 h-4"
 				aria-hidden="true"
@@ -27,12 +30,11 @@
 			<span class="sr-only">Search</span>
 		</button>
 	</div>
-	<!-- <button class="px-6 py-2 ms-2 text-md font-medium bg-primary text-white rounded-md">Subscribe</button> -->
 </form>
 
 <style>
 	@media (max-width: 500px) {
-		#search-form{
+		#search-form {
 			display: none;
 		}
 	}

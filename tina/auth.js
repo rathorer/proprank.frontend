@@ -1,18 +1,17 @@
-import { AbstractAuthProvider, } from 'tinacms'
-import { loginUser } from '../src/services/api';
+import { AbstractAuthProvider, } from 'tinacms';
 
 class CustomAuthProvider extends AbstractAuthProvider {
 
-	constructor(API_URL) {
+	constructor() {
 		super()
 		this.loggedIn = false;
-		this.env_variable = API_URL;
+		this.apiUrl = process.env.TINA_PUBLIC_API_URL;
 	}
 
 	async authenticate(props) {
 		const { username, password } = props;
 		const formData = { email: username, password };
-		let response = await fetch(`https://proprankapi.azurewebsites.net/api/user/login`, {
+		let response = await fetch(process.env.TINA_PUBLIC_API_URL + 'api/user/login', {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -40,24 +39,26 @@ class CustomAuthProvider extends AbstractAuthProvider {
 	}
 
 	async getUser() {
+		console.log("getUser called");
 		let user = JSON.parse(window.sessionStorage.getItem('user-details'));
 		this.loggedIn = user ? true : false;
 		return this.loggedIn;
 	}
 	async logout() {
-		console.log("logout");
 		this.loggedIn = false;
+		window.sessionStorage.removeItem("user-details");
+		return;
 	}
 
 	authorize(props) {
-		console.log("authorize");
-		return true;
+		console.log("authorize", props);
+		window.location.href = "/";
 	}
 
 	async isAuthorized(req, res) {
-		console.log("isAuthorized called")
-		// console.log(req, res);
-		return true;
+		console.log("isAuthorized called");
+		let userData = JSON.parse(window.sessionStorage.getItem('user-details'));
+		return userData.user.type == "admin";
 	}
 }
 

@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../utils";
+
+
+export const prerender = true;
+
+interface Props {
+    caseStudy: CollectionEntry<"caseStudy">;
+}
+const { caseStudy } = Astro.props;
+---
+
+<div
+    class="flex flex-col gap-5 sm:flex-row rounded-2xl shadow-[0px_10.304px_38.821px_0px_rgba(19,21,157,0.10)] p-4 sm:p-0 sm:gap-0"
+>
+    <div class="flex justify-center sm:flex-none">
+        <a href={"/caseStudy/" + caseStudy.slug} class="">
+            <img
+                src={caseStudy.data.titleImage}
+                alt="Article Image"
+                class="w-56 h-max sm:w-40 sm:h-full object-cover hover:opacity-75 transition duration-300 ease-in-out object-left-top rounded-2xl"
+            />
+        </a>
+    </div>
+    <div
+        class="flex flex-col gap-5 mb-3 sm:h-full justify-between sm:px-4 sm:py-8"
+    >
+        <div class="sm:space-y-1">
+            <a
+                href={"/caseStudy/" + caseStudy.slug}
+                class="font-semibold tracking-wide text-lg"
+            >
+                {caseStudy.data.title}
+            </a>
+            <div class="text-sm text-gray mt-1">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
+                nostrum nesciunt voluptates voluptat ...
+            </div>
+        </div>
+        <div class="flex justify-between items-center text-sm text-gray">
+            <div class="">{formatDate(caseStudy.data.createdAt)}</div>
+            <a
+                href={"/caseStudy/" + caseStudy.slug}
+                class="underline text-[#0f5fc3]"
+            >
+                Read it
+            </a>
+        </div>
+    </div>
+</div>

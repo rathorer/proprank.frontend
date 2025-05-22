@@ -1,0 +1,143 @@
+---
+import type { CollectionEntry } from "astro:content";
+import InfographicCard from "./InfographicCard.astro";
+import CaseStudyCard from "./CaseStudyCard.astro";
+
+// Tabs.astro
+
+export const prerender = false;
+
+interface Props {
+    infographics: CollectionEntry<"infographics">[];
+    caseStudy: CollectionEntry<"caseStudy">[];
+    initialTab: "infographic" | "caseStudy";
+}
+
+const {
+    infographics,
+    caseStudy,
+    initialTab = "infographic",
+} = Astro.props as Props;
+---
+
+<div id="tabs-container">
+    <div class="flex flex-col gap-4 mb-4">
+        <div class="flex justify-center gap-4" id="tab-button">
+            <div
+                data-tab="infographic"
+                class="cursor-pointer tab-btn text-xl text-[#a3b1cb] flex items-center gap-1"
+                class:list={[initialTab == "infographic" ? "active" : ""]}
+            >
+                <div class="btn-content py-2">Infographics</div>
+                <div
+                    class="rounded-full w-4 h-4 flex items-center text-xs justify-center text-white bg-[#a3b1cb]"
+                    id="count"
+                >
+                    {infographics.length}
+                </div>
+            </div>
+            <div
+                data-tab="caseStudy"
+                class=" cursor-pointer tab-btn text-xl text-[#a3b1cb] flex items-center gap-1"
+                class:list={[initialTab == "caseStudy" ? "active" : ""]}
+            >
+                <div class="btn-content py-2">Case Studies</div>
+                <div
+                    class="rounded-full w-4 h-4 flex items-center text-xs justify-center text-white bg-[#a3b1cb]"
+                    id="count"
+                >
+                    {caseStudy.length}
+                </div>
+            </div>
+        </div>
+        <div
+            id="infographic-panel"
+            class="tab-panel"
+            class:list={[`${initialTab == "infographic" ? "" : "hidden"}`]}
+        >
+            <div
+                class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 mt-10 gap-y-14"
+            >
+                {
+                    infographics.map((infographic) => {
+                        return (
+                            <div class="shadow-[4px_4px_17px_rgba(0,0,0,0.08)] rounded-xl">
+                                <InfographicCard infographic={infographic} />
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </div>
+        <div
+            id="caseStudy-panel"
+            class="tab-panel"
+            class:list={[`${initialTab == "caseStudy" ? "" : "hidden"}`]}
+        >
+            <div
+                class="grid grid-cols-1 gap-x-2 gap-y-6 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mt-10"
+            >
+                {
+                    caseStudy.map((entry) => {
+                        return (
+                            <div class="shadow-[4px_4px_17px_rgba(0,0,0,0.08)]">
+                                <CaseStudyCard caseStudy={entry} />
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </div>
+
+    <script is:inline>
+        const container = document.getElementById("tabs-container");
+        const buttons = container.querySelectorAll(".tab-btn");
+        const panels = {
+            infographic: container.querySelector("#infographic-panel"),
+            caseStudy: container.querySelector("#caseStudy-panel"),
+        };
+
+        function switchTab(tab) {
+            for (const [key, panel] of Object.entries(panels)) {
+                if (key === tab) {
+                    panel.classList.remove("hidden");
+                } else {
+                    panel.classList.add("hidden");
+                }
+            }
+
+            buttons.forEach((btn) => {
+                btn.classList.toggle("active", btn.dataset.tab === tab);
+            });
+
+        }
+
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                switchTab(btn.dataset.tab);
+            });
+        });
+
+    </script>
+
+    <style is:inline>
+        .hidden {
+            display: none;
+        }
+        .active {
+            color: #252d47;
+            font-size: 24px;
+            font-weight: 500;
+        }
+        .active .btn-content {
+            border-bottom: 2px solid #252d47;
+        }
+        .active #count {
+            background-color: #252d47;
+            font-size: 14px;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</div>

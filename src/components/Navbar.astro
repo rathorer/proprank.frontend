@@ -5,9 +5,7 @@ import DropDown from "./dropdown";
 ---
 
 <nav class="bg-default-bg text-secondary2 border-b border-b-gray-light">
-	<div
-		class="flex items-center justify-between py-4 px-4 2xl:px-56"
-	>
+	<div class="flex items-center justify-between py-4 px-4 2xl:px-56">
 		<a href="/" class="flex items-center gap-[10px]">
 			<img src="/logo.png" alt="logo" class="w-auto h-12" />
 			<div class="text-base sm:text-2xl font-bold">
@@ -18,9 +16,9 @@ import DropDown from "./dropdown";
 			<!-- ><span class="text-gray">Tech</span>People</span -->
 			<!-- > -->
 		</a>
-		<div class="flex grow items-center justify-end gap-4 z-10">
-			<SearchForm  />
-			<DropDown client:load />
+		<div class="flex grow items-center justify-end gap-4">
+			<SearchForm />
+			<DropDown client:only="react" />
 		</div>
 	</div>
 </nav>
