@@ -1,0 +1,142 @@
+---
+import type {
+	GetStaticPaths,
+	InferGetStaticParamsType,
+	InferGetStaticPropsType,
+} from "astro";
+import { getCollection, render } from "astro:content";
+import Carousel from "components/Carousel.astro";
+import CaseStudyCard from "components/CaseStudyCard.astro";
+import SocialLinks from "components/SocialLinks";
+import { formatDate } from "utils";
+import CommentSection from "../../components/CommentSection";
+import Tags from "../../components/Tags.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+	const caseStudy = await getCollection("caseStudy");
+
+	return caseStudy.map((post) => {
+		return {
+			params: { slug: post.slug },
+			props: {
+				post,
+			},
+		};
+	});
+}) satisfies GetStaticPaths;
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { slug } = Astro.params as Params;
+const { post } = Astro.props as Props;
+
+const allCaseStudy = await getCollection("caseStudy");
+const similarContent = allCaseStudy
+	.filter((entry) => entry.slug !== slug)
+	.slice(0, 3);
+
+const { Content } = await render(post);
+---
+
+<MainLayout title={`${slug}`}>
+	<!-- Title and heading -->
+	<div class="bg-[#252D47] text-white py-[50px] px-4 sm:px-8 2xl:px-56">
+		<div class="flex justify-start gap-2 sm:gap-5">
+			<div class="w-full h-full flex-1">
+				<a href="/#caseStudy" class="text-white inline-block">
+					<svg
+						class="w-6 h-6 sm:w-7 sm:h-7 mt-3"
+						viewBox="0 0 56 56"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M28.0003 11.6665L11.667 27.9998M11.667 27.9998L28.0003 44.3332M11.667 27.9998L44.3337 27.9998"
+							stroke="white"
+							stroke-width="4"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
+					</svg>
+				</a>
+			</div>
+
+			<div class="w-full h-full flex flex-col sm:gap-2">
+				<h1
+					class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] sm:leading-normal font-bold"
+				>
+					{post.data.title}
+				</h1>
+				<div
+					class="flex flex-col gap-6 sm:gap-3 sm:flex-row mt-3 items-baseline justify-between"
+				>
+					<div>
+						<Tags tags={post.data.tags} source="caseStudy" />
+					</div>
+					<div
+						class="flex justify-between w-full gap-2 items-center text-xs sm:text-sm"
+					>
+						<div class="flex gap-2">
+							<div class="hidden sm:block">•</div>
+							<h3 class="text-[#d4d9de] font-normal text-sm">
+								{formatDate(post.data.createdAt)}
+							</h3>
+						</div>
+						<SocialLinks client:load title={post.data.title} />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Carousels and body -->
+	<div class="">
+		<!-- Article below the image+carousel block -->
+		<Carousel images={post.data.images} />
+		<article class="px-4 sm:px-8 2xl:px-56 my-20">
+			<Content />
+		</article>
+	</div>
+
+	<!-- Comment section -->
+	<div class="px-4 sm:px-8 2xl:px-56 mt-10">
+		<CommentSection
+			client:load
+			title={post.data.title}
+			articleId={post.data.db_id}
+			slug={post.slug}
+		/>
+	</div>
+
+	<!-- Similar content -->
+	<div class="px-4 sm:px-8 2xl:px-56 my-20">
+		<div class="mb-8 text-gray text-[24px] font-semibold">
+			Similar content
+		</div>
+		<div class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
+			{
+				similarContent.map((entry) => {
+					return (
+						<div class=" shadow-[4px_4px_17px_rgba(0,0,0,0.08)]">
+							<CaseStudyCard caseStudy={entry} />
+						</div>
+					);
+				})
+			}
+		</div>
+	</div>
+</MainLayout>
+
+<style is:global>
+	p {
+		margin: 20px 0;
+	}
+
+	h2 {
+		margin: 20px 0;
+		font-size: 1.8rem;
+	}
+</style>

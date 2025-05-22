@@ -1,20 +1,22 @@
 ---
+import type { CollectionKey } from "astro:content";
 import { capitalize } from "../utils";
+import type { CollectionConfig } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
-const { tags } = Astro.props;
+interface Props {
+  tags: string[];
+  source: "infographics" | "caseStudy";
+}
 
-// interface Props {
-//   tags: string[];
-// }
-// console.log(tags);
-// #d6e0ec
+const { tags, source } = Astro.props as Props;
 ---
 
-<div class="flex gap-3 flex-wrap">
+<div class="flex gap-3">
   {
     tags.map((tag: string, index: number) => (
-      <span class="px-3 py-1 bg-[#d4d9de] text-[#252D47] rounded-full text-xs sm:text-sm hover:opacity-90 font-medium">
-        <a href={"/articles/tag/" + tag}>#{capitalize(tag)}</a>
+      <span class="px-3 py-1 bg-[#d4d9de] text-[#252D47] rounded-full text-sm  hover:opacity-90 font-medium">
+        <a href={`/${source}/tag/` + tag}>#{capitalize(tag)}</a>
       </span>
     ))
   }

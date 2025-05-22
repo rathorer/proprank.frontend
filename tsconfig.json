@@ -1,6 +1,12 @@
 {
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
+    "baseUrl": "src/",
+    "paths": {
+      "@types/*": [
+        "types/*"
+      ]
+    },
     "strictNullChecks": true,
     "allowJs": true,
     "jsx": "react-jsx",

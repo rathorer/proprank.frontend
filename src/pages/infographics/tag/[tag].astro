@@ -1,0 +1,80 @@
+---
+import type {
+	GetStaticPaths,
+	InferGetStaticParamsType,
+	InferGetStaticPropsType,
+} from "astro";
+import { getCollection } from "astro:content";
+import Tabs from "components/Tabs.astro";
+import MainLayout from "layouts/MainLayout.astro";
+import { capitalize } from "utils";
+
+export const getStaticPaths = (async () => {
+	const allInfographics = await getCollection("infographics");
+	const allCaseStudy = await getCollection("caseStudy");
+	const infographicsTags = allInfographics.reduce(
+		(acc, cur) => [...acc, ...cur.data.tags],
+		[],
+	);
+	const caseStudyTags = allCaseStudy.reduce(
+		(acc, cur) => [...acc, ...cur.data.tags],
+		[],
+	);
+
+	const uniqueTags = [...new Set([...infographicsTags, ...caseStudyTags])];
+
+	return uniqueTags.map((tag) => {
+		const infographics = allInfographics.filter((entry) =>
+			entry.data.tags.includes(tag),
+		);
+		const caseStudy = allCaseStudy.filter((entry) =>
+			entry.data.tags.includes(tag),
+		);
+		return {
+			params: { tag: tag },
+			props: { infographics, caseStudy },
+		};
+	});
+}) satisfies GetStaticPaths;
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { tag } = Astro.params as Params;
+const { infographics, caseStudy } = Astro.props as Props;
+
+if (tag === undefined) {
+	throw new Error("Tag is required");
+}
+export const prerender = true;
+---
+
+<MainLayout title={"tags"}>
+	<div class="bg-[#252D47] px-8 text-white py-10 2xl:px-56">
+		<div class="flex justify-start items-center gap-5">
+			<a href={"/#infographics"} class="text-white inline-block">
+				<svg
+					class="w-7 h-7"
+					viewBox="0 0 56 56"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M28.0003 11.6665L11.667 27.9998M11.667 27.9998L28.0003 44.3332M11.667 27.9998L44.3337 27.9998"
+						stroke="white"
+						stroke-width="4"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
+				</svg>
+			</a>
+			<div class="text-3xl">#{capitalize(tag!)}</div>
+		</div>
+	</div>
+	<div class="my-10 px-8 2xl:px-56">
+		<Tabs
+			infographics={infographics}
+			caseStudy={caseStudy}
+			initialTab="infographic"
+		/>
+	</div>
+</MainLayout>

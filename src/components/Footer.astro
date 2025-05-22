@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { capitalize } from "../utils";
 
-const allBlogArticles: CollectionEntry<"blog">[] = await getCollection("blog");
+const allBlogArticles: CollectionEntry<"infographics">[] = await getCollection("infographics");
 
 const tags: string[] = allBlogArticles.flatMap(
 	(article: any) => article.data.tags,

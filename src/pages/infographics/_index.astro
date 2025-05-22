@@ -1,0 +1,41 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import InfographicCard from "../../components/InfographicCard.astro";
+import SearchForm from "../../components/SearchForm.astro";
+import Pagination from "../../components/Pagination.astro";
+// import { getCollection } from "astro:content";
+// import type { CollectionEntry } from "astro:content";
+import { ARTICLES_PER_PAGE } from "../../constants";
+import { getAllBlogs } from "../../services/api";
+
+const currentPage = +Astro.url.searchParams.get("page")! || 1;
+
+// const allBlogArticles = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const allBlogArticles = await getAllBlogs();
+
+const totalPages = Math.ceil(allBlogArticles.length / ARTICLES_PER_PAGE);
+
+const articlesForPage = allBlogArticles.slice(
+  (currentPage - 1) * ARTICLES_PER_PAGE,
+  currentPage * ARTICLES_PER_PAGE,
+);
+---
+
+<MainLayout title={`All Articles | ${currentPage}`}>
+  <h1 class="text-2xl my-10 text-center">All Articles</h1>
+
+  <!-- <SearchForm /> -->
+  <!-- <br /> -->
+
+  <!-- <div class="px-8 2xl:px-56 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-5">
+    {articlesForPage.map((article: any) => <ArticleCard article={article} />)}
+  </div> -->
+
+  <Pagination
+    currentPage={currentPage}
+    totalPages={totalPages}
+    disablePrevious={currentPage === 1}
+    disableNext={currentPage === totalPages}
+  />
+</MainLayout>
