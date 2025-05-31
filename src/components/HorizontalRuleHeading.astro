@@ -1,6 +1,10 @@
 ---
-const props = Astro.props;
-const { title } = props;
+interface Props {
+	title: string;
+	url: string;
+}
+
+const { title, url } = Astro.props as Props;
 ---
 
 <!-- <div class="relative py-4">
@@ -17,10 +21,10 @@ const { title } = props;
 	<div class="font-semibold text-2xl text-[#72839c]">{title}</div>
 	<div class="grow h-[2px] bg-gradient-to-r from-[#72839c] to-[#72839c]/20">
 	</div>
-	<!-- <div class="text-lg underline underline-offset-4 text-slate-500">
-		<a href={props.link} class="inline-flex items-center gap-1">
+	<div class="text-lg underline underline-offset-4 text-[#0f5fc3] hover:text-[#0e4b97] font-medium">
+		<a href={url} class="inline-flex items-center gap-1">
 			View All
-			<svg
+			<!-- <svg
 				role="img"
 				viewBox="0 0 24 24"
 				xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +34,7 @@ const { title } = props;
 				<path
 					d="M16.835 10.813V5.289L24 12l-7.165 6.711v-5.524H0v-2.374h16.835z"
 				></path>
-			</svg>
+			</svg> -->
 		</a>
-	</div> -->
+	</div>
 </div>

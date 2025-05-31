@@ -1,18 +1,4 @@
----
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-import { capitalize } from "../utils";
-
-const allBlogArticles: CollectionEntry<"infographics">[] = await getCollection("infographics");
-
-const tags: string[] = allBlogArticles.flatMap(
-	(article: any) => article.data.tags,
-);
-
-const uniqueTags: string[] = [...new Set(tags)];
----
-
-<!-- <footer class="bg-[#252D47] text-white">
+<!-- Previous Footer --><!-- <footer class="bg-[#252D47] text-white">
 	<div class="h-[450px]">
 		<div class="px-8 2xl:px-56 w-full">
 			<div class="flex flex-col items-stretch">
@@ -20,7 +6,11 @@ const uniqueTags: string[] = [...new Set(tags)];
 					<div class="">Explore our insights also on</div>
 					<div class="flex space-x-3 items-center">
 						<a href="">
-							<img src="/Insta2.png" alt="" class="w-[42px] h-[42px]"/>
+							<img
+								src="/Insta2.png"
+								alt=""
+								class="w-[42px] h-[42px]"
+							/>
 						</a>
 						<img src="/Twitter1.png" alt="" class="w-10 h-10" />
 						<img src="/Linkedin1.png" alt="" class="w-9 h-9" />
@@ -55,12 +45,12 @@ const uniqueTags: string[] = [...new Set(tags)];
 		</div>
 	</div>
 </footer> -->
-<div>
+<footer>
 	<div
 		class="px-4 sm:px-8 2xl:px-56 w-full bg-[#252D47] text-white flex justify-center"
 	>
 		<div
-			class="flex flex-col gap-4 py-5 sm:flex sm:flex-row justify-between sm:text-xl md:text-2xl sm:gap-10 sm:py-8"
+			class="flex flex-col gap-4 py-5 sm:flex-row justify-between sm:text-xl md:text-2xl sm:gap-10 sm:py-8"
 		>
 			<div class="text-center">Follow us on</div>
 			<div class="flex items-center gap-6">
@@ -110,7 +100,9 @@ const uniqueTags: string[] = [...new Set(tags)];
 						</li>
 					</ul>
 				</div>
-				<div class="w-full flex sm:hidden justify-between mt-4 pt-4 border-t border-t-[#dee0e6]">
+				<div
+					class="w-full flex sm:hidden justify-between mt-4 pt-4 border-t border-t-[#dee0e6]"
+				>
 					<div class="flex flex-col gap-4">
 						<h5 class="sm:text-2xl font-bold">Contact us</h5>
 						<ul class="text-gray-dark text-sm">
@@ -186,4 +178,4 @@ const uniqueTags: string[] = [...new Set(tags)];
 			</div>
 		</div>
 	</div>
-</div>
+</footer>
