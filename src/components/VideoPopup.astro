@@ -1,0 +1,186 @@
+---
+// src/components/YouTubeShortPopup.astro
+export interface Props {
+    videoId: string;
+    thumbnailSrc?: string; // Optional: for a custom thumbnail
+    triggerText?: string; // Optional: text for a button trigger
+}
+
+const {
+    videoId,
+    thumbnailSrc = "/images/Lavasa_cover_page.jpg",
+    triggerText = "Watch Short",
+} = Astro.props;
+
+const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&loop=1`;
+---
+
+<div class="relative">
+    <button
+        id={`open-popup-${videoId}`}
+        class="open-popup-button group relative flex flex-col items-center justify-center font-semibold rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray focus:ring-opacity-50 overflow-hidden"
+    >
+        {
+            thumbnailSrc ? (
+                <img
+                    src={thumbnailSrc}
+                    alt="YouTube Short Thumbnail"
+                    class="w-[300px] h-full rounded-md object-cover group-hover:opacity-80 transition-opacity duration-300"
+                    onerror="this.onerror=null; this.src='https://placehold.co/128x227/f87171/ffffff?text=Short';"
+                />
+            ) : (
+                <div class="flex items-center">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="mr-2"
+                    >
+                        <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                    </svg>
+                    {triggerText}
+                </div>
+            )
+        }
+        <div
+            class="text-black opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-[400ms] ease-in-out absolute inset-"
+        >
+            <img src="/images/play.png" alt="" srcset="" class="w-6 h-auto bg-black">
+        </div>
+        <div class="px-4 flex flex-col py-4 gap-2 w-full h-full">
+            <div class="text-sm text-gray">
+                {"Date"}
+            </div>
+            <h2 class="text-lg font-semibold tracking-wide">
+                {"infographic.data.title"}
+            </h2>
+        </div>
+    </button>
+
+    
+
+    <div
+        id={`popup-${videoId}`}
+        class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none"
+        aria-modal="true"
+        role="dialog"
+    >
+        <div
+            class="modal-content-wrapper bg-neutral-900 sm:p-4 rounded-xl shadow-2xl w-full max-w-[300px] sm:max-w-[350px] md:max-w-[300px] transform scale-95 transition-transform duration-300 ease-in-out"
+        >
+            <div class="relative aspect-[9/16]">
+                <iframe
+                    id={`youtube-iframe-${videoId}`}
+                    class="absolute top-0 left-0 w-full h-full rounded-lg border-0"
+                    src=""
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+            <button
+                id={`close-popup-${videoId}`}
+                class="close-popup-button absolute -top-3 -right-3 sm:-top-4 sm:-right-4 mt-0 mr-0 bg-white text-black hover:bg-gray-200 rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200"
+                aria-label="Close modal"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script is:inline define:vars={{ videoId, embedUrl }}>
+    // Vanilla JavaScript for modal functionality
+    const openButton = document.getElementById(`open-popup-${videoId}`);
+    const closeButton = document.getElementById(`close-popup-${videoId}`);
+    const modal = document.getElementById(`popup-${videoId}`);
+    const iframe = document.getElementById(`youtube-iframe-${videoId}`);
+
+    let initialLoad = true; // To prevent loading iframe src on page load
+
+    function openModal() {
+        if (modal && iframe) {
+            if (initialLoad || iframe.src !== embedUrl) {
+                iframe.src = embedUrl; // Set src only when opening to enable autoplay
+                initialLoad = false;
+            }
+            modal.classList.remove("opacity-0", "pointer-events-none");
+            modal.classList.add("opacity-100", "pointer-events-auto");
+            modal
+                .querySelector(".modal-content-wrapper")
+                .classList.remove("scale-95");
+            modal
+                .querySelector(".modal-content-wrapper")
+                .classList.add("scale-100");
+            document.body.style.overflow = "hidden"; // Prevent background scrolling
+        }
+    }
+
+    function closeModal() {
+        if (modal && iframe) {
+            modal.classList.add("opacity-0");
+            modal.classList.remove("opacity-100");
+            // Delay pointer-events-none to allow fade-out transition
+            setTimeout(() => {
+                modal.classList.add("pointer-events-none");
+                modal.classList.remove("pointer-events-auto");
+            }, 300); // Match transition duration
+
+            modal
+                .querySelector(".modal-content-wrapper")
+                .classList.add("scale-95");
+            modal
+                .querySelector(".modal-content-wrapper")
+                .classList.remove("scale-100");
+
+            iframe.src = ""; // Stop video by clearing src
+            document.body.style.overflow = "auto"; // Restore background scrolling
+        }
+    }
+
+    if (openButton) {
+        openButton.addEventListener("click", openModal);
+    }
+
+    if (closeButton) {
+        closeButton.addEventListener("click", closeModal);
+    }
+
+    // Close modal on escape key press
+    document.addEventListener("keydown", (event) => {
+        if (
+            event.key === "Escape" &&
+            modal &&
+            modal.classList.contains("opacity-100")
+        ) {
+            closeModal();
+        }
+    });
+
+    // Close modal when clicking outside the content (on the backdrop)
+    if (modal) {
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                console.log(event.target);
+                console.log(modal);
+                // Check if the click is directly on the modal backdrop
+                closeModal();
+            }
+        });
+    }
+</script>

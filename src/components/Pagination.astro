@@ -1,23 +1,34 @@
 ---
-const { currentPage, totalPages, disablePrevious, disableNext } = Astro.props;
-
 interface Props {
   currentPage: number;
   totalPages: number;
   disablePrevious: boolean;
   disableNext: boolean;
+  link: string;
 }
+
+const { currentPage, totalPages, disablePrevious, disableNext, link } =
+  Astro.props;
 ---
-<div class="flex justify-between mt-10">
-  <a href={'/articles?page=' + (currentPage - 1)} class={
-    disablePrevious ? "inline-block bg-gray-100 px-3 py-2 text-gray rounded-lg pointer-events-none " : "inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg"
-  }>
+
+<div class="flex justify-between mt-10 items-center">
+  <a
+    href={`${link}?page=` + (currentPage - 1)}
+    class={disablePrevious
+      ? "inline-block bg-gray-100 px-3 py-2 text-gray rounded-lg pointer-events-none invisible"
+      : "inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg"}
+  >
     Newer Articles
   </a>
-  <a href={'/articles?page=' + (currentPage + 1)} 
-    class={
-      disableNext ? "inline-block bg-gray-100 px-3 py-2 text-gray rounded-lg pointer-events-none" : "inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg"
-    }>
+  <div class="text-center text-gray text-sm">
+    Page {currentPage} of {totalPages}
+  </div>
+  <a
+    href={`${link}?page=` + (currentPage + 1)}
+    class={disableNext
+      ? "inline-block bg-gray-100 px-3 py-2 text-gray rounded-lg pointer-events-none invisible"
+      : "inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg"}
+  >
     Older Articles
   </a>
 </div>
