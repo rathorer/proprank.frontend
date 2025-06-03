@@ -144,6 +144,13 @@ export default function CommentSection({ slug, articleId, title }: Props) {
         };
     }, []);
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            e.currentTarget.form?.requestSubmit(); // This triggers the form's onSubmit
+        }
+    }
+
     return (
         <div className="flex mt-4 mb-4 flex-col justify-center">
             <div className="flex items-center mb-5 justify-between">
@@ -226,7 +233,7 @@ export default function CommentSection({ slug, articleId, title }: Props) {
                 <div className="relative">
                     <div className="mb-2 w-full">
                         <textarea className="w-full rounded-2xl border border-black/25 leading-normal py-4 pl-6 pr-24 font-medium focus:outline-none focus:ring-1 focus:ring-gray focus:border-none text-slate-700 placeholder-black/30 drop-shadow-[0px_30px_25px_rgba(0,0,0,0.04)]" name="body" placeholder='Write your thoughts' required
-                            title='Write your comment' rows={2}>
+                            title='Write your comment' rows={2} onKeyDown={handleKeyDown}>
                         </textarea>
                     </div>
                     <button type='submit' className="absolute bg-[#07B54F] rounded-xl text-white font-semibold py-1 px-6 border border-gray-400 tracking-wide right-3 top-3" >
@@ -235,7 +242,7 @@ export default function CommentSection({ slug, articleId, title }: Props) {
                 </div>
             </form>
 
-            <div className="shadow-2xl rounded-lg h-auto mt-6 pb-6">
+            <div className="shadow-md rounded-lg h-auto mt-6 pb-6">
                 <div className="flex justify-between px-5 py-5">
                     <div className="text-light-grey text-xl font-semibold">
                         Comments ({comments.length})

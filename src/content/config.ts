@@ -23,7 +23,19 @@ const caseStudyCollection = defineCollection({
 	}),
 });
 
+const motionGraphicCollection = defineCollection({
+	type: 'content',
+	schema: z.object({
+		title: z.string(),
+		titleImage: z.string(),
+		videoId: z.string(),
+		db_id: z.string(),
+		createdAt: z.date()
+	}),
+});
+
 export const collections = {
 	infographics: infographicsCollection,
-	caseStudy: caseStudyCollection
+	caseStudy: caseStudyCollection,
+	motionGraphics: motionGraphicCollection,
 };

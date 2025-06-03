@@ -11,7 +11,7 @@ const { infographic } = Astro.props as Props;
 ---
 
 <div
-	class="flex flex-col justify-center items-start rounded-lg overflow-hidden shadow-2xl shadow-gray-light text-seconday1 w-full z-0"
+	class="flex flex-col justify-center items-start rounded-lg overflow-hidden shadow-2xl shadow-gray-light text-seconday1 w-full z-0  h-full"
 >
 	<a href={"/infographics/" + infographic.slug} class="h-auto">
 		<img
@@ -25,7 +25,7 @@ const { infographic } = Astro.props as Props;
 			{formatDate(infographic.data.createdAt)}
 		</div>
 		<h2 class="text-lg font-semibold tracking-wide">
-			<a href={"/articles/" + infographic.slug}>
+			<a href={"/infographics/" + infographic.slug}>
 				{infographic.data.title}
 			</a>
 		</h2>

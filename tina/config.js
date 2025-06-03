@@ -192,7 +192,6 @@ export default defineConfig({
 				],
 				ui: {
 					beforeSubmit: async ({ form, cms, values }) => {
-						console.log("clicked", values);
 						const { title, slug, titleImage, tags, db_id, images } = values;
 						const data = { _id: db_id, title, titleImage, slug, tags, type: "caseStudy", images };
 						console.log(data);
@@ -203,7 +202,6 @@ export default defineConfig({
 							},
 							body: JSON.stringify(data)
 						});
-						console.log(response);
 						if (!response.ok) {
 							throw new Error("failed to save data");
 						}
@@ -214,7 +212,69 @@ export default defineConfig({
 					},
 				},
 			},
-
+			{
+				name: "motionGraphics",
+				label: "Motion Graphics",
+				path: "src/content/motionGraphics",
+				fields: [
+					{
+						type: "string",
+						name: "title",
+						label: "Title",
+						isTitle: true,
+						required: true,
+					},
+					{
+						type: "string",
+						name: "videoId",
+						label: "Video Id",
+						required: true,
+					},
+					{
+						type: 'image',
+						name: 'titleImage',
+						label: 'Thumbnail',
+						required: true,
+					},
+					{
+						type: "string",
+						name: "db_id",
+						label: "db_id",
+						ui: {
+							component: "hidden"
+						}
+					},
+					{
+						type: "datetime",
+						name: "createdAt",
+						label: "created At",
+						ui: {
+							component: "hidden"
+						}
+					},
+				],
+				ui: {
+					beforeSubmit: async ({ form, cms, values }) => {
+						const { title, titleImage, db_id, videoId } = values;
+						const data = { _id: db_id, title, titleImage, type: "motionGraphic", videoId };
+						console.log(data);
+						const response = await fetch(`${apiUrl}api/blog/postNewBlog`, {
+							method: 'POST',
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify(data)
+						});
+						if (!response.ok) {
+							throw new Error("failed to save data");
+						}
+						const result = await response.json();
+						values.db_id = result.blog._id;
+						values.createdAt = new Date();
+						return { ...values };
+					},
+				},
+			},
 		]
 	}
 });
