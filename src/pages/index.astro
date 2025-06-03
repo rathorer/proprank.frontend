@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import CaseStudyCard from "components/CaseStudyCard.astro";
-import VideoPopup from "components/VideoPopup.astro";
+import MotionGraphicCard from "components/MotionGraphicCard.astro";
 import HorizontalRuleHeading from "../components/HorizontalRuleHeading.astro";
 import InfographicCard from "../components/InfographicCard.astro";
 import Roller from "../components/Roller.astro";
@@ -16,6 +16,11 @@ const infographics = (await getCollection("infographics")).sort(
 		new Date(a.data.createdAt).getTime(),
 );
 const caseStudy = (await getCollection("caseStudy")).sort(
+	(a, b) =>
+		new Date(b.data.createdAt).getDate() -
+		new Date(a.data.createdAt).getDate(),
+);
+const motionGraphics = (await getCollection("motionGraphics")).sort(
 	(a, b) =>
 		new Date(b.data.createdAt).getDate() -
 		new Date(a.data.createdAt).getDate(),
@@ -128,7 +133,7 @@ const caseStudy = (await getCollection("caseStudy")).sort(
 	<div class="px-4 sm:px-8 2xl:px-56 mb-20" id="caseStudy">
 		<HorizontalRuleHeading title={"Case Studies"} url="/caseStudy" />
 		<div
-			class="grid grid-cols-1 gap-x-2 gap-y-6 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mt-10"
+			class="grid grid-cols-1 gap-x-2 gap-y-6 lg:grid-cols-2 2xl:grid-cols-3 mt-10"
 		>
 			{
 				caseStudy
@@ -137,21 +142,19 @@ const caseStudy = (await getCollection("caseStudy")).sort(
 			}
 		</div>
 	</div>
-	<div class="px-4 sm:px-8 2xl:px-56 mb-20">
-		<HorizontalRuleHeading title={"Videos"} url="/" />
-		<!-- <div class="">
-			<iframe
-				id="player"
-				width="260"
-				height="450"
-				src="http://www.youtube.com/embed/t6iUhiaYjj0"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-				allowfullscreen
-			>
-			</iframe>
-		</div> -->
-		<div class="mt-10">
-			<VideoPopup videoId="t6iUhiaYjj0" /> 
+	<div class="px-4 sm:px-8 2xl:px-56 mb-20" id="Shorts">
+		<HorizontalRuleHeading title={"Shorts"} url="/shorts" />
+
+		<div
+			class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-10"
+		>
+			{
+				motionGraphics
+					.slice(0, HOMEPAGE_ARTICLE_LIMIT)
+					.map((article) => (
+						<MotionGraphicCard motiongraphic={article} />
+					))
+			}
 		</div>
 	</div>
 </MainLayout>

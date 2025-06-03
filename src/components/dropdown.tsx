@@ -94,6 +94,11 @@ const Dropdown = () => {
                                 Case Study
                             </button>
                         </a>
+                        <a href="/#Shorts" className='block px-4 py-2 hover:bg-gray/20'>
+                            <button className="">
+                                Shorts
+                            </button>
+                        </a>
                         {/* <hr className='border-white' /> */}
                         {loggedIn ? <a href="/" className='block px-4 py-2 hover:bg-gray/20' onClick={handleLogout} id='logout-btn'>
                             <button className="">
@@ -121,7 +126,7 @@ const Dropdown = () => {
                     </button>
                 </div>
                 <div className="mt-10">
-                    <form id="search-form-drawer" className="" action="/articles/search">
+                    <form id="search-form-drawer" className="" action="/search">
                         <label htmlFor="search-input" className="sr-only">Search</label>
                         <div className="relative flex items-center">
                             <input
@@ -153,7 +158,7 @@ const Dropdown = () => {
                     </form>
                 </div>
                 <div className="mt-5 text-left text-gray-dark">
-                    <div className='block px-2 py-2' onClick={() => {
+                    <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
                         window.location.hash = '#infographics';
                         toggleDropdown();
                     }}>
@@ -161,12 +166,17 @@ const Dropdown = () => {
                             Infographics
                         </button>
                     </div>
-                    <div className='block px-2 py-2' onClick={() => {
+                    <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
                         window.location.hash = '#caseStudy';
                         toggleDropdown();
                     }}>
                         <button className="">
                             Case Study
+                        </button>
+                    </div>
+                    <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => window.location.hash = "#Shorts"}>
+                        <button className="">
+                            Shorts
                         </button>
                     </div>
                     {loggedIn ? <a href="/" className='block px-2 py-2' onClick={handleLogout} id='logout-btn-drawer'>
