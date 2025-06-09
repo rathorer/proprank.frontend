@@ -18,15 +18,11 @@ const apiUrl = process.env.TINA_PUBLIC_API_URL;
 export default defineConfig({
 	branch,
 	authProvider: new CustomAuthProvider(),
-	admin: {
-		authHooks: {
-
-		}
-	},
+	
 	// Get this from tina.io
-	clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+	clientId: null,
 	// Get this from tina.io
-	token: process.env.TINA_TOKEN,
+	token: null,
 
 	build: {
 		outputFolder: "admin",

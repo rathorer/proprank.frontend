@@ -42,7 +42,9 @@ export default function CommentSection({ slug, articleId, title }: Props) {
 
 
     const navigateToLogin = () => {
-        window.location.href = `/login?callbackUrl=${window.location.href}`;
+        let url = encodeURIComponent(window.location.href);
+        console.log(url);
+        window.location.href = `/login?callbackUrl=${url}`;
     }
 
     const handleDelete = async (id: string) => {
@@ -113,10 +115,10 @@ export default function CommentSection({ slug, articleId, title }: Props) {
             const body = formData.get('body') as string;
             const newComments = [...comments, { body: body, userId: userDetails._id, likedBy_ids: [], createdAt: new Date() }]
             const data = { articleId, slug, likedBy_ids: articleLikes, comments: newComments }
-            const article = (await postComments(data)).result.article;
+            const article = (await postComments(data))?.result?.article;
             const newCommentId = article.comments[article.comments.length - 1]?._id;
             const userId = { "_id": userDetails._id, name: userDetails.name };
-            setComments((prev) => [...prev, { _id: newCommentId, body: body, userId, likedBy_ids: [], createdAt: new Date() }]);
+            setComments([...comments, { _id: newCommentId, body: body, userId, likedBy_ids: [], createdAt: new Date() }]);
             form.reset();
         }
     }
@@ -155,8 +157,8 @@ export default function CommentSection({ slug, articleId, title }: Props) {
         <div className="flex mt-4 mb-4 flex-col justify-center">
             <div className="flex items-center mb-5 justify-between">
                 <div className="flex gap-4">
-                    <Like classes={"w-8 h-8 sm:w-10 sm:h-10"} currentLikesCount={articleLikes.length} likedCall={handleArticleLike} unLikedCall={handleArticleUnLike} referenceId={articleId} alreadyLiked={articleLikes.includes(userDetails._id)} key={"articleLike"} />
-                    <div className="flex items-center">
+                    <Like classes={"w-8 h-8 sm:w-10 sm:h-10 cursor-pointer"} currentLikesCount={articleLikes.length} likedCall={handleArticleLike} unLikedCall={handleArticleUnLike} referenceId={articleId} alreadyLiked={articleLikes.includes(userDetails._id)} key={"articleLike"} />
+                    <div className="flex items-center cursor-pointer">
                         <svg className='w-8 h-8 sm:w-9 sm:h-9' viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20.7871 35.1719C23.7538 35.1719 26.6539 34.2921 29.1207 32.6439C31.5874 30.9957 33.51 28.653 34.6453 25.9121C35.7806 23.1712 36.0777 20.1552 35.4989 17.2455C34.9201 14.3358 33.4915 11.6631 31.3937 9.56528C29.2959 7.46749 26.6232 6.03888 23.7135 5.4601C20.8037 4.88132 17.7877 5.17837 15.0469 6.31369C12.306 7.449 9.96329 9.37159 8.31507 11.8383C6.66684 14.3051 5.78711 17.2052 5.78711 20.1719C5.78711 22.6519 6.38711 24.9885 7.45378 27.0502L5.78711 35.1719L13.9088 33.5052C15.9688 34.5702 18.3088 35.1719 20.7871 35.1719Z" stroke="#363636" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
@@ -291,7 +293,7 @@ export default function CommentSection({ slug, articleId, title }: Props) {
                                     {comment.body}
                                 </div>
                                 <div className="bg-[#e6eff6] rounded-lg px-2">
-                                    <Like key={index + 'like'} classes={"w-6 h-6"} currentLikesCount={comment?.likedBy_ids?.length || 0} likedCall={handleCommentLike} unLikedCall={handleCommentUnLike} referenceId={comment._id} alreadyLiked={comment?.likedBy_ids?.includes(userDetails._id || false)} />
+                                    <Like key={index + 'like'} classes={"w-6 h-6 cursor-pointer"} currentLikesCount={comment?.likedBy_ids?.length || 0} likedCall={handleCommentLike} unLikedCall={handleCommentUnLike} referenceId={comment._id} alreadyLiked={comment?.likedBy_ids?.includes(userDetails._id || false)} />
                                 </div>
                             </div>
                         </div>
