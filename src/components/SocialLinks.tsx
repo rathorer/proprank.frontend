@@ -11,12 +11,16 @@ export default function SocialLinks({ title }: { title: string }) {
         setCurrentUrl(window.location.href);
     }, []);
 
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(window.location.href);
+    }
+
     const handleMobileNativeShare = async () => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: "This is title",
-                    text: "This is dummy text",
+                    title: title,
+                    text: "Here's an Interesting Read",
                     url: window.location.href,
                 });
             } catch (error) {
@@ -47,7 +51,7 @@ export default function SocialLinks({ title }: { title: string }) {
             <div className="hidden sm:flex sm:items-center gap-4">
                 <div className="w-6 h-6" title="Copy link">
                     <Popup popupContent={"Copied!"}>
-                        <div id="copylinkdiv">
+                        <div id="copylinkdiv" onClick={handleCopy}>
                             <img
                                 src="/link-white.png"
                                 alt="link-icon"
