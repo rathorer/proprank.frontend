@@ -90,13 +90,13 @@ const { Content } = await render(post);
 	</div>
 
 	<!-- Image and body -->
-	<div class="">
+	<div class="px-4 sm:px-8 2xl:px-56">
 		<img
 			src={post.data.titleImage}
 			alt="Article Image"
 			class="rounded my-6 w-full h-auto md:w-11/12 lg:w-9/12 text-center mx-auto shadow-2xl"
 		/>
-		<article class="px-4 sm:px-8 2xl:px-56">
+		<article class="">
 			<Content />
 		</article>
 	</div>

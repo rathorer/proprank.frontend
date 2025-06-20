@@ -87,8 +87,7 @@ const { images } = Astro.props as CarouselProps;
         const slides = document.querySelectorAll(".item");
         const nextButton = document.getElementById("nextButton");
         const prevButton = document.getElementById("prevButton");
-        const currentSlideNumber =
-            document.getElementById("currentSlideNumber");
+        const currentSlideNumber = document.querySelectorAll("#currentSlideNumber");
 
         let current = 0;
         let prev = slides.length - 1;
@@ -100,7 +99,9 @@ const { images } = Astro.props as CarouselProps;
             });
 
             slides[current].classList.add("active");
-            currentSlideNumber.innerText = current + 1;
+            currentSlideNumber.forEach(
+                (element) => (element.innerText = current + 1),
+            );
 
             if (next < slides.length) {
                 slides[next].classList.add("next");
