@@ -59,7 +59,7 @@ const Dropdown = () => {
         <div ref={dropdownRef}>
             <div
                 onClick={toggleDropdown}
-                className="text-[#252d47] focus:outline-none flex flex-col items-end justify-start"
+                className="text-[#252d47] focus:outline-none flex flex-col items-end justify-start cursor-pointer"
             >
                 <span className="sr-only">Open main menu</span>
                 <svg

@@ -9,6 +9,8 @@ import Tabs from "components/Tabs.astro";
 import MainLayout from "layouts/MainLayout.astro";
 import { capitalize } from "utils";
 
+export const prerender = true;
+
 export const getStaticPaths = (async () => {
 	const allInfographics = await getCollection("infographics");
 	const allCaseStudy = await getCollection("caseStudy");
@@ -46,7 +48,6 @@ const { infographics, caseStudy } = Astro.props as Props;
 if (tag === undefined) {
 	throw new Error("Tag is required");
 }
-export const prerender = true;
 ---
 
 <MainLayout title={"tags"}>

@@ -5,8 +5,8 @@ import CustomAuthProvider from "./auth";
 // const canAccessAdminCollection = (user) => {
 // 	return false
 // }
-const url = process.env.API_URL;
 // Your hosting provider likely exposes this as an environment variable
+
 const branch =
 	process.env.GITHUB_BRANCH ||
 	process.env.VERCEL_GIT_COMMIT_REF ||
@@ -18,11 +18,11 @@ const apiUrl = process.env.TINA_PUBLIC_API_URL;
 export default defineConfig({
 	branch,
 	authProvider: new CustomAuthProvider(),
-	
+
 	// Get this from tina.io
-	clientId: null,
+	clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
 	// Get this from tina.io
-	token: null,
+	token: process.env.TINA_TOKEN,
 
 	build: {
 		outputFolder: "admin",
