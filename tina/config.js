@@ -1,12 +1,6 @@
 import { LocalAuthProvider, defineConfig, defineSchema, createClient, Form, TinaCMS } from "tinacms";
 import CustomAuthProvider from "./auth";
 
-
-// const canAccessAdminCollection = (user) => {
-// 	return false
-// }
-// Your hosting provider likely exposes this as an environment variable
-
 const branch =
 	process.env.GITHUB_BRANCH ||
 	process.env.VERCEL_GIT_COMMIT_REF ||
@@ -28,13 +22,7 @@ export default defineConfig({
 		outputFolder: "admin",
 		publicFolder: "public",
 	},
-	server: {
-		cors: {
-			origin: "*", // Allow all origins (or specify your domain)
-			methods: ["GET", "POST", "OPTIONS"],
-			allowedHeaders: ["Content-Type", "Authorization"],
-		},
-	},
+	
 	media: {
 		tina: {
 			mediaRoot: "/images",
