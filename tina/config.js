@@ -1,5 +1,5 @@
 import { LocalAuthProvider, defineConfig, defineSchema, createClient, Form, TinaCMS } from "tinacms";
-import CustomAuthProvider from "./auth";
+// import CustomAuthProvider from "./auth";
 
 const branch =
 	process.env.GITHUB_BRANCH ||
