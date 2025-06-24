@@ -11,7 +11,7 @@ const apiUrl = process.env.TINA_PUBLIC_API_URL;
 
 export default defineConfig({
 	branch,
-	authProvider: new CustomAuthProvider(),
+	// authProvider: new CustomAuthProvider(),
 
 	// Get this from tina.io
 	clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
@@ -22,7 +22,13 @@ export default defineConfig({
 		outputFolder: "admin",
 		publicFolder: "public",
 	},
-	
+	server: {
+		cors: {
+			origin: "*", // Allow all origins (or specify your domain)
+			methods: ["GET", "POST", "OPTIONS"],
+			allowedHeaders: ["Content-Type", "Authorization"],
+		},
+	},
 	media: {
 		tina: {
 			mediaRoot: "/images",

@@ -10,7 +10,7 @@ quote: >-
   nesciunt voluptates voluptatem deserunt, dicta culpa deleniti odio veniam
   dolor?
 db_id: 681a09d9daa43e3428413513
-createdAt: 2025-05-19T12:31:02.826Z
+createdAt: 2025-06-24T05:40:28.300Z
 ---
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta nostrum nesciunt voluptates voluptatem deserunt, dicta culpa deleniti odio veniam dolor? lorem 20 lorem 30 lorem.c
