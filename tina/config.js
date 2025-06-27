@@ -1,17 +1,12 @@
 import { LocalAuthProvider, defineConfig, defineSchema, createClient, Form, TinaCMS } from "tinacms";
 // import CustomAuthProvider from "./auth";
 
-const branch =
-	process.env.GITHUB_BRANCH ||
-	process.env.VERCEL_GIT_COMMIT_REF ||
-	process.env.HEAD ||
-	"master";
+const branch = process.env.GITHUB_PRE_PROD_BRANCH;
 
 const apiUrl = process.env.TINA_PUBLIC_API_URL;
 
 export default defineConfig({
 	branch,
-	// authProvider: new CustomAuthProvider(),
 
 	// Get this from tina.io
 	clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
