@@ -96,6 +96,9 @@ export default defineConfig({
 				ui: {
 					beforeSubmit: async ({ form, cms, values }) => {
 						const { title, slug, titleImage, tags, db_id, quote } = values;
+						if (!db_id) {
+							values.createdAt = new Date();
+						}
 						const data = { _id: db_id, title, titleImage, slug, tags, type: "infographics", quote };
 						const response = await fetch(`${apiUrl}api/blog/postNewBlog`, {
 							method: 'POST',
@@ -109,7 +112,6 @@ export default defineConfig({
 						}
 						const result = await response.json();
 						values.db_id = result.blog._id;
-						values.createdAt = new Date();
 						return { ...values };
 					},
 				},
@@ -178,8 +180,10 @@ export default defineConfig({
 				ui: {
 					beforeSubmit: async ({ form, cms, values }) => {
 						const { title, slug, titleImage, tags, db_id, images } = values;
+						if (!db_id) {
+							values.createdAt = new Date();
+						}
 						const data = { _id: db_id, title, titleImage, slug, tags, type: "caseStudy", images };
-						console.log(data);
 						const response = await fetch(`${apiUrl}api/blog/postNewBlog`, {
 							method: 'POST',
 							headers: {
@@ -192,7 +196,6 @@ export default defineConfig({
 						}
 						const result = await response.json();
 						values.db_id = result.blog._id;
-						values.createdAt = new Date();
 						return { ...values };
 					},
 				},
