@@ -2,7 +2,6 @@ import { LocalAuthProvider, defineConfig, defineSchema, createClient, Form, Tina
 // import CustomAuthProvider from "./auth";
 
 const branch = process.env.GITHUB_PRE_PROD_BRANCH;
-console.log(branch);
 
 const apiUrl = process.env.TINA_PUBLIC_API_URL;
 
