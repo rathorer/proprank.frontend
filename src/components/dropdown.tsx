@@ -55,6 +55,11 @@ const Dropdown = () => {
         setSmallScreen(window.innerWidth <= 500);
     }, [])
 
+
+    const handleRedirect = (url: string) => {
+        window.location.href = url;
+    }
+
     return (
         <div ref={dropdownRef}>
             <div
@@ -137,7 +142,7 @@ const Dropdown = () => {
                                 placeholder="Search articles..."
                                 required
                             />
-                            <button type="submit" className="p-2 text-white rounded-lg absolute right-1 bg-blue-500 ">
+                            <button type="submit" className="p-2 text-black rounded-lg absolute right-1 bg-white">
                                 <svg
                                     className="w-4 h-4"
                                     aria-hidden="true"
@@ -159,7 +164,7 @@ const Dropdown = () => {
                 </div>
                 <div className="mt-5 text-left text-gray-dark">
                     <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
-                        window.location.hash = '#infographics';
+                        handleRedirect('/#infographics');
                         toggleDropdown();
                     }}>
                         <button className="">
@@ -167,14 +172,17 @@ const Dropdown = () => {
                         </button>
                     </div>
                     <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
-                        window.location.hash = '#caseStudy';
+                        handleRedirect('/#caseStudy');
                         toggleDropdown();
                     }}>
                         <button className="">
                             Case Study
                         </button>
                     </div>
-                    <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => window.location.hash = "#Shorts"}>
+                    <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
+                        handleRedirect("/#Shorts");
+                        toggleDropdown();
+                    }}>
                         <button className="">
                             Shorts
                         </button>

@@ -2,9 +2,11 @@
 interface Props {
 	title: string;
 	url: string;
+	imageUrl: string;
+	imageClass: string;
 }
 
-const { title, url } = Astro.props as Props;
+const { title, url, imageUrl,imageClass } = Astro.props as Props;
 ---
 
 <!-- <div class="relative py-4">
@@ -18,10 +20,13 @@ const { title, url } = Astro.props as Props;
 	</div>
 </div> -->
 <div class="flex items-center gap-2">
-	<div class="font-semibold text-2xl text-[#72839c]">{title}</div>
+	<img src={imageUrl} alt="" class={imageClass} />
+	<div class="font-semibold text-2xl text-[#252D47]">{title}</div>
 	<div class="grow h-[2px] bg-gradient-to-r from-[#72839c] to-[#72839c]/20">
 	</div>
-	<div class="text-lg underline underline-offset-4 text-[#0f5fc3] hover:text-[#0e4b97] font-medium">
+	<div
+		class="text-lg underline underline-offset-4 text-[#0f5fc3] hover:text-[#0e4b97] font-medium"
+	>
 		<a href={url} class="inline-flex items-center gap-1">
 			View All
 			<!-- <svg
