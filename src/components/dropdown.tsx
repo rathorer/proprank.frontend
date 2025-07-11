@@ -82,7 +82,7 @@ const Dropdown = () => {
                     </path>
                 </svg>
                 {!smallScreen && dropdownOpen && (
-                    <div className="absolute mt-6 w-48 bg-white rounded-md drop-shadow text-center z-50">
+                    <div className="absolute mt-6 w-48 bg-white rounded-md drop-shadow text-left z-50">
                         {loggedIn ?
                             <div className='block px-4 py-2'>
                                 {userDetails?.name}
