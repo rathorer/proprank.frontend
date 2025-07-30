@@ -29,7 +29,7 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 
 <MainLayout>
 	<div
-		class="relative bg-center bg-cover bg-no-repeat h-[660px] mb-[1100px] sm:mb-44 lg:mb-64 2xl:mb-80 bg-[url(/bg-image.png)] size-full"
+		class="relative bg-center bg-cover bg-no-repeat h-[660px] mb-[1180px] sm:mb-44 lg:mb-64 2xl:mb-80 bg-[url(/bg-image.png)] size-full"
 	>
 		<div
 			class="absolute inset-0 bg-gradient-to-b from-[#252D47]/[85%] via-[#252D47]/[95%] to-[#252D47]"
@@ -63,62 +63,73 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 			id="UspCards"
 		>
 			<div
-				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full sm:w-full flex flex-col mx-auto gap-3"
+				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full sm:w-full flex flex-col mx-auto"
 			>
-				<h2 class="text-lg font-bold text-gray-800 text-center">
-					SIMPLIFYING
+				<h2
+					class="text-2xl font-medium text-center mb-4 text-[#252D47]"
+				>
+					| Beyond Hype |
 				</h2>
-				<p class="text-[#72839c] text-center mt-1 text-base mb-9">
-					The complex world of Indian real-estate
+				<img
+					src="/simplifying-ill.png"
+					class="h-[290px] mx-auto mb-3"
+				/>
+				<p class="text-[#72839c] text-center text-base">
+					Simplifying the complex world of Indian real-estate
 				</p>
-				<img src="/simplifying-ill.png" class="w-auto max-h-[300px]" />
 			</div>
 			<div
 				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full sm:w-full flex flex-col mx-auto"
 			>
-				<h2 class="text-lg font-bold text-gray-800 text-center">
-					REDEFINING
+				<h2
+					class="text-2xl font-medium text-center text-[#252D47] mb-4"
+				>
+					| Beyond Narrative |
 				</h2>
-				<p class="text-[#72839c] text-center mt-1 text-base mb-2">
+				<img src="/redefining-ill.png" class="h-[290px] mx-auto mb-3" />
+				<p class="text-[#72839c] text-center text-base">
 					The fundamentals & data-driven actionable insights
 				</p>
-				<img src="/redefining-ill.png" class="w-auto max-h-[300px]" />
 			</div>
 			<div
 				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full sm:w-full flex flex-col mx-auto"
 			>
-				<h2 class="text-lg font-bold text-gray-800 text-center">
-					UNFOLDING
+				<h2
+					class="text-2xl font-medium text-center text-[#252D47] mb-4"
+				>
+					| Beyond Claims |
 				</h2>
-				<p class="text-[#72839c] text-center mt-1 text-base mb-2">
+				<img src="/unfolding-ill.png" class="h-[290px] mx-auto mb-3" />
+				<p class="text-[#72839c] text-center text-base">
 					The growth opportunities and underlying risks
 				</p>
-				<img src="/unfolding-ill.png" class="w-auto max-h-[300px]" />
 			</div>
 		</div>
 	</div>
 
-	<div class="py-4 px-4 mb-14 bg-[#252D47] text-white sm:px-8 2xl:px-56">
-		<div class="px-24 sm:hidden">
+	<div class="py-4 px-4 mb-14 bg-[#252D47] text-white 2xl:px-56">
+		<!-- <div class="px-24 sm:hidden">
 			<hr class="border border-x-[#9aa6b8]" />
-		</div>
+		</div> -->
 		<div
-			class="sm:border-x-[4px] sm:border-x-[#9aa6b8] py-5 text-3xl sm:text-5xl capitalize 2xl:text-[50px] text-center"
+			class="py-5 text-2xl sm:text-4xl 2xl:text-[50px] text-center font-medium sm:!leading-[3rem] sm:px-20 2xl:!leading-[4rem]" 
 		>
-			real estate analysis made simple
+			<span class="text-5xl" style="font-family: 'Merriweather', serif;">“</span>
+			Insight that empowers you to make informed property decisions
+			<span class="text-5xl" style="font-family: 'Merriweather', serif;">”</span>
 		</div>
-		<div class="px-24 sm:hidden">
+		<!-- <div class="px-24 sm:hidden">
 			<hr class="border border-x-[#9aa6b8]" />
-		</div>
+		</div> -->
 	</div>
 
 	<!-- Infographics Section -->
 	<div class="px-4 sm:px-8 2xl:px-56 mb-20" id="infographics">
 		<HorizontalRuleHeading
-			title={"Infographics"}
+			title={"PropView"}
 			url="/infographics"
 			imageUrl="/infographicIcon.png"
-			imageClass="w-auto h-10"
+			imageClass="w-auto h-9"
 		/>
 		<div
 			class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-10 gap-y-14"
@@ -134,7 +145,7 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 	<!-- Case Study Section-->
 	<div class="px-4 sm:px-8 2xl:px-56 mb-20" id="caseStudy">
 		<HorizontalRuleHeading
-			title={"Case Studies"}
+			title={"PropStory"}
 			url="/caseStudy"
 			imageUrl="/storiesIcon.png"
 			imageClass="w-auto h-8"
@@ -151,7 +162,7 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 	<!-- Shorts Section -->
 	<div class="px-4 sm:px-8 2xl:px-56 mb-20" id="Shorts">
 		<HorizontalRuleHeading
-			title={"Shorts"}
+			title={"Propshorts"}
 			url="/shorts"
 			imageUrl="/shortsIcon.png"
 			imageClass="w-auto h-9"
