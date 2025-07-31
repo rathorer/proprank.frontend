@@ -28,7 +28,7 @@ const {
                 class="cursor-pointer tab-btn text-xl text-[#a3b1cb] flex items-center gap-1"
                 class:list={[initialTab == "infographic" ? "active" : ""]}
             >
-                <div class="btn-content py-2">Infographics</div>
+                <div class="btn-content py-2">PropView</div>
                 <div
                     class="rounded-full w-4 h-4 flex items-center text-xs justify-center text-white bg-[#a3b1cb]"
                     id="count"
@@ -41,7 +41,7 @@ const {
                 class=" cursor-pointer tab-btn text-xl text-[#a3b1cb] flex items-center gap-1"
                 class:list={[initialTab == "caseStudy" ? "active" : ""]}
             >
-                <div class="btn-content py-2">Case Studies</div>
+                <div class="btn-content py-2">PropStory</div>
                 <div
                     class="rounded-full w-4 h-4 flex items-center text-xs justify-center text-white bg-[#a3b1cb]"
                     id="count"
@@ -126,15 +126,15 @@ const {
             display: none;
         }
         .active {
-            color: #252d47;
+            color: #30353E;
             font-size: 24px;
             font-weight: 500;
         }
         .active .btn-content {
-            border-bottom: 2px solid #252d47;
+            border-bottom: 2px solid #30353E;
         }
         .active #count {
-            background-color: #252d47;
+            background-color: #30353E;
             font-size: 14px;
             width: 20px;
             height: 20px;

@@ -29,10 +29,10 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 
 <MainLayout>
 	<div
-		class="relative bg-center bg-cover bg-no-repeat h-[660px] mb-[1180px] sm:mb-44 lg:mb-64 2xl:mb-80 bg-[url(/bg-image.png)] size-full"
+		class="relative bg-center bg-cover bg-no-repeat h-[660px] mb-[850px] sm:mb-48 lg:mb-64 2xl:mb-80 bg-[url(/bg-image.png)] size-full"
 	>
 		<div
-			class="absolute inset-0 bg-gradient-to-b from-[#252D47]/[85%] via-[#252D47]/[95%] to-[#252D47]"
+			class="absolute inset-0 bg-gradient-to-b from-[#30353E]/[85%] via-[#30353E]/[95%] to-[#30353E]"
 			id="backgroundCover"
 		>
 		</div>
@@ -59,22 +59,22 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 			</div> -->
 		</div>
 		<div
-			class="absolute px-2 grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-4 sm:px-8 2xl:px-56 top-[65%] sm:top-[75%] md:top-[70%] lg:top-[65%] z-0"
+			class="absolute px-2 grid grid-cols-1 sm:grid-cols-3 md:gap-x-[12px] gap-x-4 gap-y-4 sm:px-8 2xl:px-56 top-[65%] sm:top-[65%] md:top-[62%] lg:top-[65%] z-0"
 			id="UspCards"
 		>
 			<div
 				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full sm:w-full flex flex-col mx-auto"
 			>
 				<h2
-					class="text-2xl font-medium text-center mb-4 text-[#252D47]"
+					class="text-[14px] md:text-[18px] lg:text-2xl font-medium text-center md:mb-2 lg:mb-4 text-[#30353E]"
 				>
-					| Beyond Hype |
+					{"{ Beyond Hype }"}
 				</h2>
 				<img
 					src="/simplifying-ill.png"
-					class="h-[290px] mx-auto mb-3"
+					class="h-[200px] lg:h-[265px] mx-auto mb-2 "
 				/>
-				<p class="text-[#72839c] text-center text-base">
+				<p class="text-[#72839c] text-center text-base h-auto">
 					Simplifying the complex world of Indian real-estate
 				</p>
 			</div>
@@ -82,45 +82,43 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full sm:w-full flex flex-col mx-auto"
 			>
 				<h2
-					class="text-2xl font-medium text-center text-[#252D47] mb-4"
+					class="text-[14px] md:text-[18px] lg:text-2xl font-medium text-center md:mb-2 lg:mb-4 text-[#30353E] "
 				>
-					| Beyond Narrative |
+					{"{ Beyond Narrative }"}
 				</h2>
-				<img src="/redefining-ill.png" class="h-[290px] mx-auto mb-3" />
-				<p class="text-[#72839c] text-center text-base">
-					The fundamentals & data-driven actionable insights
+				<img src="/redefiningillustration.png" class="h-[200px] lg:h-[265px] mx-auto mb-2" />
+				<p class="text-[#72839c] text-center text-base h-fit">
+					Redefining the fundamentals & data-driven actionable insights
 				</p>
 			</div>
 			<div
 				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full sm:w-full flex flex-col mx-auto"
 			>
 				<h2
-					class="text-2xl font-medium text-center text-[#252D47] mb-4"
+					class="text-[14px] md:text-[18px] lg:text-2xl font-medium text-center text-[#30353E] md:mb-2 lg:mb-4"
 				>
-					| Beyond Claims |
+					{"{ Beyond Claims }"}
 				</h2>
-				<img src="/unfolding-ill.png" class="h-[290px] mx-auto mb-3" />
-				<p class="text-[#72839c] text-center text-base">
-					The growth opportunities and underlying risks
+				<img src="/unfolding-ill.png" class="h-[200px] lg:h-[265px] mx-auto mb-2" />
+				<p class="text-[#72839c] text-center text-base h-fit">
+					Uncovering the growth opportunities and underlying risks
 				</p>
 			</div>
 		</div>
 	</div>
 
-	<div class="py-4 px-4 mb-14 bg-[#252D47] text-white 2xl:px-56">
-		<!-- <div class="px-24 sm:hidden">
+	<div class="py-4 px-8 mb-14 bg-[#30353E] text-white 2xl:px-56">
+		<div class="px-24 sm:hidden">
 			<hr class="border border-x-[#9aa6b8]" />
-		</div> -->
-		<div
-			class="py-5 text-2xl sm:text-4xl 2xl:text-[50px] text-center font-medium sm:!leading-[3rem] sm:px-20 2xl:!leading-[4rem]" 
-		>
-			<span class="text-5xl" style="font-family: 'Merriweather', serif;">“</span>
-			Insight that empowers you to make informed property decisions
-			<span class="text-5xl" style="font-family: 'Merriweather', serif;">”</span>
 		</div>
-		<!-- <div class="px-24 sm:hidden">
+		<div
+			class="sm:border-x-[4px] sm:border-x-[#9aa6b8] py-5 text-2xl sm:text-3xl 2xl:text-[50px] text-center font-medium sm:!leading-[3rem] sm:px-20 2xl:!leading-[4rem]"
+		>
+			Insight that empowers you to make informed property decisions
+		</div>
+		<div class="px-24 sm:hidden">
 			<hr class="border border-x-[#9aa6b8]" />
-		</div> -->
+		</div>
 	</div>
 
 	<!-- Infographics Section -->

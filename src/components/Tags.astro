@@ -15,7 +15,7 @@ const { tags, source } = Astro.props as Props;
 <div class="flex gap-3">
   {
     tags.map((tag: string, index: number) => (
-      <span class="px-3 py-1 bg-[#d4d9de] text-[#252D47] rounded-full text-sm hover:opacity-90 font-medium">
+      <span class="px-3 py-1 bg-[#d4d9de] text-[#30353E] rounded-full text-sm hover:opacity-90 font-medium">
         <a href={`/${source}/tag/` + tag}>#{capitalize(tag)}</a>
       </span>
     ))
