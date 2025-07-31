@@ -64,7 +64,7 @@ const Dropdown = () => {
         <div ref={dropdownRef}>
             <div
                 onClick={toggleDropdown}
-                className="text-[#252d47] focus:outline-none flex flex-col items-end justify-start cursor-pointer"
+                className="text-[#30353E] focus:outline-none flex flex-col items-end justify-start cursor-pointer"
             >
                 <span className="sr-only">Open main menu</span>
                 <svg
@@ -91,17 +91,17 @@ const Dropdown = () => {
                             : <></>}
                         <a href="/#infographics" className='block px-4 py-2 hover:bg-gray/20'>
                             <button className="">
-                                Infographics
+                                PropView
                             </button>
                         </a>
                         <a href="/#caseStudy" className='block px-4 py-2 hover:bg-gray/20'>
                             <button className="">
-                                Case Study
+                                PropStory
                             </button>
                         </a>
                         <a href="/#Shorts" className='block px-4 py-2 hover:bg-gray/20'>
                             <button className="">
-                                Shorts
+                                PropShorts
                             </button>
                         </a>
                         {/* <hr className='border-white' /> */}
@@ -168,7 +168,7 @@ const Dropdown = () => {
                         toggleDropdown();
                     }}>
                         <button className="">
-                            Infographics
+                            PropView
                         </button>
                     </div>
                     <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
@@ -176,7 +176,7 @@ const Dropdown = () => {
                         toggleDropdown();
                     }}>
                         <button className="">
-                            Case Study
+                            PropStory
                         </button>
                     </div>
                     <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
@@ -184,7 +184,7 @@ const Dropdown = () => {
                         toggleDropdown();
                     }}>
                         <button className="">
-                            Shorts
+                            PropShorts
                         </button>
                     </div>
                     {loggedIn ? <a href="/" className='block px-2 py-2' onClick={handleLogout} id='logout-btn-drawer'>

@@ -256,7 +256,7 @@ export default function CommentSection({ slug, articleId, title }: Props) {
                 {comments.length ?
                     comments.toReversed().map((comment: CommentInter, index: React.Key) => (
                         <div key={index} className='px-6 sm:px-8 flex flex-col gap-5 my-4 h-full'>
-                            {index !== 0 && <div className="h-[1px] bg-gradient-to-r from-[#252D47]/20 via-[#252D47]/50 to-[#252D47]/20"></div>}
+                            {index !== 0 && <div className="h-[1px] bg-gradient-to-r from-[#30353E]/20 via-[#30353E]/50 to-[#30353E]/20"></div>}
                             <div className="flex justify-between">
                                 <div className="flex gap-4">
                                     <div className="">
