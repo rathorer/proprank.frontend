@@ -30,6 +30,6 @@
     "@tinacms/cli": "^1.5.46"
   },
   "engines": {
-    "node": "20"
+    "node": ">=20"
   }
 }
