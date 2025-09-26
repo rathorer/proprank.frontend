@@ -35,7 +35,7 @@ export default defineConfig({
 		collections: [
 			{
 				name: "infographics",
-				label: "Infographics",
+				label: "Propview",
 				path: "src/content/infographics",
 				fields: [
 					{
@@ -118,7 +118,7 @@ export default defineConfig({
 			},
 			{
 				name: "caseStudy",
-				label: "Case Study",
+				label: "Propstory",
 				path: "src/content/caseStudy",
 				fields: [
 					{
@@ -202,7 +202,7 @@ export default defineConfig({
 			},
 			{
 				name: "motionGraphics",
-				label: "Motion Graphics",
+				label: "Propshorts",
 				path: "src/content/motionGraphics",
 				fields: [
 					{

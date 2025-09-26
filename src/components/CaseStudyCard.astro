@@ -30,8 +30,7 @@ const { caseStudy } = Astro.props as Props;
                         {caseStudy.data.title}
                     </div>
                     <div class="text-sm text-gray mt-1">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Soluta nostrum nesciunt voluptates voluptat ...
+                        {caseStudy.body.split(" ").slice(0, 30).join(" ")} ...
                     </div>
                 </div>
                 <div
