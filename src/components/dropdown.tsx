@@ -55,11 +55,16 @@ const Dropdown = () => {
         setSmallScreen(window.innerWidth <= 500);
     }, [])
 
+
+    const handleRedirect = (url: string) => {
+        window.location.href = url;
+    }
+
     return (
         <div ref={dropdownRef}>
             <div
                 onClick={toggleDropdown}
-                className="text-[#252d47] focus:outline-none flex flex-col items-end justify-start cursor-pointer"
+                className="text-[#30353E] focus:outline-none flex flex-col items-end justify-start cursor-pointer"
             >
                 <span className="sr-only">Open main menu</span>
                 <svg
@@ -77,7 +82,7 @@ const Dropdown = () => {
                     </path>
                 </svg>
                 {!smallScreen && dropdownOpen && (
-                    <div className="absolute mt-6 w-48 bg-white rounded-md drop-shadow text-center z-50">
+                    <div className="absolute mt-6 w-48 bg-white rounded-md drop-shadow text-left z-50">
                         {loggedIn ?
                             <div className='block px-4 py-2'>
                                 {userDetails?.name}
@@ -86,17 +91,17 @@ const Dropdown = () => {
                             : <></>}
                         <a href="/#infographics" className='block px-4 py-2 hover:bg-gray/20'>
                             <button className="">
-                                Infographics
+                                PropView
                             </button>
                         </a>
                         <a href="/#caseStudy" className='block px-4 py-2 hover:bg-gray/20'>
                             <button className="">
-                                Case Study
+                                PropStory
                             </button>
                         </a>
                         <a href="/#Shorts" className='block px-4 py-2 hover:bg-gray/20'>
                             <button className="">
-                                Shorts
+                                PropShorts
                             </button>
                         </a>
                         {/* <hr className='border-white' /> */}
@@ -137,7 +142,7 @@ const Dropdown = () => {
                                 placeholder="Search articles..."
                                 required
                             />
-                            <button type="submit" className="p-2 text-white rounded-lg absolute right-1 bg-blue-500 ">
+                            <button type="submit" className="p-2 text-black rounded-lg absolute right-1 bg-white">
                                 <svg
                                     className="w-4 h-4"
                                     aria-hidden="true"
@@ -159,24 +164,27 @@ const Dropdown = () => {
                 </div>
                 <div className="mt-5 text-left text-gray-dark">
                     <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
-                        window.location.hash = '#infographics';
+                        handleRedirect('/#infographics');
                         toggleDropdown();
                     }}>
                         <button className="">
-                            Infographics
+                            PropView
                         </button>
                     </div>
                     <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
-                        window.location.hash = '#caseStudy';
+                        handleRedirect('/#caseStudy');
                         toggleDropdown();
                     }}>
                         <button className="">
-                            Case Study
+                            PropStory
                         </button>
                     </div>
-                    <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => window.location.hash = "#Shorts"}>
+                    <div className='block px-2 py-2 hover:bg-gray/20' onClick={() => {
+                        handleRedirect("/#Shorts");
+                        toggleDropdown();
+                    }}>
                         <button className="">
-                            Shorts
+                            PropShorts
                         </button>
                     </div>
                     {loggedIn ? <a href="/" className='block px-2 py-2' onClick={handleLogout} id='logout-btn-drawer'>
