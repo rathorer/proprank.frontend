@@ -17,7 +17,7 @@ jobs:
           ref: contributor
 
       - name: Create or update PR
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore(content): update from TinaCMS"
@@ -29,4 +29,3 @@ jobs:
           draft: false
           delete-branch: false
           # Prevent duplicate PRs
-          create-branch: false
