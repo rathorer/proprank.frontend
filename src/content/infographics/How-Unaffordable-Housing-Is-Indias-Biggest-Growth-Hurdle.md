@@ -1,5 +1,5 @@
 ---
-title: How Unaffordable Housing Is India’s Biggest Growth Hurdle
+title: How Lack Of Affordable Housing Is India’s Biggest Growth Hurdle
 tags:
   - AffordableHousing
   - HousingForAll
