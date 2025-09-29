@@ -6,7 +6,7 @@ tags:
   - Housing
   - AffordableHousing
   - Livability
-titleImage: /images/3.png
+titleImage: /images/States%20HomeOwnership.png
 slug: Indian-states-by-home-ownership
 quote: >-
   "As India urbanises, the real question is not just “How many own?” but “What
