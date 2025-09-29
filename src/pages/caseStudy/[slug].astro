@@ -47,7 +47,10 @@ const { Content } = await render(post);
 	<div class="bg-[#30353E] text-white py-[50px] px-4 sm:px-8 2xl:px-56">
 		<div class="flex justify-start gap-2 sm:gap-5">
 			<div class="w-full h-full flex-1">
-				<a href="javascript:window.history.back()" class="text-white inline-block">
+				<a
+					href="javascript:window.history.back()"
+					class="text-white inline-block"
+				>
 					<svg
 						class="w-7 h-7 mt-3"
 						viewBox="0 0 56 56"
@@ -73,14 +76,14 @@ const { Content } = await render(post);
 				<div
 					class="flex flex-col gap-6 sm:gap-3 sm:flex-row mt-3 items-baseline justify-between"
 				>
-					<div>
+					<!-- <div>
 						<Tags tags={post.data.tags} source="caseStudy" />
-					</div>
+					</div> -->
 					<div
 						class="flex justify-between w-full gap-2 items-center text-xs sm:text-sm"
 					>
 						<div class="flex gap-2">
-							<div class="hidden sm:block">•</div>
+							<!-- <div class="hidden sm:block">•</div> -->
 							<h3 class="text-[#d4d9de] font-normal text-sm">
 								{formatDate(post.data.createdAt)}
 							</h3>
@@ -94,11 +97,16 @@ const { Content } = await render(post);
 
 	<!-- Carousels and body -->
 	<div class="">
-		<!-- Article below the image+carousel block -->
 		<Carousel images={post.data.images} />
 		<article class="px-4 sm:px-8 2xl:px-56 my-20">
 			<Content />
 		</article>
+	</div>
+
+	<div
+		class="px-4 sm:px-8 2xl:px-56 mb-10"
+	>
+		<Tags tags={post.data.tags} source="infographics" />
 	</div>
 
 	<!-- Comment section -->
