@@ -1,4 +1,3 @@
-# .github/workflows/create-content-pr.yml
 name: Create PR from contributor to master
 
 on:
@@ -9,7 +8,6 @@ on:
 jobs:
   create-pr:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout contributor branch
         uses: actions/checkout@v4
@@ -17,15 +15,14 @@ jobs:
           ref: contributor
 
       - name: Create or update PR
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore(content): update from TinaCMS"
-          branch: contributor
+          branch: sync-contributor-to-master
           base: master
           title: "Daily content sync"
           body: |
             TinaCMS content edits made in `contributor`. This PR syncs them to `master`.
           draft: false
           delete-branch: false
-          # Prevent duplicate PRs
