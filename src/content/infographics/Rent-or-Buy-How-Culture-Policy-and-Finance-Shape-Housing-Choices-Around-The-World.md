@@ -1,7 +1,5 @@
 ---
-title: >-
-  Rent or Buy? How Culture, Policy, and Finance Shape Housing Choices Around The
-  World
+title: Rent or Buy? How Culture and Policy Shape Housing Choices Around The World
 tags:
   - RentVsBuy
   - HomeOwnership
@@ -18,7 +16,7 @@ db_id: 68da65ff35e3faa296e340ff
 createdAt: 2025-09-29T10:57:02.368Z
 ---
 
-**Do you really need to own a home? **
+\*\*Do you really need to own a home? \*\*
 
 The answer depends on where you live.
 
