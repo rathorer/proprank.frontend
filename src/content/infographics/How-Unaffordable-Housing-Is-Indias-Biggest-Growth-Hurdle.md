@@ -9,14 +9,14 @@ tags:
 titleImage: /images/7.jpg
 slug: How-Unaffordable-Housing-Is-Indias-Biggest-Growth-Hurdle
 quote: >-
-  "The future of Indian cities depends on transitioning millions from informal
-  to dignified housing, but only ample supply of affordable housing will make it
-  possible"
+  "India must provide dignified, affordable, formal housing to millions
+  migrating to its cities, because a country cannot truly grow while half its
+  urban population continues to live in slums and unauthorised colonies."
 db_id: 68da474835e3faa296e34087
 createdAt: 2025-09-29T08:45:59.697Z
 ---
 
-**Did you know? **
+\*\*Did you know? \*\*
 
 Nearly half of India’s urban population (\~49%) still lives in slums, unauthorised colonies, squatter settlements, and shanties.
 
