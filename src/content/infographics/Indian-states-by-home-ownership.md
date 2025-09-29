@@ -1,10 +1,10 @@
 ---
 title: 'India’s Housing Puzzle: Why Villages Beat Cities in Ownership'
 tags:
-  - Residential Real Estate
-  - Home Ownership
+  - ResidentialRealEstate
+  - HomeOwnership
   - Housing
-  - Affordable Housing
+  - AffordableHousing
   - Livability
 titleImage: /images/3.png
 slug: Indian-states-by-home-ownership
@@ -41,7 +41,7 @@ High property prices, migration pressures, and limited rental options shaped thi
 
 •	Of all occupied homes → 53.5% were in good condition, 41.4% livable, and 5.1% dilapidated.
 
-👉* Owning a home didn’t always mean living well.*
+👉\* Owning a home didn’t always mean living well.\*
 
 **The Big Picture**
 
