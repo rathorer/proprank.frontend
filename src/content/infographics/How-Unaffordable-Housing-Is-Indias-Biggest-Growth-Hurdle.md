@@ -16,7 +16,7 @@ db_id: 68da474835e3faa296e34087
 createdAt: 2025-09-29T08:45:59.697Z
 ---
 
-\*\*Did you know? \*\*
+**Did you know?**
 
 Nearly half of India’s urban population (\~49%) still lives in slums, unauthorised colonies, squatter settlements, and shanties.
 
@@ -28,7 +28,7 @@ That’s why:
 
 •	Other Indian cities aren’t far behind too.
 
-W**hy do informal settlements keep growing?**
+**Why do informal settlements keep growing?**
 
 Because while rural-to-urban migration surges, affordable, quality housing is missing.
 
