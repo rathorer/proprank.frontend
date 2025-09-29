@@ -12,7 +12,7 @@ quote: >-
   "As India urbanises, the real question is not just “How many own?” but “What
   are they owning, and how livable is it?”
 db_id: 682b24861a203e58732dbc93
-createdAt: 2025-06-27T11:43:03.520Z
+createdAt: 2025-08-1T11:43:03.520Z
 ---
 
 India’s home ownership data may be over a decade old, but it still tells us how Indians really live — and the story is fascinating 👇
