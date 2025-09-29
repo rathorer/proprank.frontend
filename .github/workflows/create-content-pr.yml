@@ -19,7 +19,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore(content): update from TinaCMS"
-          branch: sync-contributor-to-master
+          branch: contributor
           base: master
           title: "Daily content sync"
           body: |
