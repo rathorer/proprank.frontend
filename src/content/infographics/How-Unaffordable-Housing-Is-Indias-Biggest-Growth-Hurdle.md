@@ -6,7 +6,7 @@ tags:
   - LivableCities
   - InformalHousing
   - ResidentialRealEstate
-titleImage: /images/Informal%20Settlements.jpg
+titleImage: /images/InformalSettlements.jpg
 slug: How-Lack-Of-Affordable-Housing-Is-Indias-Biggest-Growth-Hurdle
 quote: >-
   "India must provide dignified, affordable, formal housing to millions
