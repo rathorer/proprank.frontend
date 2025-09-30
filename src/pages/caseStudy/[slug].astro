@@ -98,14 +98,14 @@ const { Content } = await render(post);
 	<!-- Carousels and body -->
 	<div>
 		<Carousel images={post.data.images} />
-		<article class="px-4 sm:px-8 2xl:px-56 my-24">
-			<Content />
+		<article
+			class="px-4 sm:px-8 2xl:px-56 my-24 md:w-11/12 lg:w-10/12 mx-auto text-[#687383]"
+		>
+			<Content  />
 		</article>
 	</div>
 
-	<div
-		class="px-4 sm:px-8 2xl:px-56 mb-10"
-	>
+	<div class="px-4 sm:px-8 2xl:px-56 mb-10 md:w-11/12 lg:w-10/12 mx-auto">
 		<Tags tags={post.data.tags} source="infographics" />
 	</div>
 

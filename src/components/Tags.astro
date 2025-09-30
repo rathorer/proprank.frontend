@@ -9,7 +9,7 @@ interface Props {
 const { tags, source } = Astro.props as Props;
 ---
 
-<div class="flex gap-2 flex-wrap">
+<div class="flex gap-2 flex-wrap items-center">
   RELATED TOPICS:
   {
     tags.map((tag: string, index: number) => (
