@@ -1,12 +1,12 @@
 ---
-title: Rent or Buy? How Cultures and Policies Shape Housing Choices Globally
+title: Rent or Buy? How Cultures and Policies Shape Housing Decisions Globally
 tags:
   - RentVsBuy
   - HomeOwnership
   - GlobalHousing
   - InternationalRealEstate
   - WealthPlanning
-titleImage: /images/CountriesHome Ownership.jpg
+titleImage: /images/CountriesHomeOwnership.jpg
 slug: >-
   Rent-or-Buy-How-Culture-Policy-and-Finance-Shape-Housing-Choices-Around-The-World
 quote: >-
