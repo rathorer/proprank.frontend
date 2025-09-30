@@ -31,24 +31,22 @@ High property prices, migration pressures, and limited rental options shaped thi
 
 **State-wise Contrasts**
 
-•	High ownership states: Bihar (96.8%), UP (94.7%), MP (76.9%) — where land was more affordable and self-construction common.
+High ownership states: Bihar (96.8%), UP (94.7%), MP (76.9%) — where land was more affordable and self-construction common.
 
-•	Low ownership hubs: Delhi (68.2%), Chandigarh (47.7%), Daman & Diu (38.3%) — where land scarcity + rentals dominated.
+Low ownership hubs: Delhi (68.2%), Chandigarh (47.7%), Daman & Diu (38.3%) — where land scarcity + rentals dominated.
 
 **Quality vs. Quantity**
 
-•	Only 55% lived in durable pucca houses.
+Only 55% lived in durable pucca houses.
 
-•	Of all occupied homes → 53.5% were in good condition, 41.4% livable, and 5.1% dilapidated.
+Of all occupied homes → 53.5% were in good condition, 41.4% livable, and 5.1% dilapidated.
 
-👉\* Owning a home didn’t always mean living well.\*
+*Therefore owning a home didn’t always mean living well.*
 
 **The Big Picture**
 
 India looks like a “nation of homeowners,” but the truth is layered:
 
-•	Rural ownership is mostly self-built, not market-driven.
-
-•	Urban ownership faces affordability stress & rental gaps.
-
-•	Housing quality lags behind ownership numbers.
+* Rural ownership is mostly self-built, not market-driven.
+* Urban ownership faces affordability stress & rental gaps.
+* Housing quality lags behind ownership numbers.
