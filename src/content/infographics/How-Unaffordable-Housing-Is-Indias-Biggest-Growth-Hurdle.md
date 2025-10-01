@@ -46,7 +46,10 @@ Overcrowding, safety risks & weak infrastructure.
 
 **But how can this crisis be fixed?**
 
-* Mass supply of affordable housing linked with jobs & transport.
-* Affordable rental housing near industrial hubs.
-* Livability-focused redevelopment of existing slums.
-* Stricter checks to stop unauthorised colonies before they grow.
+Mass supply of affordable housing linked with jobs & transport.
+
+Affordable rental housing near industrial hubs.
+
+Livability-focused redevelopment of existing slums.
+
+Stricter checks to stop unauthorised colonies before they grow.
