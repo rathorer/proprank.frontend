@@ -24,4 +24,4 @@ db_id: 68dae5d135e3faa296e34142
 createdAt: 2025-09-29T20:02:24.774Z
 ---
 
-Here’s what went wrong and how an Italy-inspired hill city, once marketed as the ultimate weekend getaway, holiday or second home, and high-return rental investment destination, has become a cautionary tale for Indian real estate buyers.
+The Italian city dream, once sold as the ultimate weekend getaway, second or holiday home, and high-return investment destination, has become a cautionary tale for Indian real estate investors.
