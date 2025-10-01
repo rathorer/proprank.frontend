@@ -96,10 +96,11 @@ const { Content } = await render(post);
 	</div>
 
 	<!-- Carousels and body -->
-	<div>
-		<Carousel images={post.data.images} />
+	<div class="mt-0">
+		<Carousel images={post.data.images}/>
 		<article
-			class="px-4 sm:px-8 2xl:px-56 my-24 md:w-11/12 lg:w-10/12 mx-auto text-[#687383]"
+			class="px-4 sm:px-8 2xl:px-56 my-8 md:w-11/12 lg:w-10/12 mx-auto text-[#687383]"
+			id="content"
 		>
 			<Content  />
 		</article>
@@ -138,7 +139,7 @@ const { Content } = await render(post);
 	</div>
 </MainLayout>
 
-<style is:global>
+<style>
 	p {
 		margin: 20px 0;
 	}
@@ -146,5 +147,15 @@ const { Content } = await render(post);
 	h2 {
 		margin: 20px 0;
 		font-size: 1.8rem;
+	}
+
+	#articleContent ul {
+		list-style: inherit;
+		margin-left: 1.5rem;
+	}
+
+	#articleContent ol {
+		list-style: decimal;
+		margin-left: 1.5rem;
 	}
 </style>

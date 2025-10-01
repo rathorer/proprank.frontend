@@ -7,13 +7,13 @@ const { images } = Astro.props as CarouselProps;
 ---
 
 <div
-    class="relative w-full h-[600px] sm:h-[650px] md:h-[750px] lg:h-[850px] 2xl:h-[1000px] overflow-hidden mt-10"
+    class="relative w-full h-[580px] sm:h-[650px] md:h-[750px] lg:h-[850px] xl:h-[920px] 2xl:h-[1000px] overflow-hidden sm:mt-10 mt-0"
 >
     <div class="relative w-full h-full items" id="carousel">
         {
             images.map((src, index) => (
                 <div
-                    class="item absolute top-1/2 left-1/2 w-11/12 h-auto sm:w-3/5 lg:w-1/2 2xl:w-2/5 overflow-hidden transition-all duration-[1000ms] ease-in-out opacity-0 z-[1] -translate-x-1/2 -translate-y-1/2"
+                    class="item absolute top-[46%] left-1/2 w-11/12 h-auto sm:w-3/5 lg:w-1/2 2xl:w-2/5 sm:top-1/2 overflow-hidden transition-all duration-[1000ms] ease-in-out opacity-0 z-[1] -translate-x-1/2 -translate-y-1/2"
                     class:list={[
                         index === 0 ? "active" : "",
                         index === 1 ? "next" : "",
@@ -27,7 +27,7 @@ const { images } = Astro.props as CarouselProps;
     </div>
 
     <div
-        class="w-full sm:w-9/12 lg:w-7/12 xl:w-[46%] absolute -bottom-3 sm:bottom-auto sm:top-1/2 left-1/2 flex justify-between items-center -translate-x-1/2 -translate-y-1/2 z-[100] px-2 sm:px-0"
+        class="w-full sm:w-9/12 lg:w-7/12 xl:w-[60%] absolute -bottom-3 sm:bottom-auto sm:top-1/2 left-1/2 flex justify-between items-center -translate-x-1/2 -translate-y-1/2 z-[100] px-2 sm:px-0"
     >
         <div
             id="prevButton"
