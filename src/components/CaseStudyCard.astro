@@ -10,8 +10,10 @@ interface Props {
 const { caseStudy } = Astro.props as Props;
 ---
 
-<div class="hover:scale-105 transition-transform duration-300 ease-in-out">
-    <a href={"/caseStudy/" + caseStudy.slug} class="inline-block">
+<div
+    class="hover:scale-105 transition-transform duration-300 ease-in-out hover:z-50 rounded-2xl bg-white"
+>
+    <a href={"/caseStudy/" + caseStudy.slug}>
         <div
             class="flex flex-col gap-5 sm:flex-row rounded-2xl shadow-[0px_10.304px_38.821px_0px_rgba(19,21,157,0.10)] p-4 sm:p-0 sm:gap-0 w-full h-full"
         >
@@ -19,18 +21,18 @@ const { caseStudy } = Astro.props as Props;
                 <img
                     src={caseStudy.data.titleImage}
                     alt="Article Image"
-                    class="w-56 h-full sm:w-52 sm:h-full object-cover object-left-top hover:opacity-75 transition duration-300 ease-in-out rounded-2xl"
+                    class="w-56 h-full sm:w-52 object-cover object-left-top hover:opacity-75 transition duration-300 ease-in-out sm:rounded-l-2xl"
                 />
             </div>
             <div
                 class="flex flex-col gap-5 h-auto justify-between sm:px-4 sm:py-6 w-full"
             >
-                <div class="sm:space-y-1">
-                    <div class="font-semibold tracking-wide text-lg">
+                <div class="flex flex-col gap-2">
+                    <div class="font-semibold tracking-wide text-lg h-20">
                         {caseStudy.data.title}
                     </div>
-                    <div class="text-sm text-gray mt-1">
-                        {caseStudy.body.split(" ").slice(0, 30).join(" ")} ...
+                    <div class="text-sm text-gray leading-6 sm:leading-6 2xl:text-base">
+                        {caseStudy.body.split(" ").slice(0, 25).join(" ")} ...
                     </div>
                 </div>
                 <div

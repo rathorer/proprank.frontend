@@ -4,6 +4,7 @@ import MainLayout from "layouts/MainLayout.astro";
 export const prerender = true;
 ---
 
+<!--heading color to  text-[#4a505a] -->
 <MainLayout>
     <div class="bg-[#30353E] px-8 text-white py-10 2xl:px-56">
         <div class="flex justify-start items-center gap-8">
@@ -32,7 +33,7 @@ export const prerender = true;
             class="w-full md:w-3/5 h-auto 2xl:w-1/2"
         />
     </div>
-    <div class="px-10 md:px-20 my-12 2xl:px-56">
+    <div class="px-10 md:px-20 my-12 2xl:px-56 text-[#687383]">
         <p class="text-xl italic my-5">
             "For a long time, we felt a massive gap between <span
                 class="font-semibold">what's projected</span
@@ -50,11 +51,20 @@ export const prerender = true;
         <p class="my-5">
             Experiencing this noise firsthand sparked the next step: what began
             as simple curiosity on X (Twitter) gradually evolved through the
-            <span class="font-semibold cursor-pointer">@PropertyDecoder</span> handle
-            into a mission—to decode through the loud, biased narratives that often
-            drown out genuine awareness.
+            <a
+                href="https://x.com/PropertyDecoder"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="twitter"
+            >
+                <span class="font-semibold cursor-pointer text-blue-500"
+                    >@PropertyDecoder</span
+                >
+            </a>
+            handle into a mission—to decode through the loud, biased narratives that
+            often drown out genuine awareness.
         </p>
-        <p class="my-5 font-semibold">
+        <p class="my-5 font-semibold text-[#4a505a]">
             Because the current real estate discourse is mostly driven by
             supply-side incentives. Their job is to sell, not to inform.
         </p>
@@ -65,7 +75,8 @@ export const prerender = true;
         <p class="my-5">
             A full-blown echo chamber where hype overshadows clarity, trust is
             hard to find, and the burden is deliberately put on gullible buyers:
-            "You should've known better. You should've done your research."
+            <p class="italic">"You should've known better."</p>
+            <p class="italic">"You should've done your research."</p>
         </p>
         <p class="my-5">But where? From whom?</p>
         <p class="my-5 font-semibold">
@@ -88,7 +99,7 @@ export const prerender = true;
             This wide spectrum of experiences makes it difficult for them to
             know what to expect or whom to trust.
         </p>
-        <p class="my-5 font-semibold">
+        <p class="my-5">
             That's why the need arises for a space to decode real estate
             holistically, not speculate on it.
         </p>

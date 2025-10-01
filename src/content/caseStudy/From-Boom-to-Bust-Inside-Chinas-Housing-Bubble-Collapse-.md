@@ -25,4 +25,7 @@ db_id: 68db9e6535e3faa296e341dd
 createdAt: 2025-09-30T09:09:56.667Z
 ---
 
+
 Learn how China’s housing boom, born from genuine urban demand but later inflated by speculative buying and manufactured narratives, shattered the illusion of housing as a safe, ever-rising investment, unraveling into millions of unsold homes, stalled projects, and trillions in lost wealth.
+
+

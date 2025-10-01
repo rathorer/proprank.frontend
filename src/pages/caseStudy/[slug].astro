@@ -69,7 +69,7 @@ const { Content } = await render(post);
 
 			<div class="w-full h-full flex flex-col sm:gap-2">
 				<h1
-					class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] sm:leading-normal font-bold"
+					class="text-2xl sm:text-3xl md:text-4xl md:leading-[3rem] lg:text-[42px] font-bold"
 				>
 					{post.data.title}
 				</h1>
@@ -98,14 +98,14 @@ const { Content } = await render(post);
 	<!-- Carousels and body -->
 	<div>
 		<Carousel images={post.data.images} />
-		<article class="px-4 sm:px-8 2xl:px-56 my-20">
-			<Content />
+		<article
+			class="px-4 sm:px-8 2xl:px-56 my-24 md:w-11/12 lg:w-10/12 mx-auto text-[#687383]"
+		>
+			<Content  />
 		</article>
 	</div>
 
-	<div
-		class="px-4 sm:px-8 2xl:px-56 mb-10"
-	>
+	<div class="px-4 sm:px-8 2xl:px-56 mb-10 md:w-11/12 lg:w-10/12 mx-auto">
 		<Tags tags={post.data.tags} source="infographics" />
 	</div>
 
