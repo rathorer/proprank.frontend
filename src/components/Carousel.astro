@@ -20,7 +20,11 @@ const { images } = Astro.props as CarouselProps;
                     ]}
                     data-index={index}
                 >
-                    <img src={src} class="w-full h-full" />
+                    <img
+                        src={src}
+                        class="w-full h-full"
+                        alt={"caseStudypic" + { index }}
+                    />
                 </div>
             ))
         }
@@ -87,7 +91,9 @@ const { images } = Astro.props as CarouselProps;
         const slides = document.querySelectorAll(".item");
         const nextButton = document.getElementById("nextButton");
         const prevButton = document.getElementById("prevButton");
-        const currentSlideNumber = document.querySelectorAll("#currentSlideNumber");
+        const currentSlideNumber = document.querySelectorAll(
+            "#currentSlideNumber",
+        );
 
         let current = 0;
         let prev = slides.length - 1;
