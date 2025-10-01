@@ -21,12 +21,17 @@ const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&loo
         <img
             src={titleImage}
             alt="YouTube Short Thumbnail"
-            class="w-full h-[380px] rounded-md object-cover object-left-top group-hover:opacity-80 transition-opacity duration-300"
+            class="w-full h-[380px] rounded-md object-cover object-left-top group-hover:opacity-60 transition-opacity duration-300"
         />
         <div
-            class="group-hover:opacity-100 transition-opacity ease-in-out absolute inset-0 m-auto w-14 h-12 bg-transparent"
+            class="group-hover:opacity-100 ease-in-out absolute inset-0 bg-transparent flex justify-center items-center transition-all"
         >
-            <img src="/ytShorts.png" alt="" srcset="" class="w-full h-full" />
+            <img
+                src="/ytShorts.png"
+                alt=""
+                srcset=""
+                class="w-14 h-14"
+            />
         </div>
         <div class="flex flex-col py-4 gap-2 px-4">
             <div class="text-sm text-gray">
