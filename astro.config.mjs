@@ -12,5 +12,9 @@ export default defineConfig({
   site: 'https://example.com',
   integrations: [mdx(), sitemap(), tailwind(), react()],
   output: "static",
-  adapter: vercel()
+  adapter: vercel({
+    webAnalytics: {enabled: true},
+    maxDuration: 8,
+  }),
+
 });
