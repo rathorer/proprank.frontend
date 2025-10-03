@@ -6,20 +6,20 @@ tags:
   - InternationalRealEstate
   - ResidentialRealEstate
   - HousingMarketCrash
-titleImage: /images/China1.jpg
+titleImage: /images/China1.webp
 images:
-  - /images/China1.jpg
-  - /images/China2.jpg
-  - /images/China3.jpg
-  - /images/China4.jpg
-  - /images/China5.jpg
-  - /images/China6.jpg
-  - /images/China7.jpg
-  - /images/China8.jpg
-  - /images/China9.jpg
-  - /images/China10.jpg
-  - /images/China11.jpg
-  - /images/China12.jpg
+  - /images/China1.webp
+  - /images/China2.webp
+  - /images/China3.webp
+  - /images/China4.webp
+  - /images/China5.webp
+  - /images/China6.webp
+  - /images/China7.webp
+  - /images/China8.webp
+  - /images/China9.webp
+  - /images/China10.webp
+  - /images/China11.webp
+  - /images/China12.webp
 slug: From-Boom-to-Bust-Inside-Chinas-Housing-Bubble-Collapse-
 db_id: 68db9e6535e3faa296e341dd
 createdAt: 2025-09-30T09:09:56.667Z
