@@ -94,10 +94,13 @@ const { images } = Astro.props as CarouselProps;
         const currentSlideNumber = document.querySelectorAll(
             "#currentSlideNumber",
         );
+        const carousel = document.getElementById("carousel");
 
         let current = 0;
         let prev = slides.length - 1;
         let next = 1;
+        let startX = 0;
+        let endX = 0;
 
         const updateClasses = () => {
             slides.forEach((slide) => {
@@ -134,7 +137,23 @@ const { images } = Astro.props as CarouselProps;
         const gotoPrev = () => current > 0 && gotoNum(current - 1);
         const gotoNext = () =>
             current < slides.length - 1 && gotoNum(current + 1);
-        prevButton.addEventListener("click", gotoPrev);
-        nextButton.addEventListener("click", gotoNext);
+
+        const handleTouchStart = (e) => (startX = e.touches[0].clientX);
+        const handleTouchMove = (e) => (endX = e.touches[0].clientX);
+        const handleTouchEnd = () => {
+            startX - endX > 50 && gotoNext(); // swipe left → next
+            endX - startX > 50 && gotoPrev(); // swipe right → prev
+            startX = 0;
+            endX = 0;
+        };
+
+        const eventListenerInit = () => {
+            prevButton.addEventListener("click", gotoPrev);
+            nextButton.addEventListener("click", gotoNext);
+            carousel.addEventListener("touchstart", handleTouchStart);
+            carousel.addEventListener("touchmove", handleTouchMove);
+            carousel.addEventListener("touchend", handleTouchEnd);
+        };
+        eventListenerInit();
     });
 </script>
