@@ -3,7 +3,7 @@ name: Auto Merge Content PR
 
 on:
   schedule:
-    - cron: "0 * * * *" # 8:00 AM IST
+    - cron: "30 2 * * *" # 8:00 AM IST
   workflow_dispatch:
 
 jobs:
