@@ -47,7 +47,7 @@ export const getBlog = async (slug: string): Promise<[]> => {
 //     }
 // }
 
-export const loginUser = async function (credentials:LoginCredentials ) {
+export const loginUser = async function (credentials: LoginCredentials) {
     try {
         let response = await fetch(`${api_url}api/user/login`, {
             method: "POST",

@@ -11,6 +11,12 @@ import SocialLinks from "components/SocialLinks";
 import { formatDate } from "utils";
 import Tags from "../../components/Tags.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
+import {
+	$signInStore,
+	$sessionStore,
+	$userStore,
+	$authStore,
+} from "@clerk/astro/client";
 
 export const prerender = true;
 

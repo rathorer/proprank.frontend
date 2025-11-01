@@ -1,8 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { getComments, postComments } from '../services/api';
 import { convertTimeToHumanRelatable } from '../utils';
+import { useStore } from "@nanostores/react";
+// import { $sessionStore, $userStore } from "@clerk/astro/client";
+import { useAuth } from '@clerk/astro/react';
 import Like from './Like';
 import Popup from './Popup';
+import { $userStore } from '@clerk/astro/client';
 
 interface Props {
     slug: string;
@@ -19,6 +23,15 @@ export default function CommentSection({ slug, articleId, title }: Props) {
     const [deleteDropdown, setDeleteDropdown] = useState<Record<string, boolean>>({});
     const [currentUrl, setCurrentUrl] = useState('');
     const deleteDropdownRef = useRef<HTMLDivElement | null>(null);
+
+    const { getToken } = useAuth();
+    // const session = useStore($sessionStore); // session can be undefined | null | Session
+    // const user = useStore($userStore);
+
+    const fetchToken = async () => {
+        const token = await getToken();
+        console.log(token, "token");
+    }
 
     useEffect(() => {
         let user = window.sessionStorage.getItem("user-details");
