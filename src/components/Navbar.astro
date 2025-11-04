@@ -1,14 +1,7 @@
 ---
-// import { Image } from "astro:assets";
+import { SignedIn, UserButton } from "@clerk/astro/components";
 import SearchForm from "./SearchForm.astro";
 import DropDown from "./dropdown";
-import {
-	SignedIn,
-	SignedOut,
-	UserButton,
-	SignInButton,
-} from "@clerk/astro/components";
-
 ---
 
 <nav class="bg-[#F9F9F9] text-secondary2 border-b border-b-gray-light py-2">
@@ -29,7 +22,3 @@ import {
 		</div>
 	</div>
 </nav>
-
-<!-- <SignedOut>
-	<SignInButton mode="modal" />
-</SignedOut> -->

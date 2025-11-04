@@ -1,5 +1,6 @@
 // const default_site_url = import.meta.env.DEFAULT_SITE_URL;
 const api_url = import.meta.env.PUBLIC_API_URL;
+import type { LoginCredentials, NewUserCredentials, articleCommentLike } from "../types/common"
 
 export const getAllBlogs = async () => {
     try {
@@ -82,12 +83,14 @@ export const createUser = async function (credentials: NewUserCredentials) {
         throw error;
     }
 }
-export const postComments = async function (data: articleCommentLike) {
+
+export const postComments = async function (data: any, token: string | null) {
     try {
         let response = await fetch(`${api_url}api/blog/comments/postComments/${data.articleId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(data)
         });

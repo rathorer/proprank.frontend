@@ -1,11 +1,13 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import Login from "../../components/login";
+import { SignIn } from "@clerk/astro/components";
 
 export const prerender = false;
-const callbackUrl = Astro.url.searchParams.get("callbackUrl") as string;
 ---
 
 <MainLayout title="login">
-   <Login client:load callbackUrl={callbackUrl} />
+
+   <div class="flex justify-center items-center my-10">
+      <SignIn signUpUrl="/signup" />
+   </div>
 </MainLayout>

@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../constants";
 // import { ViewTransitions } from "astro:transitions";
-import Analytics from '@vercel/analytics/astro'
+import Analytics from "@vercel/analytics/astro";
 
 
 const { title = "Decoding real estate beyond noise." } = Astro.props;
@@ -21,26 +21,22 @@ const { title = "Decoding real estate beyond noise." } = Astro.props;
 			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 			rel="stylesheet"
 		/>
-		<link
-			rel="shortcut icon"
-			href="/favicon.ico"
-			type="image/x-icon"
-		/>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<title>{SITE_TITLE} - {title}</title>
 		<!-- <ViewTransitions /> -->
 	</head>
 	<body class="font-proprank">
-		<div class="flex flex-col min-h-[100vh]">
-			<header>
-				<Navbar />
-			</header>
-			<section class="flex-1">
-				<slot />
-				<!-- <Analytics /> -->
-			</section>
-			<footer class="">
-				<Footer /> 
-			</footer>
-		</div>
+			<div class="flex flex-col min-h-[100vh]">
+				<header>
+					<Navbar />
+				</header>
+				<section class="flex-1">
+					<slot />
+					<Analytics />
+				</section>
+				<footer class="">
+					<Footer />
+				</footer>
+			</div>
 	</body>
 </html>

@@ -1,14 +1,13 @@
-import { SignedIn, SignedOut, SignInButton, SignOutButton, useAuth, UserButton, UserProfile } from '@clerk/astro/react';
+import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from '@clerk/astro/react';
 import { useEffect, useRef, useState } from 'react';
 
 const Dropdown = () => {
     const [dropdownOpen, setDropdownOpen] = useState<Boolean>(false);
-    const [loggedIn, setLoggedIn] = useState<Boolean>(false);
-    const [userDetails, setUserDetail] = useState<Record<string, any>>({});
-    const dropdownRef = useRef<HTMLDivElement | null>(null);
     const [smallScreen, setSmallScreen] = useState(false);
-    const { userId } = useAuth();
 
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+    // const { userId } = useAuth();
 
     const toggleDropdown = () => {
         if (smallScreen) {
@@ -32,13 +31,6 @@ const Dropdown = () => {
         }
     };
 
-    const handleLogout = () => {
-        window.sessionStorage.removeItem('user-details');
-        setUserDetail({});
-        setLoggedIn(false);
-        window.location.href = '/';
-    }
-
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         setSmallScreen(window.innerWidth <= 500);
@@ -46,11 +38,6 @@ const Dropdown = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
-
-    useEffect(() => {
-        setLoggedIn(userId ? true : false);
-    }, [userId]);
-
 
     const handleRedirect = (url: string) => {
         window.location.href = url;
@@ -94,7 +81,6 @@ const Dropdown = () => {
                                 PropShorts
                             </button>
                         </a>
-
                         <hr className='border-slate-300' />
                         <SignedIn>
                             <SignOutButton>
@@ -103,15 +89,13 @@ const Dropdown = () => {
                                 </button>
                             </SignOutButton>
                         </SignedIn>
-                        {/* <div className="block px-4 py-2 hover:bg-gray/20"> */}
                         <SignedOut>
-                            <SignInButton mode="modal">
+                            <SignInButton mode="modal" signUpForceRedirectUrl={window.location.href}>
                                 <button className='block hover:bg-gray/20 w-full py-2 px-4 text-start'>
                                     Sign in
                                 </button>
                             </SignInButton>
                         </SignedOut>
-                        {/* </div> */}
                     </div>
                 )}
             </div>
@@ -185,19 +169,20 @@ const Dropdown = () => {
                             PropShorts
                         </button>
                     </div>
-                    {loggedIn ?
-                        <SignOutButton>
+                    <SignedIn>
+                        <SignOutButton redirectUrl={window.location.href}>
                             <button className="block hover:bg-gray/20 w-full py-2 px-2 text-start">
                                 Sign out
                             </button>
                         </SignOutButton>
-                        :
-                        <div className="block px-4 py-2 hover:bg-gray/20">
-                            <SignedOut>
-                                <SignInButton mode="modal" />
-                            </SignedOut>
-                        </div>
-                    }
+                    </SignedIn>
+                    <SignedOut>
+                        <SignInButton mode="modal">
+                            <button className='block hover:bg-gray/20 py-2 px-2 w-full text-start'>
+                                Sign in
+                            </button>
+                        </SignInButton>
+                    </SignedOut>
                 </div>
             </div>}
         </div>
