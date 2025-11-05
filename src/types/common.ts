@@ -9,10 +9,10 @@ export interface NewUserCredentials {
     name: string;
 }
 
-export type CommentType = {
+export interface CommentType {
     _id: string;
     body: string;
-    userId: { _id: string; clerkId: string, name: string };
+    userId: { _id: string; clerkId: string, name: string, photoUrl: string };
     likedBy_ids: string[];
     createdAt: Date;
 }
@@ -22,4 +22,10 @@ export interface articleCommentLike {
     slug: string;
     likedBy_ids: string[],
     comments: CommentType[];
+}
+
+export interface NewComment {
+    body: string;
+    createdAt: Date;
+    clerkUserId: string
 }

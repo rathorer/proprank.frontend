@@ -4,8 +4,8 @@ import { useClerk } from "@clerk/clerk-react";
 import type { UserResource } from "@clerk/types";
 import { useStore } from "@nanostores/react";
 import React, { useEffect, useRef, useState } from 'react';
-import type { articleCommentLike, CommentType } from "types/common";
-import { getComments, postComments } from '../services/api';
+import type { articleCommentLike, CommentType, NewComment } from "types/common";
+import { deleteComment, getComments, likeUnLikeArticle, likeUnLikeComment, postComment } from '../services/api';
 import { convertTimeToHumanRelatable } from '../utils';
 import Like from './Like';
 import Popup from './Popup';
@@ -33,7 +33,6 @@ export default function CommentSection({ slug, articleId, title }: Props) {
     const fetchToken = async () => {
         if (!isLoaded) return; // wait until Clerk is ready
         const clerkToken = await getToken();
-        console.log(clerkToken, "token");
         if (clerkToken) {
             setToken(clerkToken);
             setUserDetails(user);
@@ -43,9 +42,12 @@ export default function CommentSection({ slug, articleId, title }: Props) {
 
     const fetchComments = async () => {
         const article: articleCommentLike = await getComments(articleId);
-        if (article?.comments?.length) {
+        if (article.comments.length) {
             setComments(article.comments);
+        } else {
+            setComments([]);
         }
+
         if (article?.likedBy_ids?.length) {
             setArticleLikes(article.likedBy_ids);
         }
@@ -75,7 +77,8 @@ export default function CommentSection({ slug, articleId, title }: Props) {
             const updatedArticleLikeArray = [...articleLikes, userDetails.id];
             setArticleLikes(updatedArticleLikeArray);
             const data = { articleId, slug, likedBy_ids: updatedArticleLikeArray, comments: comments };
-            await postComments(data, token);
+            // await postComments(data, token);
+            await likeUnLikeArticle({ articleId, slug, clerkUserId: userDetails.id, event: "like" }, token)
         }
     }
 
@@ -86,8 +89,9 @@ export default function CommentSection({ slug, articleId, title }: Props) {
         } else {
             const updatedArticleLikeArray = articleLikes.filter((userId) => userId !== userDetails.id);
             setArticleLikes([...updatedArticleLikeArray]);
-            let data = { articleId, slug, likedBy_ids: updatedArticleLikeArray, comments: comments };
-            await postComments(data, token);
+            const data = { articleId, slug, likedBy_ids: updatedArticleLikeArray, comments: comments };
+            // await postComments(data, token);
+            await likeUnLikeArticle({ articleId, slug, clerkUserId: userDetails.id, event: "unlike" }, token)
         }
     }
 
@@ -107,7 +111,8 @@ export default function CommentSection({ slug, articleId, title }: Props) {
             const updatedComments = [...comments];
             setComments(updatedComments);
             const data = { articleId, slug, likedBy_ids: articleLikes, comments: updatedComments };
-            await postComments(data, token);
+            // await postComments(data, token);
+            await likeUnLikeComment({ articleId, commentId, clerkUserId: userDetails.id, event: "like" }, token);
         }
     }
 
@@ -127,7 +132,8 @@ export default function CommentSection({ slug, articleId, title }: Props) {
             const updatedComments = [...comments];
             setComments(updatedComments);
             let data = { articleId, slug, likedBy_ids: articleLikes, comments: updatedComments };
-            await postComments(data, token);
+            // await postComments(data, token);
+            await likeUnLikeComment({ articleId, commentId, clerkUserId: userDetails.id, event: "unlike" }, token);
         }
     }
 
@@ -138,23 +144,16 @@ export default function CommentSection({ slug, articleId, title }: Props) {
     const handleCommentSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!loggedIn || !userDetails) {
-            // navigateToLogin();
             openSignIn({});
         } else {
             const form = event.currentTarget;
             const formData: FormData = new FormData(form);
             const body = formData.get('body') as string;
-
-            // here userDetails.id is actually clerk id and it gets switch to mongodb id in backend;
-            const newComments = [...comments, { body: body, userId: userDetails.id, likedBy_ids: [], createdAt: new Date() }]
-            const data = { articleId, slug, likedBy_ids: articleLikes, comments: newComments }
-            const article = (await postComments(data, token))?.result?.article;
-
-            const newCommentId = article.comments[article.comments.length - 1]._id;
-            // user db Id
-            const _id = article.comments[article.comments.length - 1]?.userId?.["_id"];
-            const userId = { _id, clerkId: userDetails.id, name: userDetails.fullName || userDetails.firstName || userDetails.lastName || userDetails.emailAddresses[0].emailAddress };
-            setComments([...comments, { _id: newCommentId, body: body, userId, likedBy_ids: [], createdAt: new Date() }]);
+            // here userDetails.id is actually clerk id and it gets switch to db id in backend;
+            const newComment: NewComment = { body: body, clerkUserId: userDetails.id, createdAt: new Date() };
+            const data = { articleId, slug, comment: newComment }
+            const comment = await postComment(data, token);
+            setComments([...comments, comment]);
             form.reset();
         }
     }
@@ -173,16 +172,15 @@ export default function CommentSection({ slug, articleId, title }: Props) {
     }
 
     /**
-     * @param id to delete comment
+     * @param commentId to delete comment (db-id)
      */
-    const handleDelete = async (id: string) => {
+    const handleDelete = async (commentId: string) => {
         if (!loggedIn || !userDetails) {
             openSignIn({});
         } else {
-            let filteredComments = comments.filter((comment: CommentType) => comment._id !== id);
+            let filteredComments = comments.filter((comment: CommentType) => comment._id !== commentId);
             setComments([...filteredComments]);
-            const data = { articleId, slug, likedBy_ids: articleLikes, comments: filteredComments }
-            await postComments(data, token);
+            await deleteComment(articleId, commentId, token);
         }
     }
 
@@ -312,8 +310,8 @@ export default function CommentSection({ slug, articleId, title }: Props) {
                             {index !== 0 && <div className="h-[1px] bg-gradient-to-r from-[#30353E]/20 via-[#30353E]/50 to-[#30353E]/20"></div>}
                             <div className="flex justify-between">
                                 <div className="flex gap-4">
-                                    <div className="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="profile" width={40} height={40}><path d="M11.78,11.28A4.462,4.462,0,0,1,16,6.61a4.462,4.462,0,0,1,4.22,4.67A4.45912,4.45912,0,0,1,16,15.94,4.45912,4.45912,0,0,1,11.78,11.28ZM30.04,16a13.91894,13.91894,0,0,1-2.39,7.82,1.43134,1.43134,0,0,1-.14.2,14.01332,14.01332,0,0,1-23.02,0,1.43134,1.43134,0,0,1-.14-.2A14.03633,14.03633,0,1,1,30.04,16ZM3.46,16a12.51091,12.51091,0,0,0,1.57,6.09C7.2,19.24,11.36,17.46,16,17.46s8.8,1.78,10.97,4.63A12.543,12.543,0,1,0,3.46,16Z"></path></svg>
+                                    <div className="w-10 h-10 flex justify-center items-center">
+                                        <img src={comment?.userId?.photoUrl || "https://www.gravatar.com/avatar?d=mp"} alt="avatar" className="rounded-full" />
                                     </div>
                                     <div className="flex flex-col">
                                         <div className="capitalize font-medium tracking-wider text-lg">
