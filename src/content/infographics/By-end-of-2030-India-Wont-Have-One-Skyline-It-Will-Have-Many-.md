@@ -1,11 +1,11 @@
 ---
 title: 'By 2030, India Will Have Many Skylines, Not Just One.'
 tags:
-  - '#Skyscrapers'
-  - '#UrbanDevelopment'
-  - '#FutureOfCities'
-  - '#IndianCities'
-  - '#IndiaRealEstate'
+  - Skyscrapers
+  - UrbanDevelopment
+  - FutureOfCities
+  - IndianCities
+  - IndiaRealEstate
 titleImage: /images/10.jpg
 slug: By-end-of-2030-India-Wont-Have-One-Skyline-It-Will-Have-Many-
 quote: >-
