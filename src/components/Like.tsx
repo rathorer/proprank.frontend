@@ -4,24 +4,24 @@ interface Props {
     classes: string;
     likedCall: (id: string) => void;
     unLikedCall: (id: string) => void;
-    alreadyLiked: Boolean;
+    userLiked: Boolean;
     referenceId: string;
     currentLikesCount: number;
 }
 
-export default function Like({ classes, likedCall, unLikedCall, alreadyLiked, referenceId,currentLikesCount }: Props) {
-    const [liked, setLiked] = useState(alreadyLiked);
+export default function Like({ classes, likedCall, unLikedCall, userLiked, referenceId,currentLikesCount }: Props) {
+    const [liked, setLiked] = useState(userLiked);
     const [likesCount, setLikesCount] = useState(currentLikesCount);
 
     useEffect(() => {
-        if (alreadyLiked !== undefined) {
-            setLiked(alreadyLiked);
+        if (userLiked !== undefined) {
+            setLiked(userLiked);
         }
         if (currentLikesCount !== undefined) {
             setLikesCount(currentLikesCount)
         }
 
-    }, [alreadyLiked,currentLikesCount]);
+    }, [userLiked,currentLikesCount]);
 
 
     return (

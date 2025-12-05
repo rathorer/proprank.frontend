@@ -1,5 +1,5 @@
 ---
-// import { Image } from "astro:assets";
+import { SignedIn, UserButton } from "@clerk/astro/components";
 import SearchForm from "./SearchForm.astro";
 import DropDown from "./dropdown";
 ---
@@ -10,11 +10,14 @@ import DropDown from "./dropdown";
 			<img src="/groundLens.png" alt="logo" class="h-8 md:h-10" />
 			<div class="text-2xl md:text-3xl font-bold">Ground Lens</div>
 		</a>
-		<div class="md:text-xl  text-[#30353E]">
+		<div class="hidden sm:block md:text-xl text-[#30353E]">
 			<a href="/about"> why we exist ? </a>
 		</div>
-		<div class="flex items-center justify-end gap-4">
+		<div class="flex items-center justify-end gap-5">
 			<SearchForm />
+			<SignedIn>
+				<UserButton />
+			</SignedIn>
 			<DropDown client:only="react" />
 		</div>
 	</div>

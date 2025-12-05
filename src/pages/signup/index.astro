@@ -1,9 +1,12 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import SignUp from "../../components/signup"
+import { SignUp } from "@clerk/astro/components";
 
+export const prerender = false;
 ---
 
 <MainLayout title="signup">
-    <SignUp client:load/>
+    <div class="flex justify-center items-center my-10">
+        <SignUp signInUrl="/login"/>
+    </div>
 </MainLayout>

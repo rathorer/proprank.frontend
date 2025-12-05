@@ -6,7 +6,7 @@
     "dev": "tinacms dev -c \"astro dev\"",
     "dev:open": "tinacms dev -c \"astro dev --host\"",
     "start": "astro dev --host",
-    "build": "tinacms build && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -17,6 +17,9 @@
     "@astrojs/sitemap": "^3.1.5",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^8.2.8",
+    "@clerk/astro": "^2.14.2",
+    "@clerk/clerk-react": "^5.53.4",
+    "@nanostores/react": "^1.0.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vercel/analytics": "^1.5.0",
