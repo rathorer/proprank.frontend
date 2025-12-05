@@ -23,13 +23,13 @@ But while Mumbai remains far ahead today, the rest of India is quietly building 
 
 Not to dethrone Mumbai, but to build their own skylines.
 
-\*\*Hyderabad - The Rising Contender \*\*
+**Hyderabad - The Rising Contender**
 
 Already ranks 2nd in India for tall buildings. Thanks to liberal FSI norms which earlier sparked the high-rise wave around Gachibowli, Kokapet, Financial District & beyond.
 
 Recent launches continue to fuel the vertical growth unlike any other city except Mumbai, driven by IT demand, premium housing appetite & infrastructure build-out. When completed, Hyderabad could see high number of denser corridors of tall clusters rather than isolated spikes.
 
-\*\*NCR - The Multi-Node Skyline \*\*
+**NCR - The Multi-Node Skyline**
 
 Noida already holds the highest share of skyscrapers within NCR, and now with recent policy changes wrt FSI relaxations, it is set to unlock taller residential & commercial blocks along expressway corridors and emerging CBD/mixed-use pockets.
 
@@ -39,18 +39,18 @@ Delhi on the other hand have started building up on its new TOD policy and may a
 
 Unlike Mumbai or Hyderabad, NCR’s skyline evolution will be multi-centered, more corridors than clusters.
 
-\*\*Bengaluru - Horizontal Past, Vertical Future \*\*
+**Bengaluru - Horizontal Past, Vertical Future**
 
 Bengaluru grew outward for decades... villa belts, plotted layouts and mid-rise apartments defined its urban form.
 
 But things are shifting. With FAR relaxations, metro expansion, IT corridor densification and redevelopment gaining traction, high-rise feasibility is improving. The skyline here won’t explode overnight, but expect pockets of vertical growth in newer areas and transit corridors.
 
-\*\*Pune - Rising Skyward with Stability \*\*
+**Pune - Rising Skyward with Stability**
 
 Unlike Bengaluru’s historically horizontal sprawl, Pune adopted mid/high-rise living much earlier.
 
 Its vertical rise has been steady, premium-led and township-driven, not flashy but consistent and continue to drive by IT demand, young workforce migration and lifestyle-focused projects.
 
-\*\*Kolkata, Chennai & Others - Selective Verticality \*\*
+**Kolkata, Chennai & Others - Selective Verticality**
 
 Tall icons may rise, but high-rise culture will remain selective and controlled, shaped by legacy land-use patterns, economics and infrastructure capacity.
