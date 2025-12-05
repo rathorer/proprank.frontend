@@ -3,6 +3,6 @@
 
 export const SITE_TITLE = 'Ground Lens';
 export const SITE_DESCRIPTION =
-    'Infographics on Real Estate';
+    'Decoding real estate beyond noise.';
 export const HOMEPAGE_ARTICLE_LIMIT = 15;
 export const ARTICLES_PER_PAGE = 8;

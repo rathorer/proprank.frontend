@@ -29,7 +29,7 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 
 <MainLayout>
 	<div
-		class="relative bg-center bg-cover bg-no-repeat h-[660px] mb-[850px] sm:mb-48 lg:mb-64 2xl:mb-80 bg-[url(/bg-image.png)] size-full"
+		class="relative bg-center bg-cover bg-no-repeat h-[660px] mb-[850px] sm:mb-48 lg:mb-64 2xl:mb-80 bg-[url(/bg-image.webp)] size-full"
 	>
 		<div
 			class="absolute inset-0 bg-gradient-to-b from-[#30353E]/[85%] via-[#30353E]/[95%] to-[#30353E]"
@@ -72,24 +72,33 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 				</h2>
 				<img
 					src="/simplifying-ill.png"
-					class="h-[200px] lg:h-[265px] mx-auto mb-2 "
+					alt="simplifying-ill"
+					class="h-[200px] lg:h-[265px] mx-auto mb-2"
 				/>
-				<p class="text-[#72839c] text-center text-base h-auto">
+				<div
+					class="text-[#72839c] text-center text-base h-auto [word-spacing:0.1rem] tracking-wider"
+				>
 					Simplifying the complex world of Indian real-estate
-				</p>
+				</div>
 			</div>
 			<div
 				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full sm:w-full flex flex-col mx-auto"
 			>
 				<h2
-					class="text-[14px] md:text-[18px] lg:text-2xl font-medium text-center md:mb-2 lg:mb-4 text-[#30353E] "
+					class="text-[14px] md:text-[18px] lg:text-2xl font-medium text-center md:mb-2 lg:mb-4 text-[#30353E]"
 				>
 					{"{ Beyond Narratives }"}
 				</h2>
-				<img src="/redefiningillustration.png" class="h-[200px] lg:h-[265px] mx-auto mb-2" />
-				<p class="text-[#72839c] text-center text-base h-fit">
+				<img
+					src="/redefiningillustration.png"
+					alt="redefining-ill"
+					class="h-[200px] lg:h-[265px] mx-auto mb-2"
+				/>
+				<div
+					class="text-[#72839c] text-center text-base h-fit [word-spacing:0.1rem] tracking-wider"
+				>
 					Redefining the fundamentals with ground-up insights
-				</p>
+				</div>
 			</div>
 			<div
 				class="bg-white shadow-lg rounded-lg p-4 w-11/12 h-full sm:w-full flex flex-col mx-auto"
@@ -99,10 +108,16 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 				>
 					{"{ Beyond Claims }"}
 				</h2>
-				<img src="/unfolding-ill.png" class="h-[200px] lg:h-[265px] mx-auto mb-2" />
-				<p class="text-[#72839c] text-center text-base h-fit">
+				<img
+					src="/unfolding-ill.png"
+					alt="unfolding-ill"
+					class="h-[200px] lg:h-[265px] mx-auto mb-2"
+				/>
+				<div
+					class="text-[#72839c] text-center text-base h-fit [word-spacing:0.1rem] tracking-wider"
+				>
 					Uncovering growth opportunities and underlying risks
-				</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -130,7 +145,7 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 			imageClass="w-auto h-9"
 		/>
 		<div
-			class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-10 gap-y-14"
+			class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-8 gap-y-14"
 		>
 			{
 				infographics
@@ -148,7 +163,7 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 			imageUrl="/storiesIcon.png"
 			imageClass="w-auto h-8"
 		/>
-		<div class="grid grid-cols-1 gap-x-2 gap-y-6 lg:grid-cols-2 mt-10">
+		<div class="grid grid-cols-1 gap-x-2 gap-y-6 lg:grid-cols-2 mt-8">
 			{
 				caseStudy
 					.slice(0, HOMEPAGE_ARTICLE_LIMIT)
@@ -167,7 +182,7 @@ const motionGraphics = (await getCollection("motionGraphics")).sort(
 		/>
 
 		<div
-			class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-10"
+			class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 mt-8"
 		>
 			{
 				motionGraphics

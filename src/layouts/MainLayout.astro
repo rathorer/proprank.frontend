@@ -3,8 +3,10 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../constants";
 // import { ViewTransitions } from "astro:transitions";
+import Analytics from '@vercel/analytics/astro'
 
-const { title = "Infographics on Real Estate" } = Astro.props;
+
+const { title = "Decoding real estate beyond noise." } = Astro.props;
 ---
 
 <!doctype html>
@@ -34,6 +36,7 @@ const { title = "Infographics on Real Estate" } = Astro.props;
 			</header>
 			<section class="flex-1">
 				<slot />
+				<Analytics />
 			</section>
 			<footer class="">
 				<Footer /> 
