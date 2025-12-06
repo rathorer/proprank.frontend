@@ -35,7 +35,7 @@ Noida already holds the highest share of skyscrapers within NCR, and now with re
 
 Gurgaon meanwhile has seen multiple luxury high-rise launches in recent years and may even surpass Noida in count as the cycle matures.
 
-Delhi on the other hand have started building up on its new TOD policy and may add some iconic towers to the very grounded city ;)
+Delhi on the other hand have started building up on its new TOD policy and may add some iconic towers to the very grounded city.
 
 Unlike Mumbai or Hyderabad, NCR’s skyline evolution will be multi-centered, more corridors than clusters.
 
