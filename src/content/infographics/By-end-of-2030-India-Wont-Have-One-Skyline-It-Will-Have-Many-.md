@@ -15,7 +15,7 @@ db_id: 69318ff3ed8f58e467cfac06
 createdAt: 2025-12-04T13:43:15.702Z
 ---
 
-According to the CTBUH tall-building standard (150m+), CBRE’s report in 2023 finds that **Mumbai** alone hosts \~77% of India’s tall towers, making it the country’s undisputed vertical capital.
+According to the Council on Tall Buildings and Urban Habitat's (CTBUH) tall-building standards, CBRE’s report in 2023 finds that **Mumbai** alone hosts \~77% of India’s tall towers (150m+), making it the country’s undisputed vertical capital.
 
 And with relentless redevelopment, cluster transformations, and premium high-rises rising across the city, Mumbai’s vertical lead is only expected to widen further.
 
