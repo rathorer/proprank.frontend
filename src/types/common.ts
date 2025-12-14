@@ -1,25 +1,31 @@
-interface LoginCredentials {
+export interface LoginCredentials {
     email: string;
     password: string;
 }
 
-interface NewUserCredentials {
+export interface NewUserCredentials {
     email: string;
     password: string;
     name: string;
 }
 
-interface CommentInter {
+export interface CommentType {
     _id: string;
     body: string;
-    userId: Record<string, string> | string;
+    userId: { _id: string; clerkId: string, name: string, photoUrl: string };
     likedBy_ids: string[];
     createdAt: Date;
 }
 
-interface articleCommentLike {
+export interface articleCommentLike {
     articleId: string;
     slug: string;
     likedBy_ids: string[],
-    comments: Partial<CommentInter>[];
+    comments: CommentType[];
+}
+
+export interface NewComment {
+    body: string;
+    createdAt: Date;
+    clerkUserId: string
 }
