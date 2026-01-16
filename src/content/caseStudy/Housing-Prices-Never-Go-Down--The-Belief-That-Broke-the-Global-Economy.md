@@ -2,6 +2,10 @@
 title: “Housing Prices Never Go Down” — The Belief That Broke the Global Economy
 tags:
   - USHousingBubble
+  - SubprimeMortgageCrisis
+  - SystemicFinancialRisk
+  - 2008GlobalFinancialCrisis
+  - HousingBubbleExplained
 titleImage: /images/1.webp
 images:
   - /images/1.webp
