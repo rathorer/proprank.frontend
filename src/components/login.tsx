@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { loginUser } from '../services/api';
+import type { LoginCredentials } from "../types/common";
 
 interface Props {
     callbackUrl: string;

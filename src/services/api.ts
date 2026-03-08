@@ -1,5 +1,6 @@
 // const default_site_url = import.meta.env.DEFAULT_SITE_URL;
 const api_url = import.meta.env.PUBLIC_API_URL;
+import type { CommentType, LoginCredentials, NewComment, NewUserCredentials, articleCommentLike } from "../types/common"
 
 export const getAllBlogs = async () => {
     try {
@@ -27,27 +28,8 @@ export const getBlog = async (slug: string): Promise<[]> => {
         throw error;
     }
 }
-// export const postBlog = async (data: any) => {
-//     try {
-//         const response = await fetch(`api/blog/postNewBlog/`, {
-//             method: 'POST',
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(data)
-//         });
-//         if (!response.ok) {
-//             throw new Error("failed to save data");
-//         }
-//         const result = await response.json();
-//         return result;
-//     } catch (error) {
-//         console.log(error);
-//         throw error;
-//     }
-// }
 
-export const loginUser = async function (credentials:LoginCredentials ) {
+export const loginUser = async function (credentials: LoginCredentials) {
     try {
         let response = await fetch(`${api_url}api/user/login`, {
             method: "POST",
@@ -82,15 +64,17 @@ export const createUser = async function (credentials: NewUserCredentials) {
         throw error;
     }
 }
-export const postComments = async function (data: articleCommentLike) {
+
+export const likeUnLikeComment = async (data: { articleId: string, commentId: string, clerkUserId: string, event: "like" | "unlike" }, token: string | null) => {
     try {
-        let response = await fetch(`${api_url}api/blog/comments/postComments/${data.articleId}`, {
+        const response = await fetch(`${api_url}api/blog/comments/likeUnLikeComment/${data.articleId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(data)
-        });
+        })
         let status = response.status;
         const result = await response.json();
         return { result, status };
@@ -100,16 +84,68 @@ export const postComments = async function (data: articleCommentLike) {
     }
 }
 
+export const likeUnLikeArticle = async (data: { articleId: string, slug: string, clerkUserId: string, event: "like" | "unlike" }, token: string | null) => {
+    try {
+        const response = await fetch(`${api_url}api/blog/comments/likeUnLikeArticle/${data.articleId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        })
+        let status = response.status;
+        const result = await response.json();
+        return { result, status };
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export const postComment = async function (data: { articleId: string, slug: string, comment: NewComment }, token: string | null) {
+    try {
+        const response = await fetch(`${api_url}api/blog/comments/postComment/${data.articleId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export const deleteComment = async (articleId: string, commentId: string, token: string | null) => {
+    try {
+        await fetch(`${api_url}api/blog/comments/deleteComment/${articleId}/${commentId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+        });
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
 export const getComments = async (articleId: string) => {
     try {
         const response = await fetch(`${api_url}api/blog/comments/getComments/${articleId}`);
-        if (!response.ok) {
+        if (response.status == 404) {
             throw new Error("failed to fetch data");
         }
         const comments = await response.json();
         return comments;
     } catch (error) {
-        console.log(error);
+        console.log(error, "error");
         throw error;
     }
 }

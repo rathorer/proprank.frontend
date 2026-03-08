@@ -5,7 +5,7 @@ import type {
 	InferGetStaticPropsType,
 } from "astro";
 import { getCollection, render } from "astro:content";
-import CommentSection from "components/CommentSection";
+import ClerkProviderCommentSectionWrapper from "components/ClerkProviderCommentWrapper";
 import InfographicCard from "components/InfographicCard.astro";
 import SocialLinks from "components/SocialLinks";
 import { formatDate } from "utils";
@@ -133,7 +133,7 @@ const { Content } = await render(post);
 
 	<!-- Comment Section -->
 	<div class="px-4 sm:px-8 2xl:px-56 mt-10">
-		<CommentSection
+		<ClerkProviderCommentSectionWrapper
 			client:only="react"
 			title={post.data.title}
 			articleId={post.data.db_id}

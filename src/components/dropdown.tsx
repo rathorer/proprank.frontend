@@ -1,12 +1,13 @@
+import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from '@clerk/astro/react';
 import { useEffect, useRef, useState } from 'react';
 
 const Dropdown = () => {
     const [dropdownOpen, setDropdownOpen] = useState<Boolean>(false);
-    const [loggedIn, setLoggedIn] = useState<Boolean>(false);
-    const [userDetails, setUserDetail] = useState<Record<string, any>>({});
-    const dropdownRef = useRef<HTMLDivElement | null>(null);
     const [smallScreen, setSmallScreen] = useState(false);
 
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+    // const { userId } = useAuth();
 
     const toggleDropdown = () => {
         if (smallScreen) {
@@ -30,31 +31,13 @@ const Dropdown = () => {
         }
     };
 
-    const handleLogout = () => {
-        window.sessionStorage.removeItem('user-details');
-        setUserDetail({});
-        setLoggedIn(false);
-        window.location.href = '/';
-    }
-
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
+        setSmallScreen(window.innerWidth <= 500);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
-
-
-    useEffect(() => {
-        const user = window.sessionStorage.getItem("user-details");
-        if (user) {
-            const userDetailObj = JSON.parse(user);
-            setLoggedIn(true);
-            setUserDetail(userDetailObj.user);
-        }
-        setSmallScreen(window.innerWidth <= 500);
-    }, [])
-
 
     const handleRedirect = (url: string) => {
         window.location.href = url;
@@ -83,12 +66,6 @@ const Dropdown = () => {
                 </svg>
                 {!smallScreen && dropdownOpen && (
                     <div className="absolute mt-6 w-48 bg-white rounded-md drop-shadow text-left z-50">
-                        {loggedIn ?
-                            <div className='block px-4 py-2'>
-                                {userDetails?.name}
-                                <hr />
-                            </div>
-                            : <></>}
                         <a href="/#infographics" className='block px-4 py-2 hover:bg-gray/20'>
                             <button className="">
                                 PropView
@@ -104,26 +81,31 @@ const Dropdown = () => {
                                 PropShorts
                             </button>
                         </a>
-                        {/* <hr className='border-white' /> */}
-                        {loggedIn ? <a href="/" className='block px-4 py-2 hover:bg-gray/20' onClick={handleLogout} id='logout-btn'>
-                            <button className="">
-                                Logout
-                            </button>
-                        </a> : <a href="/login" className='block px-4 py-2 hover:bg-gray/20'>
-                            <button className="">
-                                Login | Sign up
-                            </button>
-                        </a>}
+                        <hr className='border-slate-300' />
+                        <SignedIn>
+                            <SignOutButton>
+                                <button className="block hover:bg-gray/20 w-full py-2 px-4 text-start">
+                                    Sign out
+                                </button>
+                            </SignOutButton>
+                        </SignedIn>
+                        <SignedOut>
+                            <SignInButton mode="modal" signUpForceRedirectUrl={window.location.href}>
+                                <button className='block hover:bg-gray/20 w-full py-2 px-4 text-start'>
+                                    Sign in
+                                </button>
+                            </SignInButton>
+                        </SignedOut>
                     </div>
                 )}
             </div>
             {smallScreen && <div className="fixed top-0 right-[-300px] w-64 h-full bg-white transform transition-transform duration-500 ease-in-out shadow-2xl py-8 px-3 z-[200]" id='drawer'>
                 <div className="flex justify-between items-center">
-                    {loggedIn &&
-                        <div className='block'>
-                            {userDetails?.name}
-                        </div>
-                    }
+                    <div className="w-full">
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
+                    </div>
                     <button className="text-gray-dark text-xl font-medium" onClick={toggleDropdown}>
                         <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M22.5 9.5L9.5 22.5M9.5 9.5L22.5 22.5" stroke="#1E1E1E" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
@@ -187,15 +169,20 @@ const Dropdown = () => {
                             PropShorts
                         </button>
                     </div>
-                    {loggedIn ? <a href="/" className='block px-2 py-2' onClick={handleLogout} id='logout-btn-drawer'>
-                        <button className="">
-                            Logout
-                        </button>
-                    </a> : <a href="/login" className='block px-2 py-2'>
-                        <button className="">
-                            Login | Sign up
-                        </button>
-                    </a>}
+                    <SignedIn>
+                        <SignOutButton redirectUrl={window.location.href}>
+                            <button className="block hover:bg-gray/20 w-full py-2 px-2 text-start">
+                                Sign out
+                            </button>
+                        </SignOutButton>
+                    </SignedIn>
+                    <SignedOut>
+                        <SignInButton mode="modal">
+                            <button className='block hover:bg-gray/20 py-2 px-2 w-full text-start'>
+                                Sign in
+                            </button>
+                        </SignInButton>
+                    </SignedOut>
                 </div>
             </div>}
         </div>
